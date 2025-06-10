@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import ParticlesBackground from './ParticlesBackground.svelte';
   
   let titleElement: HTMLElement;
   let serviceCards: HTMLElement[] = [];
@@ -65,6 +66,8 @@
 </script>
 
 <section id="services" class="py-24 bg-gray-50 relative" bind:this={servicesSection}>
+  <!-- Particules/orbes en arrière-plan -->
+  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={1} />
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">

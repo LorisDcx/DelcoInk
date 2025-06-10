@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
   import gsap from 'gsap';
+  import ParticlesBackground from './ParticlesBackground.svelte';
   
   // Importer ScrollTrigger uniquement côté client
   let ScrollTrigger;
@@ -131,6 +132,8 @@
 </script>
 
 <section id="process" class="py-24 bg-gray-50 relative">
+  <!-- Particules/orbes en arrière-plan -->
+  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={1} />
   <div class="ornament-corner opacity-60"></div>
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
