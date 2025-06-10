@@ -1,0 +1,115 @@
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-800 font-body;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-title text-gray-900;
+  }
+}
+
+/* Classes personnalisées pour un style raffiné et élégant */
+@layer components {
+  .btn-primary {
+    @apply bg-white text-forest px-6 py-3 rounded-md font-title uppercase text-lg tracking-wider relative overflow-hidden hover:shadow-md transition-all duration-300 border-2 border-forest;
+  }
+
+  .btn-primary::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-forest transition-all duration-300;
+  }
+  
+  .group:hover .btn-primary::after {
+    @apply w-full;
+  }
+
+  .ornament-corner {
+    @apply absolute w-12 h-12 pointer-events-none opacity-60;
+    background-image: url('/images/corner-ornament.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .ornament-corner-top-right {
+    @apply top-2 right-2 rotate-90;
+  }
+
+  .ornament-corner-bottom-left {
+    @apply bottom-2 left-2 -rotate-90;
+  }
+
+  .ornament-corner-bottom-right {
+    @apply bottom-2 right-2 rotate-180;
+  }
+
+  .card {
+    @apply bg-white shadow-md relative overflow-hidden rounded-md transition-all duration-300 border border-gray-100;
+  }
+
+  .card::before {
+    content: "";
+    @apply absolute top-0 left-0 w-0 h-full bg-forest bg-opacity-5 transition-all duration-500 z-0;
+  }
+
+  .card:hover::before {
+    @apply w-full;
+  }
+
+  .card:hover {
+    @apply shadow-lg border-forest border-opacity-20;
+  }
+
+  .card-content {
+    @apply relative z-10;
+  }
+}
+
+/* Animations raffinées et élégantes */
+@layer utilities {
+  .animate-grow-vertical {
+    animation: growVertical 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes growVertical {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
+  .texture-overlay {
+    position: relative;
+  }
+
+  .texture-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/texture-overlay.svg');
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 relative inline-block;
+  }
+  
+  .section-title::after {
+    content: "";
+    @apply block h-1 w-1/2 bg-forest mt-2;
+  }
+}
