@@ -50,8 +50,8 @@
 </script>
 
 <section id="home" class="relative h-screen overflow-hidden bg-white">
-  <!-- Particules/orbes en arrière-plan -->
-  <ParticlesBackground opacity={0.6} particleCount={40} zIndex={5} />
+  <!-- Particules/orbes en arrière-plan (zIndex négatif pour rester derrière tout) -->
+  <ParticlesBackground opacity={0.6} particleCount={40} zIndex={-1} />
   
   <!-- Background image with parallax effect -->
   <div class="absolute inset-0 z-0" bind:this={hero}>

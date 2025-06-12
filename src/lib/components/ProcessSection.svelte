@@ -132,8 +132,8 @@
 </script>
 
 <section id="process" class="py-24 bg-gray-50 relative">
-  <!-- Particules/orbes en arrière-plan -->
-  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={1} />
+  <!-- Particules/orbes en arrière-plan (zIndex négatif pour rester derrière tout) -->
+  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={-1} />
   <div class="ornament-corner opacity-60"></div>
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
