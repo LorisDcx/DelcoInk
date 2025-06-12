@@ -36,11 +36,18 @@
   });
 </script>
 
-<section id="about" class="py-24 bg-black relative">
-  <div class="ornament-corner"></div>
+<section id="about" class="py-24 relative overflow-hidden">
+  <!-- Overlay pour la section About (l'image de fond est fournie par le Hero) -->
+  <div class="absolute inset-0 z-0">
+    <!-- Overlay foncé pour la lisibilité du contenu -->
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+    <!-- Gradient pour améliorer la lisibilité du texte et créer une transition -->
+    <div class="absolute inset-0 bg-gradient-to-b from-green-800/70 to-black/50"></div>
+  </div>
+  <!-- Ornements supprimés -->
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
-      <h2 class="font-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block">
+      <h2 class="font-title text-4xl md:text-5xl text-white text-center mb-16 uppercase relative inline-block">
         À propos
         <span class="absolute -bottom-2 left-0 h-1 bg-forest w-1/2"></span>
       </h2>
@@ -57,16 +64,7 @@
           <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
         </div>
         
-        <!-- SVG ornamental decoration corners -->
-        <svg width="60" height="60" viewBox="0 0 24 24" class="absolute -top-3 -left-3 text-forest opacity-80">
-          <path fill="currentColor" d="M4,4H20V20H4V4M6,6V18H18V6H6Z" />
-          <path fill="currentColor" d="M0,0 L8,0 L8,2 L2,2 L2,8 L0,8 Z" />
-        </svg>
-        
-        <svg width="60" height="60" viewBox="0 0 24 24" class="absolute -bottom-3 -right-3 text-forest opacity-80">
-          <path fill="currentColor" d="M4,4H20V20H4V4M6,6V18H18V6H6Z" />
-          <path fill="currentColor" d="M24,24 L16,24 L16,22 L22,22 L22,16 L24,16 Z" />
-        </svg>
+        <!-- Coins décoratifs SVG supprimés -->
       </div>
 
       <div class="relative" bind:this={textContainer}>
@@ -105,5 +103,5 @@
       </div>
     </div>
   </div>
-  <div class="ornament-corner ornament-corner-bottom-right"></div>
+  <!-- Ornement de coin inférieur droit supprimé -->
 </section>

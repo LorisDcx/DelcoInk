@@ -1,10 +1,19 @@
 <script>
-  import HeroSection from '$lib/components/HeroSection.svelte';
-  import AboutSection from '$lib/components/AboutSection.svelte';
-  import ServicesSection from '$lib/components/ServicesSection.svelte';
-  import GallerySection from '$lib/components/GallerySection.svelte';
-  import ProcessSection from '$lib/components/ProcessSection.svelte';
-  import ContactSection from '$lib/components/ContactSection.svelte';
+  import HeroSection from "$lib/components/HeroSection.svelte";
+  import AboutSection from "$lib/components/AboutSection.svelte";
+  import ServicesSection from "$lib/components/ServicesSection.svelte";
+  import GallerySection from "$lib/components/GallerySection.svelte";
+  import ProcessSection from "$lib/components/ProcessSection.svelte";
+  import ContactSection from "$lib/components/ContactSection.svelte";
+  import SectionDivider from "$lib/components/SectionDivider.svelte";
+  
+  // Définition des couleurs de fond des sections pour les séparateurs
+  const heroBackground = "transparent"; // Transition transparente pour l'image partagée
+  const aboutBackground = "rgba(0, 0, 0, 0.3)"; // Léger assombrissement pour la transition
+  const servicesBackground = "#F9FAFB"; // bg-gray-50 en hex
+  const galleryBackground = "#FFFFFF"; // bg-white
+  const processBackground = "#F9FAFB"; // bg-gray-50 en hex
+  const contactBackground = "#FFFFFF"; // bg-white
 </script>
 
 <svelte:head>
@@ -53,8 +62,26 @@
 
 <!-- Sections -->
 <HeroSection />
+
+<!-- Espace invisible entre Hero et About (pas besoin de séparateur visible avec l'image commune) -->
+<div class="h-1"></div>
+
+<!-- Commentaire: Séparateur supprimé car l'image commune assure une transition visuelle parfaite -->
+
 <AboutSection />
+
+<SectionDivider backgroundColor={aboutBackground} nextSectionColor={servicesBackground} />
+
 <ServicesSection />
+
+<SectionDivider backgroundColor={servicesBackground} nextSectionColor={galleryBackground} />
+
 <GallerySection />
+
+<SectionDivider backgroundColor={galleryBackground} nextSectionColor={processBackground} />
+
 <ProcessSection />
+
+<SectionDivider backgroundColor={processBackground} nextSectionColor={contactBackground} />
+
 <ContactSection />

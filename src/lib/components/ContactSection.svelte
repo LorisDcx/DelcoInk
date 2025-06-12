@@ -62,8 +62,8 @@
   }
 </script>
 
-<section id="contact" class="py-24 bg-white relative">
-  <div class="ornament-corner opacity-60"></div>
+<section id="contact" class="py-32 bg-white relative">
+  <!-- Ornement de coin supprimé -->
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
@@ -209,5 +209,5 @@
       </div>
     </div>
   </div>
-  <div class="ornament-corner ornament-corner-bottom-left"></div>
+  <!-- Ornement de coin inférieur gauche supprimé -->
 </section>

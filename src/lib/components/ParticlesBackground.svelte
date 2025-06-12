@@ -76,11 +76,28 @@
       if (ctx && canvas) {
         ctx.beginPath();
         const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
-        // Effet lumineux au centre pour les jeunes pousses
-        const isYoungSprout = p.color === '#CDDC39' || p.color === '#D4E157' || p.color === '#7CFF73';
-        gradient.addColorStop(0, isYoungSprout ? '#FFFF9C' : p.color); // Centre plus lumineux pour les jeunes pousses
-        gradient.addColorStop(0.6, p.color);
-        gradient.addColorStop(1, 'transparent');
+        
+        // Créer une version plus lumineuse de la couleur pour le centre
+        const baseColor = p.color;
+        
+        // Convertir la couleur hexadécimale en composants RGB
+        const r = parseInt(baseColor.slice(1, 3), 16);
+        const g = parseInt(baseColor.slice(3, 5), 16);
+        const b = parseInt(baseColor.slice(5, 7), 16);
+        
+        // Éclaircir la couleur pour le centre (en augmentant la luminosité)
+        const lightenAmount = 50; // Ajustement de la luminosité
+        const centerR = Math.min(r + lightenAmount, 255);
+        const centerG = Math.min(g + lightenAmount, 255);
+        const centerB = Math.min(b + lightenAmount, 255);
+        
+        // Créer la couleur du centre plus lumineuse
+        const centerColor = `rgb(${centerR}, ${centerG}, ${centerB})`;
+        
+        // Créer un gradient plus doux
+        gradient.addColorStop(0, centerColor); // Centre plus lumineux
+        gradient.addColorStop(0.4, baseColor); // Transition douce vers la couleur de base
+        gradient.addColorStop(1, 'transparent'); // Fondu en transparence
         
         ctx.fillStyle = gradient;
         ctx.globalAlpha = p.opacity;

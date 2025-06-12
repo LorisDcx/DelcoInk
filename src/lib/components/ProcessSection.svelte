@@ -132,10 +132,10 @@
 </script>
 
 <section id="process" class="py-24 bg-gray-50 relative">
-  <!-- Particules/orbes en arrière-plan (zIndex négatif pour rester derrière tout) -->
-  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={-1} />
-  <div class="ornament-corner opacity-60"></div>
-  <div class="container mx-auto px-4">
+  <!-- Particules/orbes en arrière-plan (zIndex entre le fond et les éléments UI) -->
+  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={2} />
+  <!-- Ornement de coin supprimé -->
+  <div class="container mx-auto px-4 relative z-10">
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
         Notre Processus
@@ -143,9 +143,9 @@
     </div>
     
     <!-- Timeline -->
-    <div class="relative">
+    <div class="relative z-10">
       <!-- Centre vertical line -->
-      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200">
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 z-10">
         <div 
           bind:this={timelineVertical}
           class="absolute top-0 left-0 w-full bg-forest h-0"
@@ -164,7 +164,7 @@
         {#each processSteps as step, index}
           <div 
             bind:this={processStepElements[index]}
-            class="relative flex flex-col md:flex-row {index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}"
+            class="relative flex flex-col md:flex-row {index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} z-30"
           >
             <!-- Icon circle for desktop -->
             <div class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2 items-center justify-center">
@@ -267,5 +267,5 @@
       </div>
     </div>
   </div>
-  <div class="ornament-corner ornament-corner-bottom-right"></div>
+  <!-- Ornement de coin inférieur droit supprimé -->
 </section>

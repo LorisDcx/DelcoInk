@@ -66,24 +66,24 @@
 </script>
 
 <section id="services" class="py-24 bg-gray-50 relative" bind:this={servicesSection}>
-  <!-- Particules/orbes en arrière-plan (zIndex négatif pour rester derrière tout) -->
-  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={-1} />
-  <div class="container mx-auto px-4">
+  <!-- Particules/orbes en arrière-plan (zIndex entre le fond et les éléments UI) -->
+  <ParticlesBackground opacity={0.5} particleCount={35} zIndex={2} />
+  <div class="container mx-auto px-4 relative z-10">
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
         Nos Services
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 relative z-10">
       <!-- Blackwork Card -->
-      <div class="card group shadow-sm hover:shadow-md transition-all bg-white border border-gray-200 rounded-md" bind:this={serviceCards[0]}>
-        <div class="card-content p-8">
+      <div class="service-card group bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:shadow-forest/20 transition-all duration-500 border-t-4 border-forest relative overflow-hidden z-30 hover:-translate-y-3 hover:scale-[1.03] before:absolute before:inset-0 before:rounded-lg before:opacity-0 before:bg-gradient-to-b before:from-forest/10 before:to-transparent hover:before:opacity-100 before:transition-opacity before:duration-500 before:pointer-events-none" bind:this={serviceCards[0]}>
+        <div class="card-content p-8 flex flex-col h-full">
           <div class="mb-6 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-forest group-hover:text-forest/80 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-forest group-hover:text-forest transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:filter group-hover:drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <h3 class="font-title text-2xl uppercase text-gray-800 group-hover:text-forest transition-colors duration-300">Blackwork</h3>
+            <h3 class="font-title text-2xl uppercase text-gray-800 group-hover:text-forest transition-all duration-300 group-hover:scale-110">Blackwork</h3>
             
             <!-- Growing line animation -->
             <div class="relative h-0.5 w-16 bg-gray-200 mx-auto mt-3">
@@ -94,33 +94,38 @@
             </div>
           </div>
           
-          <p class="text-gray-600 text-center mb-6">
+          <p class="text-gray-600 text-center mb-8 px-2 leading-relaxed">
             Des créations illustratives en noir profond avec ombrages et textures détaillées, alliant élégance et intensité.
           </p>
           
-          <ul class="space-y-3 text-gray-700 mb-8">
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
+          <ul class="space-y-4 text-gray-700 mb-8 px-1">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="font-medium">Tarifs :</span> À partir de 100€, selon taille et complexité
+              <span><span class="font-medium">Durée :</span> Sessions de 2-4h selon le projet</span>
             </li>
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="font-medium">Durée :</span> Sessions de 2-4h selon le projet
-            </li>
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-              <span class="font-medium">Style :</span> Dotwork, line work, ombres graduées
+              <span><span class="font-medium">Style :</span> Dotwork, line work, ombres graduées</span>
             </li>
           </ul>
           
           <div class="text-center">
-            <a href="#gallery?filter=blackwork" class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1">
+            <a 
+              href="#gallery" 
+              class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1"
+              on:click={() => {
+                // Définir le type de filtre et faire défiler vers la galerie
+                window.location.hash = 'gallery';
+                setTimeout(() => {
+                  const event = new CustomEvent('set-gallery-filter', { detail: 'blackwork' });
+                  window.dispatchEvent(event);
+                }, 100);
+              }}
+            >
               Voir réalisations
               <span class="ml-1">&rarr;</span>
             </a>
@@ -129,13 +134,13 @@
       </div>
 
       <!-- Pop-Culture Card -->
-      <div class="card group shadow-sm hover:shadow-md transition-all bg-white border border-gray-200 rounded-md" bind:this={serviceCards[1]}>
-        <div class="card-content p-8">
+      <div class="service-card group bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:shadow-forest/20 transition-all duration-500 border-t-4 border-forest relative overflow-hidden z-30 hover:-translate-y-3 hover:scale-[1.03] before:absolute before:inset-0 before:rounded-lg before:opacity-0 before:bg-gradient-to-b before:from-forest/10 before:to-transparent hover:before:opacity-100 before:transition-opacity before:duration-500 before:pointer-events-none" bind:this={serviceCards[1]}>
+        <div class="card-content p-8 flex flex-col h-full">
           <div class="mb-6 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-forest group-hover:text-forest/80 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-forest group-hover:text-forest transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:filter group-hover:drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <h3 class="font-title text-2xl uppercase text-gray-800 group-hover:text-forest transition-colors duration-300">Pop Culture</h3>
+            <h3 class="font-title text-2xl uppercase text-gray-800 group-hover:text-forest transition-all duration-300 group-hover:scale-110">Pop Culture</h3>
             
             <!-- Growing line animation -->
             <div class="relative h-0.5 w-16 bg-gray-200 mx-auto mt-3">
@@ -146,33 +151,38 @@
             </div>
           </div>
           
-          <p class="text-gray-600 text-center mb-6">
-            Des designs inspirés du cinéma, des jeux vidéo, des comics et de la culture geek, réinterprétés dans notre style unique.
+          <p class="text-gray-600 text-center mb-8 px-2 leading-relaxed">
+            Des designs inspirés de la culture populaire : films, jeux vidéo, animés, comics, et autres univers emblématiques.
           </p>
           
-          <ul class="space-y-3 text-gray-700 mb-8">
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
+          <ul class="space-y-4 text-gray-700 mb-8 px-1">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="font-medium">Tarifs :</span> 120-350€ selon complexité et détails
+              <span><span class="font-medium">Durée :</span> Sessions de 3-5h selon le projet</span>
             </li>
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="font-medium">Processus :</span> Consultation + étude personnalisée
-            </li>
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-              <span class="font-medium">Univers :</span> Films, jeux vidéo, séries, mangas
+              <span><span class="font-medium">Spécialités :</span> Adaptations fidèles, crossovers originaux</span>
             </li>
           </ul>
           
           <div class="text-center">
-            <a href="#gallery?filter=geek" class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1">
+            <a 
+              href="#gallery" 
+              class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1"
+              on:click={() => {
+                // Définir le type de filtre et faire défiler vers la galerie
+                window.location.hash = 'gallery';
+                setTimeout(() => {
+                  const event = new CustomEvent('set-gallery-filter', { detail: 'popculture' });
+                  window.dispatchEvent(event);
+                }, 100);
+              }}
+            >
               Voir réalisations
               <span class="ml-1">&rarr;</span>
             </a>
@@ -181,13 +191,13 @@
       </div>
 
       <!-- Flash Card -->
-      <div class="card group shadow-sm hover:shadow-md transition-all bg-white border border-gray-200 rounded-md" bind:this={serviceCards[2]}>
-        <div class="card-content p-8">
+      <div class="service-card group bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:shadow-forest/20 transition-all duration-500 border-t-4 border-forest relative overflow-hidden z-30 hover:-translate-y-3 hover:scale-[1.03] before:absolute before:inset-0 before:rounded-lg before:opacity-0 before:bg-gradient-to-b before:from-forest/10 before:to-transparent hover:before:opacity-100 before:transition-opacity before:duration-500 before:pointer-events-none" bind:this={serviceCards[2]}>
+        <div class="card-content p-8 flex flex-col h-full">
           <div class="mb-6 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-forest group-hover:text-forest/80 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-forest group-hover:text-forest transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:filter group-hover:drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
             </svg>
-            <h3 class="font-title text-2xl uppercase text-gray-800 group-hover:text-forest transition-colors duration-300">Flash</h3>
+            <h3 class="font-title text-2xl uppercase text-gray-800 group-hover:text-forest transition-all duration-300 group-hover:scale-110">Flash</h3>
             
             <!-- Growing line animation -->
             <div class="relative h-0.5 w-16 bg-gray-200 mx-auto mt-3">
@@ -198,33 +208,38 @@
             </div>
           </div>
           
-          <p class="text-gray-600 text-center mb-6">
-            Collection unique de motifs prêts à tatouer, disponibles en exclusivité au studio. Parfait pour une séance spontanée.
+          <p class="text-gray-600 text-center mb-8 px-2 leading-relaxed">
+            Des designs prêts à être tatoués, créés à l'avance et disponibles pour une réalisation immédiate ou sur rendez-vous.
           </p>
           
-          <ul class="space-y-3 text-gray-700 mb-8">
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
+          <ul class="space-y-4 text-gray-700 mb-8 px-1">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="font-medium">Tarifs :</span> 60-150€ prix fixes affichés en studio
+              <span><span class="font-medium">Durée :</span> Sessions rapides de 1-2h</span>
             </li>
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span class="font-medium">Durée :</span> 30min-2h, souvent sans rendez-vous
-            </li>
-            <li class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-forest" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-              <span class="font-medium">Disponibilité :</span> Collection renouvelée chaque mois
+              <span><span class="font-medium">Avantage :</span> Réalisation immédiate possible</span>
             </li>
           </ul>
           
           <div class="text-center">
-            <a href="#gallery?filter=flash" class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1">
+            <a 
+              href="#gallery" 
+              class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1"
+              on:click={() => {
+                // Définir le type de filtre et faire défiler vers la galerie
+                window.location.hash = 'gallery';
+                setTimeout(() => {
+                  const event = new CustomEvent('set-gallery-filter', { detail: 'flash' });
+                  window.dispatchEvent(event);
+                }, 100);
+              }}
+            >
               Voir catalogue
               <span class="ml-1">&rarr;</span>
             </a>

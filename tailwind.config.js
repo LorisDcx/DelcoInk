@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        title: ['"Bebas Neue"', 'sans-serif'],
+        title: ['"Caveat Brush"', 'cursive'],
         body: ['"Montserrat"', 'sans-serif'],
       },
       animation: {

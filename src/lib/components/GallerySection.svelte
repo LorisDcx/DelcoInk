@@ -39,6 +39,8 @@
   
   // Filtre par catégories
   let activeFilter = 'all';
+  let previousFilter = 'all';
+  let isTransitioning = false;
   
   // Interface pour les images de la galerie
   interface GalleryImage {
@@ -48,9 +50,54 @@
     category: string;
   }
   
-  $: filteredImages = activeFilter === 'all' 
-    ? images 
-    : images.filter((img: GalleryImage) => img.category === activeFilter);
+  // Les images à afficher
+  let filteredImages = images;
+  
+  // Fonction pour changer de filtre avec animation
+  function changeFilter(newFilter: string) {
+    if (newFilter === activeFilter || isTransitioning) return;
+    
+    isTransitioning = true;
+    previousFilter = activeFilter;
+    activeFilter = newFilter;
+    
+    // Animation de disparition
+    const galleryItemElements = document.querySelectorAll('.gallery-item');
+    
+    gsap.to(galleryItemElements, {
+      opacity: 0,
+      scale: 0.95,
+      stagger: 0.03,
+      duration: 0.4,
+      ease: "power2.in",
+      onComplete: () => {
+        // Mettre à jour les images filtrées
+        filteredImages = activeFilter === 'all' 
+          ? images 
+          : images.filter((img: GalleryImage) => img.category === activeFilter);
+        
+        // Laisser le temps au DOM de se mettre à jour
+        setTimeout(() => {
+          // Animation d'apparition
+          const newGalleryItems = document.querySelectorAll('.gallery-item');
+          gsap.fromTo(newGalleryItems, 
+            { opacity: 0, scale: 0.95 },
+            { 
+              opacity: 1, 
+              scale: 1,
+              stagger: 0.05,
+              duration: 0.5,
+              ease: "power2.out",
+              clearProps: "scale",
+              onComplete: () => {
+                isTransitioning = false;
+              }
+            }
+          );
+        }, 50);
+      }
+    });
+  }
   
   // Type pour le resizeObserver
   let resizeObserver: ResizeObserver;
@@ -64,6 +111,21 @@
         duration: 0.8,
       });
     }
+    
+    // Ajouter un écouteur pour l'événement personnalisé set-gallery-filter
+    window.addEventListener('set-gallery-filter', (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent && customEvent.detail) {
+        // Mettre à jour le filtre actif et faire défiler vers la section galerie
+        activeFilter = customEvent.detail;
+        
+        // S'assurer que la section est visible
+        const gallerySection = document.getElementById('gallery');
+        if (gallerySection) {
+          gallerySection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
     
     // Animation des éléments de galerie
     function animateGalleryItems() {
@@ -113,12 +175,15 @@
         if (gallery && resizeObserver) {
           resizeObserver.unobserve(gallery);
         }
+        
+        // Nettoyer l'écouteur d'événements
+        window.removeEventListener('set-gallery-filter', (e: Event) => {});
       };
     }
   });
 </script>
 
-<section id="gallery" class="py-24 bg-white">
+<section id="gallery" class="py-24 bg-white scroll-mt-20">
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
@@ -130,40 +195,46 @@
     <div class="flex flex-wrap justify-center mb-12">
       <button 
         class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'all' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
-        on:click={() => activeFilter = 'all'}
+        on:click={() => changeFilter('all')}
+        disabled={isTransitioning}
       >
         Tous
       </button>
       <button 
         class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'blackwork' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
-        on:click={() => activeFilter = 'blackwork'}
+        on:click={() => changeFilter('blackwork')}
+        disabled={isTransitioning}
       >
         Blackwork
       </button>
       <button 
         class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'popculture' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
-        on:click={() => activeFilter = 'popculture'}
+        on:click={() => changeFilter('popculture')}
+        disabled={isTransitioning}
       >
         Pop-Culture
       </button>
       <button 
         class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'flash' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
-        on:click={() => activeFilter = 'flash'}
+        on:click={() => changeFilter('flash')}
+        disabled={isTransitioning}
       >
         Flash
       </button>
     </div>
     
-    <!-- Gallery Grid with Masonry layout -->
+    <!-- Gallery Grid with square photos -->
     <div 
       bind:this={gallery}
-      class="gallery-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px]"
+      class="gallery-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
       {#each filteredImages as image, i}
-        <div 
-          class="gallery-item overflow-hidden cursor-pointer relative group"
+        <button 
+          class="gallery-item overflow-hidden cursor-pointer relative group aspect-square block w-full"
           bind:this={galleryItems[i]}
           on:click={() => openLightbox(image)}
+          on:keydown={(e) => e.key === 'Enter' && openLightbox(image)}
+          aria-label={`Voir l'image: ${image.alt}`}
         >
           <div class="gallery-item-content h-full w-full">
             <img 
@@ -178,7 +249,7 @@
               </span>
             </div>
           </div>
-        </div>
+        </button>
       {/each}
     </div>
   </div>
@@ -189,6 +260,11 @@
   <div 
     class="fixed inset-0 bg-gray-900 bg-opacity-80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
     on:click={closeLightbox}
+    on:keydown={(e) => e.key === 'Escape' && closeLightbox()}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightbox-title"
+    tabindex="0"
   >
     <div 
       class="relative max-w-4xl w-full max-h-[90vh] overflow-hidden"
@@ -197,6 +273,7 @@
       <button 
         class="absolute top-4 right-4 z-10 text-white hover:text-vivid"
         on:click={closeLightbox}
+        aria-label="Fermer la galerie"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -207,6 +284,7 @@
         src={selectedImage.src} 
         alt={selectedImage.alt} 
         class="max-h-[80vh] mx-auto object-contain"
+        id="lightbox-title"
       />
     </div>
   </div>

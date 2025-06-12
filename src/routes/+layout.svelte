@@ -5,8 +5,15 @@
 <div class="flex flex-col min-h-screen texture-overlay">
   <header class="py-4 fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm">
     <div class="container mx-auto px-4 flex justify-between items-center">
-      <a href="/" class="text-forest font-title text-3xl">Delco <span class="text-gray-900">Ink</span></a>
-      <nav class="hidden md:flex space-x-8">
+      <div class="flex items-center space-x-4">
+        <a href="/" class="flex items-center pl-0 md:pl-0">
+          <img src="/img/Logo.png" alt="Delco Ink Logo" class="h-12" />
+        </a>
+        <div class="hidden md:block">
+          <p class="text-gray-700 font-medium text-sm tracking-wide">Tattoo Shop Chambéry - <span class="italic">Illustrative Blackwork</span></p>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-8 ">
         <a href="#about" class="text-gray-800 hover:text-forest transition-colors font-body">À propos</a>
         <a href="#services" class="text-gray-800 hover:text-forest transition-colors font-body">Services</a>
         <a href="#gallery" class="text-gray-800 hover:text-forest transition-colors font-body">Galerie</a>
@@ -26,15 +33,31 @@
   </main>
   
   <div class="fixed bottom-8 right-8 z-40">
-    <a href="#booking" class="btn-primary animate-pulse-slow group">Prendre RDV</a>
+    <a 
+      href="#contact" 
+      class="booking-btn group flex items-center justify-center overflow-hidden relative">
+      
+      <!-- Fond du bouton avec dégradé -->
+      <div class="booking-btn-bg absolute w-full h-full rounded-lg transform transition-transform duration-500 ease-out"></div>
+      
+      <!-- Contenu principal -->
+      <div class="booking-btn-content flex items-center z-10 relative">
+        <!-- Image de feuille Monstera depuis le dossier static -->
+        <img src="/img/monstera.png" alt="Feuille Monstera" class="booking-icon mr-3" />
+        
+        <!-- Texte -->
+        <span class="font-title font-medium tracking-wide text-shadow text-white">Prendre RDV</span>
+      </div>
+    </a>
   </div>
   
   <footer class="bg-gray-50 py-10 relative border-t border-gray-100 shadow-sm">
-    <div class="ornament-corner ornament-corner-top-right"></div>
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 class="font-title text-2xl mb-4 text-gray-900">Delco <span class="text-forest">Ink</span></h3>
+          <div class="mb-4">
+            <img src="/img/Logo.png" alt="Delco Ink Logo" class="h-10" />
+          </div>
           <p class="text-gray-600">Studio privé de tatouage à Chambéry</p>
           <p class="text-gray-600">Blackwork illustratif & Pop-Culture</p>
         </div>
@@ -63,6 +86,5 @@
         <p>&copy; {new Date().getFullYear()} Delco Ink. Tous droits réservés.</p>
       </div>
     </div>
-    <div class="ornament-corner ornament-corner-bottom-left"></div>
   </footer>
 </div>

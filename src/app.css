@@ -112,4 +112,71 @@
     content: "";
     @apply block h-1 w-1/2 bg-forest mt-2;
   }
+  
+  .text-shadow {
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  }
+  
+  .text-shadow-strong {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.35);
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+  }
+  
+  /* Styles du bouton de rendez-vous */
+  .booking-btn {
+    width: 216px;
+    height: 58px;
+    filter: drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease-out;
+  }
+  
+  .booking-btn:hover {
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25));
+    transform: translateY(-2px);
+  }
+  
+  .booking-btn-bg {
+    background: linear-gradient(135deg, #2c7a44 0%, #205c33 100%);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .booking-btn-content {
+    padding: 0 19.2px;
+    font-size: 0.96rem;
+  }
+  
+  .booking-icon {
+    width: 29px;
+    height: 29px;
+    transition: transform 0.3s ease-out;
+    /* Filtre pour rendre l'image blanche */
+    filter: brightness(0) invert(1);
+  }
+  
+  .booking-btn:hover .booking-icon {
+    transform: scale(1.1);
+  }
+  
+  .leaf-path {
+    fill: transparent;
+    transition: fill 0.3s ease-out;
+  }
+  
+  .booking-btn:hover .leaf-path {
+    fill: rgba(255, 255, 255, 0.1);
+  }
 }
