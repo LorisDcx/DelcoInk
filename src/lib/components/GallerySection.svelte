@@ -188,34 +188,35 @@
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
         Galerie
+        <span class="absolute -bottom-2 left-0 h-1 bg-prune w-1/2"></span>
       </h2>
     </div>
     
     <!-- Filter Buttons -->
     <div class="flex flex-wrap justify-center mb-12">
       <button 
-        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'all' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
+        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'all' ? 'text-prune border-b-2 border-prune' : 'text-gray-700 hover:text-prune'}"
         on:click={() => changeFilter('all')}
         disabled={isTransitioning}
       >
         Tous
       </button>
       <button 
-        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'blackwork' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
+        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'blackwork' ? 'text-prune border-b-2 border-prune' : 'text-gray-700 hover:text-prune'}"
         on:click={() => changeFilter('blackwork')}
         disabled={isTransitioning}
       >
         Blackwork
       </button>
       <button 
-        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'popculture' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
+        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'popculture' ? 'text-prune border-b-2 border-prune' : 'text-gray-700 hover:text-prune'}"
         on:click={() => changeFilter('popculture')}
         disabled={isTransitioning}
       >
         Pop-Culture
       </button>
       <button 
-        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'flash' ? 'text-forest border-b-2 border-forest' : 'text-gray-700 hover:text-forest'}"
+        class="px-4 py-2 m-2 text-sm uppercase font-title tracking-wider transition-colors {activeFilter === 'flash' ? 'text-prune border-b-2 border-prune' : 'text-gray-700 hover:text-prune'}"
         on:click={() => changeFilter('flash')}
         disabled={isTransitioning}
       >
@@ -243,7 +244,7 @@
               class="object-cover h-full w-full transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-forest bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-prune bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
               <span class="bg-white bg-opacity-90 px-4 py-2 rounded-md shadow-sm text-gray-900 font-title uppercase tracking-wider text-lg">
                 Voir
               </span>
@@ -251,6 +252,16 @@
           </div>
         </button>
       {/each}
+    </div>
+    
+    <!-- Bouton d'appel à l'action pour la page Flash -->
+    <div class="flex justify-center mt-12">
+      <a href="/flash" class="inline-flex items-center gap-2 bg-prune text-white px-8 py-3 rounded-md shadow-md hover:shadow-lg transition-all hover:bg-opacity-90 transform hover:translate-y-[-2px] font-title tracking-wide text-lg">
+        Voir mes flashs
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -269,9 +280,12 @@
     <div 
       class="relative max-w-4xl w-full max-h-[90vh] overflow-hidden"
       on:click|stopPropagation={() => {}}
+      on:keydown|stopPropagation={() => {}}
+      role="dialog"
+      tabindex="0"
     >
       <button 
-        class="absolute top-4 right-4 z-10 text-white hover:text-vivid"
+        class="absolute top-4 right-4 z-10 text-white hover:text-prune"
         on:click={closeLightbox}
         aria-label="Fermer la galerie"
       >

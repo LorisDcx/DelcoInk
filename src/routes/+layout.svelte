@@ -1,5 +1,10 @@
 <script>
   import '../app.css';
+  let mobileMenuOpen = false;
+
+  function toggleMobileMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+  }
 </script>
 
 <div class="flex flex-col min-h-screen texture-overlay">
@@ -14,18 +19,60 @@
         </div>
       </div>
       <nav class="hidden md:flex space-x-8 ">
-        <a href="#about" class="text-gray-800 hover:text-forest transition-colors font-body">À propos</a>
-        <a href="#services" class="text-gray-800 hover:text-forest transition-colors font-body">Services</a>
-        <a href="#gallery" class="text-gray-800 hover:text-forest transition-colors font-body">Galerie</a>
-        <a href="#process" class="text-gray-800 hover:text-forest transition-colors font-body">Processus</a>
-        <a href="#contact" class="text-gray-800 hover:text-forest transition-colors font-body">Contact</a>
+        <a href="/#about" class="text-gray-800 hover:text-forest transition-colors font-body">À propos</a>
+        <a href="/#services" class="text-gray-800 hover:text-forest transition-colors font-body">Services</a>
+        <a href="/#gallery" class="text-gray-800 hover:text-forest transition-colors font-body">Galerie</a>
+        <a href="/#process" class="text-gray-800 hover:text-forest transition-colors font-body">Processus</a>
+        <a href="/#contact" class="text-gray-800 hover:text-forest transition-colors font-body">Contact</a>
+        <a href="/flash" class="bg-forest text-white hover:bg-opacity-90 transition-colors rounded-md px-4 py-1 font-body font-medium flex items-center gap-1">
+          Flash
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
       </nav>
-      <button class="md:hidden" aria-label="Menu">
+      <button class="md:hidden" aria-label="Menu" on:click={toggleMobileMenu}>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
       </button>
     </div>
+
+    <!-- Menu mobile -->
+    {#if mobileMenuOpen}
+      <div 
+        class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" 
+        on:click|self={toggleMobileMenu}
+        on:keydown|self={e => e.key === 'Escape' && toggleMobileMenu()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu de navigation"
+        tabindex="-1">
+        <div class="absolute right-0 top-0 h-full w-64 bg-white shadow-xl p-5 transform transition-transform duration-300 ease-in-out">
+          <div class="flex justify-between items-center mb-6">
+            <p class="text-gray-900 font-title text-xl">Menu</p>
+            <button class="text-gray-500 hover:text-gray-800" on:click={toggleMobileMenu} aria-label="Fermer le menu">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav class="flex flex-col space-y-4">
+            <a href="/#about" class="text-gray-800 hover:text-forest transition-colors font-body py-2 border-b border-gray-100" on:click={toggleMobileMenu}>À propos</a>
+            <a href="/#services" class="text-gray-800 hover:text-forest transition-colors font-body py-2 border-b border-gray-100" on:click={toggleMobileMenu}>Services</a>
+            <a href="/#gallery" class="text-gray-800 hover:text-forest transition-colors font-body py-2 border-b border-gray-100" on:click={toggleMobileMenu}>Galerie</a>
+            <a href="/#process" class="text-gray-800 hover:text-forest transition-colors font-body py-2 border-b border-gray-100" on:click={toggleMobileMenu}>Processus</a>
+            <a href="/#contact" class="text-gray-800 hover:text-forest transition-colors font-body py-2 border-b border-gray-100" on:click={toggleMobileMenu}>Contact</a>
+            <a href="/flash" class="bg-forest text-white hover:bg-opacity-90 transition-colors rounded-md px-4 py-2 font-body font-medium flex items-center gap-1 mt-2" on:click={toggleMobileMenu}>
+              Flash
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+    {/if}
   </header>
   
   <main class="flex-grow pt-16">
@@ -34,7 +81,7 @@
   
   <div class="fixed bottom-8 right-8 z-40">
     <a 
-      href="#contact" 
+      href="/#contact" 
       class="booking-btn group flex items-center justify-center overflow-hidden relative">
       
       <!-- Fond du bouton avec dégradé -->

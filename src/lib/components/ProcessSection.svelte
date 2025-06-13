@@ -1,14 +1,27 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { browser } from '$app/environment';
   import gsap from 'gsap';
   import ParticlesBackground from './ParticlesBackground.svelte';
+  import { slide } from 'svelte/transition';
+  import { cubicOut } from 'svelte/easing';
   
   // Importer ScrollTrigger uniquement côté client
   let ScrollTrigger;
   
+  // État pour les questions FAQ
+  let openedQuestions: number[] = [];
+  
+  // Fonction pour gérer l'ouverture/fermeture des questions
+  function toggleQuestion(index: number): void {
+    if (openedQuestions.includes(index)) {
+      openedQuestions = openedQuestions.filter(i => i !== index);
+    } else {
+      openedQuestions = [...openedQuestions, index];
+    }
+  }
+  
   onMount(async () => {
-    if (browser) {
+    if (typeof window !== 'undefined') {
       // Import dynamique côté client uniquement
       ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
       gsap.registerPlugin(ScrollTrigger);
@@ -139,6 +152,7 @@
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
         Notre Processus
+        <span class="absolute -bottom-2 left-0 h-1 bg-prune w-1/2"></span>
       </h2>
     </div>
     
@@ -177,8 +191,8 @@
             
             <!-- Icon circle for mobile -->
             <div class="md:hidden flex absolute left-8 top-0 transform -translate-x-1/2 items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center z-10 transition-all hover:border-forest">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div class="h-12 w-12 rounded-full flex items-center justify-center bg-white shadow-md border border-gray-100 overflow-hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ${step.title === 'Design' || step.title === 'Session' ? 'text-prune' : 'text-forest'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={step.icon} />
                 </svg>
               </div>
@@ -216,53 +230,74 @@
         
         <!-- Accordion -->
         <div class="space-y-6">
-          <details class="group bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden transition-all hover:border-gray-300">
-            <summary class="flex items-center justify-between p-4 cursor-pointer">
-              <h4 class="font-title text-xl text-gray-800">Est-ce que ça fait mal ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-forest group-open:rotate-180 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+          <div class="border border-gray-200 rounded-md mb-4 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group bg-white border-l-4 border-l-prune">
+            <div 
+              class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-300" 
+              on:click={() => toggleQuestion(0)} 
+              on:keydown={(e) => e.key === 'Enter' && toggleQuestion(0)}
+              role="button"
+              tabindex="0"
+              aria-expanded={openedQuestions.includes(0)}
+              aria-controls="faq-content-0">
+              <h4 class="font-title text-xl text-gray-800 font-medium">Quelle est votre politique d'annulation ?</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-prune transition-transform duration-300 ${openedQuestions.includes(0) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
-            </summary>
-            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-              <p>La douleur est variable selon les personnes et les zones du corps. On décrit souvent la sensation comme un inconfort modéré, similaire à une égratignure continue. Nous proposons des pauses régulières et un environnement relaxant pour minimiser l'inconfort.</p>
             </div>
-          </details>
+            {#if openedQuestions.includes(0)}
+            <div id="faq-content-0" class="border-t border-gray-100 bg-white" transition:slide|local={{ duration: 300, easing: cubicOut }}>
+              <div class="p-5 text-gray-600 leading-relaxed">
+                <p>Nous comprenons que les plans peuvent changer. Pour les annulations à moins de 48 heures du rendez-vous, nous demandons un acompte de 30 € qui sera crédité sur votre future séance. Pour les annulations avec plus de 48 heures de préavis, aucun frais ne sera appliqué. Nous vous encourageons à nous contacter dès que possible si vous devez reprogrammer.</p>
+              </div>
+            </div>
+            {/if}
+          </div>
           
-          <details class="group bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden transition-all hover:border-gray-300">
-            <summary class="flex items-center justify-between p-4 cursor-pointer">
-              <h4 class="font-title text-xl text-gray-800">Combien coûte un tatouage ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-forest group-open:rotate-180 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+          <div class="border border-gray-200 rounded-md mb-4 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group bg-white border-l-4 border-l-prune">
+            <div 
+              class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-300" 
+              on:click={() => toggleQuestion(1)} 
+              on:keydown={(e) => e.key === 'Enter' && toggleQuestion(1)}
+              role="button"
+              tabindex="0"
+              aria-expanded={openedQuestions.includes(1)}
+              aria-controls="faq-content-1">
+              <h4 class="font-title text-xl text-gray-800 font-medium">Comment préparer ma peau avant une séance ?</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-prune transition-transform duration-300 ${openedQuestions.includes(1) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
-            </summary>
-            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-              <p>Nos tarifs commencent à 120€, mais le prix exact dépend de plusieurs facteurs : la taille, la complexité, l'emplacement et le temps nécessaire. Nous proposons des devis personnalisés après la consultation. Pour les flash tattoos, des prix fixes sont appliqués.</p>
             </div>
-          </details>
+            {#if openedQuestions.includes(1)}
+            <div id="faq-content-1" class="border-t border-gray-100 bg-white" transition:slide|local={{ duration: 300, easing: cubicOut }}>
+              <div class="p-5 text-gray-600 leading-relaxed">
+                <p>Pour une séance optimale, hydratez bien votre peau les jours précédents, évitez l'exposition au soleil, l'alcool et les médicaments fluidifiant le sang (comme l'aspirine) 24h avant. Arrivez reposé et après un repas léger. Une peau saine permet un meilleur résultat et une cicatrisation plus rapide.</p>
+              </div>
+            </div>
+            {/if}
+          </div>
           
-          <details class="group bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden transition-all hover:border-gray-300">
-            <summary class="flex items-center justify-between p-4 cursor-pointer">
-              <h4 class="font-title text-xl text-gray-800">Comment prendre soin de mon tatouage ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-forest group-open:rotate-180 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+          <div class="border border-gray-200 rounded-md mb-4 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group bg-white border-l-4 border-l-prune">
+            <div 
+              class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-300" 
+              on:click={() => toggleQuestion(2)} 
+              on:keydown={(e) => e.key === 'Enter' && toggleQuestion(2)}
+              role="button"
+              tabindex="0"
+              aria-expanded={openedQuestions.includes(2)}
+              aria-controls="faq-content-2">
+              <h4 class="font-title text-xl text-gray-800 font-medium">Puis-je apporter mon propre design ?</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-prune transition-transform duration-300 ${openedQuestions.includes(2) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
-            </summary>
-            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-              <p>Nous fournissons des instructions détaillées pour chaque client. En général : garder le tatouage propre, éviter l'exposition au soleil, ne pas gratter les croûtes, hydrater régulièrement avec une crème recommandée, et éviter les baignades prolongées (piscine, mer) pendant les premières semaines.</p>
             </div>
-          </details>
-          
-          <details class="group bg-white rounded-md border border-gray-200 shadow-sm overflow-hidden transition-all hover:border-gray-300">
-            <summary class="flex items-center justify-between p-4 cursor-pointer">
-              <h4 class="font-title text-xl text-gray-800">Puis-je apporter mon propre design ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-forest group-open:rotate-180 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </summary>
-            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-              <p>Bien sûr ! Nous accueillons vos idées et références. Cependant, notre spécialité est d'adapter ces inspirations à notre style artistique distinctif. Nous collaborerons avec vous pour créer une pièce unique qui respecte votre vision tout en bénéficiant de notre expertise en blackwork illustratif.</p>
+            {#if openedQuestions.includes(2)}
+            <div id="faq-content-2" class="border-t border-gray-100 bg-white" transition:slide|local={{ duration: 300, easing: cubicOut }}>
+              <div class="p-5 text-gray-600 leading-relaxed">
+                <p>Bien sûr ! Nous accueillons vos idées et références. Cependant, notre spécialité est d'adapter ces inspirations à notre style artistique distinctif. Nous collaborerons avec vous pour créer une pièce unique qui respecte votre vision tout en bénéficiant de notre expertise en blackwork illustratif.</p>
+              </div>
             </div>
-          </details>
+            {/if}
+          </div>
         </div>
       </div>
     </div>
