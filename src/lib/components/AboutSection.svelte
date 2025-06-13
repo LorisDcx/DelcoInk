@@ -42,12 +42,12 @@
     <!-- Overlay foncé pour la lisibilité du contenu -->
     <div class="absolute inset-0 bg-black bg-opacity-70"></div>
     <!-- Gradient pour améliorer la lisibilité du texte et créer une transition -->
-    <div class="absolute inset-0 bg-gradient-to-b from-green-800/70 to-black/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-green-100/90 to-gray-900/50"></div>
   </div>
   <!-- Ornements supprimés -->
   <div class="container mx-auto px-4">
     <div bind:this={titleElement}>
-      <h2 class="font-title text-4xl md:text-5xl text-white text-center mb-16 uppercase relative inline-block">
+      <h2 class="font-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block">
         À propos
         <span class="absolute -bottom-2 left-0 h-1 bg-forest w-1/2"></span>
       </h2>

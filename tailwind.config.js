@@ -5,11 +5,11 @@ module.exports = {
     extend: {
       colors: {
         black: '#000000',
-        white: '#FFFFFF',
-        'moss-deep': '#004D40',
-        forest: '#00695C',
-        vivid: '#4CAF50',
-        bright: '#A5D6A7',
+        white: '#fcf8eb',
+        'moss-deep': '#abc9b6',
+        forest: '#abc9b6',
+        vivid: '#abc9b6',
+        bright: '#abc9b6',
         gray: {
           700: '#616161',
           800: '#424242',
@@ -18,7 +18,7 @@ module.exports = {
       },
       fontFamily: {
         title: ['"Caveat Brush"', 'cursive'],
-        body: ['"Montserrat"', 'sans-serif'],
+        body: ['"Lato Light"', '"Lato"', 'sans-serif'],
       },
       animation: {
         'grow': 'grow 2s ease-in-out',

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   
-  export let opacity: number = 0.6;
+  export let opacity: number = 0.8;
   export let particleCount: number = 30;
   export let zIndex: number = 5;
   
@@ -95,7 +95,7 @@
         const centerColor = `rgb(${centerR}, ${centerG}, ${centerB})`;
         
         // Créer un gradient plus doux
-        gradient.addColorStop(0, centerColor); // Centre plus lumineux
+        gradient.addColorStop(0.2, centerColor); // Centre plus lumineux
         gradient.addColorStop(0.4, baseColor); // Transition douce vers la couleur de base
         gradient.addColorStop(1, 'transparent'); // Fondu en transparence
         
