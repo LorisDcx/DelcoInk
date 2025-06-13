@@ -252,6 +252,16 @@
         </button>
       {/each}
     </div>
+    
+    <!-- Bouton d'appel à l'action pour la page Flash -->
+    <div class="flex justify-center mt-12">
+      <a href="/flash" class="inline-flex items-center gap-2 bg-forest text-white px-8 py-3 rounded-md shadow-md hover:shadow-lg transition-all hover:bg-opacity-90 transform hover:translate-y-[-2px] font-title tracking-wide text-lg">
+        Voir mes flashs
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -269,6 +279,9 @@
     <div 
       class="relative max-w-4xl w-full max-h-[90vh] overflow-hidden"
       on:click|stopPropagation={() => {}}
+      on:keydown|stopPropagation={() => {}}
+      role="dialog"
+      tabindex="0"
     >
       <button 
         class="absolute top-4 right-4 z-10 text-white hover:text-vivid"
