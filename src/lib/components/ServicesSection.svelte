@@ -71,7 +71,7 @@
   <div class="container mx-auto px-4 relative z-10">
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
-        Nos Services
+        Styles & Créations
       </h2>
     </div>
 
@@ -103,7 +103,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span><span class="font-medium">Durée :</span> Sessions de 2-4h selon le projet</span>
+              <span><span class="font-medium">Précision :</span> Détails fins et contraste marqué</span>
             </li>
             <li class="flex items-start">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
@@ -116,7 +116,7 @@
           <div class="text-center">
             <a 
               href="#gallery" 
-              class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1"
+              class="inline-block text-forest hover:text-forest transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1 hover:border-forest/60"
               on:click={() => {
                 // Définir le type de filtre et faire défiler vers la galerie
                 window.location.hash = 'gallery';
@@ -160,7 +160,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span><span class="font-medium">Durée :</span> Sessions de 3-5h selon le projet</span>
+              <span><span class="font-medium">Créations :</span> Pièces uniques et personnalisées</span>
             </li>
             <li class="flex items-start">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
@@ -173,7 +173,7 @@
           <div class="text-center">
             <a 
               href="#gallery" 
-              class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1"
+              class="inline-block text-forest hover:text-forest transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1 hover:border-forest/60"
               on:click={() => {
                 // Définir le type de filtre et faire défiler vers la galerie
                 window.location.hash = 'gallery';
@@ -217,7 +217,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
-              <span><span class="font-medium">Durée :</span> Sessions rapides de 1-2h</span>
+              <span><span class="font-medium">Disponibilité :</span> Collection régulièrement renouvelée</span>
             </li>
             <li class="flex items-start">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-forest flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
@@ -230,7 +230,7 @@
           <div class="text-center">
             <a 
               href="#gallery" 
-              class="inline-block text-forest hover:text-forest/80 transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1"
+              class="inline-block text-forest hover:text-forest transition-colors duration-300 uppercase font-title text-sm tracking-wider font-medium border-b border-forest/40 pb-1 hover:border-forest/60"
               on:click={() => {
                 // Définir le type de filtre et faire défiler vers la galerie
                 window.location.hash = 'gallery';

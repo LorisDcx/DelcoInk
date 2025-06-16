@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   import ParticlesBackground from './ParticlesBackground.svelte';
+  import SectionDivider from './SectionDivider.svelte';
   
   let hero: HTMLElement;
   let titleElement: HTMLElement;
@@ -118,14 +119,23 @@
 </script>
 
 <section id="home" class="relative h-screen overflow-hidden bg-white">
-  <!-- Particules/orbes en arrière-plan (zIndex entre le fond et les éléments UI) -->
-  <ParticlesBackground opacity={0.6} particleCount={40} zIndex={2} />
+  <!-- Particules/orbes interactives en arrière-plan avec hitbox améliorée -->
+  <ParticlesBackground 
+    opacity={0.6} 
+    particleCount={48} 
+    zIndex={2} 
+    clickable={true} 
+  />
   
-  <!-- Background image unique pour le Hero et l'About -->
+  <!-- Background image pour le Hero -->
   <div class="absolute inset-0 z-0 overflow-hidden" bind:this={hero}>
-    <!-- Position fixe avec l'image couvrant les deux sections -->
-    <div class="fixed inset-0 w-full h-[200vh] bg-cover bg-top bg-fixed bg-opacity-90" style="background-image: url('/images/bg-hero-about.jpg'); filter: opacity(0.85); background-position: center top;"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
+    <!-- Image de fond pour le Hero avec position optimale -->
+    <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('/images/hero-bg-light.jpg'); background-position: center 30%; filter: brightness(0.98) contrast(1.02);"></div>
+    <!-- Overlays pour améliorer la lisibilité et créer une atmosphère -->
+    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-black/5 to-black/15"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10"></div>
+    <!-- Transition vers l'About -->
+    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/40 to-transparent"></div>
   </div>
   
 
@@ -167,23 +177,45 @@
       <a 
         bind:this={ctaButton}
         href="#about" 
-        class="group flex flex-col items-center justify-center mt-12"
+        class="group flex items-center justify-center mt-12"
         aria-label="Défiler vers la section À propos"
       >
-        <span class="text-forest text-sm mb-2 opacity-60 group-hover:opacity-90 transition-opacity duration-500 font-light">Découvrir</span>
-        <div class="relative w-12 h-12 flex items-center justify-center">
-          <div class="absolute inset-0 bg-forest opacity-0 rounded-full group-hover:opacity-5 transition-all duration-500"></div>
+        <div class="relative flex items-center justify-center">
+          <!-- Uniquement les ailes de la flèche (chevron) avec animation de fondu -->
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            class="h-5 w-5 text-forest animate-pulse opacity-70 group-hover:opacity-90" 
+            class="h-8 w-8 text-forest fade-down-arrow" 
             fill="none" 
             viewBox="0 0 24 24" 
             stroke="currentColor"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <!-- Juste le chevron descendant, sans la ligne verticale -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7" />
           </svg>
         </div>
       </a>
+      
+      <style>
+        @keyframes fadeInOut {
+          0%, 100% { opacity: 0.2; transform: translateY(0); }
+          50% { opacity: 0.9; transform: translateY(3px); }
+        }
+        
+        .fade-down-arrow {
+          animation: fadeInOut 2s infinite ease-in-out;
+        }
+      </style>
     </div>
+  </div>
+  
+  <!-- Diviseur entre Hero et About -->
+  <div class="absolute bottom-0 w-full z-30">
+    <SectionDivider 
+      backgroundColor="transparent" 
+      nextSectionColor="#f8f3e8" 
+      heightPx={10} 
+      opacity={0.9} 
+      showGradient={true} 
+    />
   </div>
 </section>
