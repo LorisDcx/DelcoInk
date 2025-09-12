@@ -5,6 +5,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Classes pour optimisation mobile */
+.tap-transparent {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Animation plus fluide pour les transitions sur mobile */
+@media (max-width: 768px) {
+  * {
+    transition-duration: 0.25s !important;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -178,5 +191,29 @@
   
   .booking-btn:hover .leaf-path {
     fill: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Styles pour le header sticky lors du défilement */
+  #main-header {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #main-header.scrolled {
+    @apply py-2 shadow-md bg-white bg-opacity-95;
+    transform: translateY(0);
+  }
+  
+  /* Animation lors du défilement */
+  @keyframes headerSlideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  #main-header.scrolled {
+    animation: headerSlideDown 0.4s ease-in-out forwards;
   }
 }

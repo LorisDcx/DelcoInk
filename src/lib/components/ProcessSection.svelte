@@ -11,6 +11,30 @@
   // État pour les questions FAQ
   let openedQuestions: number[] = [];
   
+  // Questions fréquemment posées et leurs réponses
+  const faqItems = [
+    {
+      question: "Quelle est votre politique d'annulation ?",
+      answer: "Nous comprenons que les plans peuvent changer. Pour les annulations à moins de 48 heures du rendez-vous, nous demandons un acompte de 30 € qui sera crédité sur votre future séance. Pour les annulations avec plus de 48 heures de préavis, aucun frais ne sera appliqué. Nous vous encourageons à nous contacter dès que possible si vous devez reprogrammer."
+    },
+    {
+      question: "Comment préparer ma peau avant une séance ?",
+      answer: "Pour une séance optimale, hydratez bien votre peau les jours précédents, évitez l'exposition au soleil, l'alcool et les médicaments fluidifiant le sang (comme l'aspirine) 24h avant. Arrivez reposé et après un repas léger. Une peau saine permet un meilleur résultat et une cicatrisation plus rapide."
+    },
+    {
+      question: "Comment entretenir mon tatouage après la séance ?",
+      answer: "Après votre séance, nous vous fournirons des instructions détaillées pour l'entretien. Les principes de base incluent : garder le tatouage propre, appliquer la crème cicatrisante recommandée, éviter les bains prolongés et l'exposition au soleil pendant au moins 2 semaines, et ne pas gratter les croûtes qui se forment naturellement. Un bon suivi des soins garantit une cicatrisation optimale et des couleurs durables."
+    },
+    {
+      question: "Puis-je apporter mon propre design ?",
+      answer: "Bien sûr ! Nous accueillons vos idées et références. Cependant, notre spécialité est d'adapter ces inspirations à notre style artistique distinctif. Nous collaborerons avec vous pour créer une pièce unique qui respecte votre vision tout en bénéficiant de notre expertise en blackwork illustratif."
+    },
+    {
+      question: "Est-ce que les tatouages font mal ?",
+      answer: "La sensation varie selon les personnes et les zones du corps. Certaines parties comme les poignets, chevilles, côtes ou près des articulations sont généralement plus sensibles. La douleur est souvent décrite comme une sensation de brûlure ou de pincement. Notre approche douce et nos techniques précises visent à minimiser l'inconfort. N'hésitez pas à nous faire part de vos préoccupations, nous pouvons adapter le rythme de la session à votre tolérance."
+    }
+  ];
+  
   // Fonction pour gérer l'ouverture/fermeture des questions
   function toggleQuestion(index: number): void {
     if (openedQuestions.includes(index)) {
@@ -76,7 +100,7 @@
         duration: 0.8,
         scrollTrigger: {
           trigger: titleElement,
-          start: 'top 80%',
+          start: 'top 95%',
           once: true
         }
       });
@@ -90,7 +114,7 @@
         ease: 'power2.out',
         scrollTrigger: {
           trigger: timelineVertical,
-          start: 'top 90%',
+          start: 'top 95%',
           end: 'bottom 10%',
           once: true
         }
@@ -104,7 +128,7 @@
         ease: 'power2.out',
         scrollTrigger: {
           trigger: timelineVerticalMobile,
-          start: 'top 90%',
+          start: 'top 95%',
           end: 'bottom 10%',
           once: true
         }
@@ -121,7 +145,7 @@
           delay: index * 0.2,
           scrollTrigger: {
             trigger: element,
-            start: 'top 80%',
+            start: 'top 95%',
             once: true
           }
         });
@@ -136,7 +160,7 @@
         duration: 0.8,
         scrollTrigger: {
           trigger: faqContainer,
-          start: 'top 80%',
+          start: 'top 95%',
           once: true
         }
       });
@@ -144,7 +168,7 @@
   }
 </script>
 
-<section id="process" class="py-24 bg-gray-50 relative">
+<section id="process" class="min-h-screen lg:min-h-[calc(100vh-80px)] bg-gray-50 relative flex items-center py-12 md:py-16" style="scroll-margin-top: 80px;">
   <!-- Particules/orbes en arrière-plan (zIndex entre le fond et les éléments UI) -->
   <ParticlesBackground opacity={0.5} particleCount={35} zIndex={2} />
   <!-- Ornement de coin supprimé -->
@@ -152,7 +176,6 @@
     <div bind:this={titleElement}>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
         Notre Processus
-        <span class="absolute -bottom-2 left-0 h-1 bg-prune w-1/2"></span>
       </h2>
     </div>
     
@@ -177,8 +200,8 @@
       <div class="flex flex-col gap-12">
         {#each processSteps as step, index}
           <div 
+            class="step-container mb-12 flex flex-col md:flex-row md:items-center relative {index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}" 
             bind:this={processStepElements[index]}
-            class="relative flex flex-col md:flex-row {index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} z-30"
           >
             <!-- Icon circle for desktop -->
             <div class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2 items-center justify-center">
@@ -192,7 +215,7 @@
             <!-- Icon circle for mobile -->
             <div class="md:hidden flex absolute left-8 top-0 transform -translate-x-1/2 items-center justify-center">
               <div class="h-12 w-12 rounded-full flex items-center justify-center bg-white shadow-md border border-gray-100 overflow-hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ${step.title === 'Design' || step.title === 'Session' ? 'text-prune' : 'text-forest'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ${step.title === 'Design' || step.title === 'Session' ? 'text-forest' : 'text-forest'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={step.icon} />
                 </svg>
               </div>
@@ -224,79 +247,70 @@
     <div class="mt-24">
       <div
         bind:this={faqContainer}
-        class="max-w-3xl mx-auto"
+        class="w-full container mx-auto px-4 sm:px-8 lg:px-12"
       >
         <h3 class="font-title text-3xl text-center mb-8 text-gray-900">FAQ</h3>
         
-        <!-- Accordion -->
-        <div class="space-y-6">
-          <div class="border border-gray-200 rounded-md mb-4 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group bg-white border-l-4 border-l-prune">
-            <div 
-              class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-300" 
-              on:click={() => toggleQuestion(0)} 
-              on:keydown={(e) => e.key === 'Enter' && toggleQuestion(0)}
-              role="button"
-              tabindex="0"
-              aria-expanded={openedQuestions.includes(0)}
-              aria-controls="faq-content-0">
-              <h4 class="font-title text-xl text-gray-800 font-medium">Quelle est votre politique d'annulation ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-prune transition-transform duration-300 ${openedQuestions.includes(0) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            {#if openedQuestions.includes(0)}
-            <div id="faq-content-0" class="border-t border-gray-100 bg-white" transition:slide|local={{ duration: 300, easing: cubicOut }}>
-              <div class="p-5 text-gray-600 leading-relaxed">
-                <p>Nous comprenons que les plans peuvent changer. Pour les annulations à moins de 48 heures du rendez-vous, nous demandons un acompte de 30 € qui sera crédité sur votre future séance. Pour les annulations avec plus de 48 heures de préavis, aucun frais ne sera appliqué. Nous vous encourageons à nous contacter dès que possible si vous devez reprogrammer.</p>
+        <!-- Accordion en deux colonnes avec style minimaliste -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-10">
+          <!-- Colonne gauche (3 premières questions) -->
+          <div class="space-y-6">
+            {#each faqItems.slice(0, 3) as faqItem, index}
+              <div class="mb-6">
+                <!-- Question comme titre sur une ligne -->
+                <div 
+                  class="flex items-center justify-between pb-3 cursor-pointer border-b-2 border-gray-200 hover:border-forest transition-colors duration-300" 
+                  on:click={() => toggleQuestion(index)}
+                  on:keydown={(e) => e.key === 'Enter' && toggleQuestion(index)}
+                  role="button"
+                  tabindex="0"
+                  aria-expanded={openedQuestions.includes(index)}
+                  aria-controls={`faq-content-${index}`}>
+                  <h4 class="font-title text-2xl text-gray-800 font-medium pr-4">{faqItem.question}</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" class={`flex-shrink-0 h-5 w-5 text-forest transition-transform duration-300 ${openedQuestions.includes(index) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <!-- Réponse -->
+                {#if openedQuestions.includes(index)}
+                <div id="faq-content-{index}" class="mt-4 pl-1" transition:slide|local={{ duration: 300, easing: cubicOut }}>
+                  <div class="text-gray-600 leading-relaxed text-lg">
+                    <p>{faqItem.answer}</p>
+                  </div>
+                </div>
+                {/if}
               </div>
-            </div>
-            {/if}
+            {/each}
           </div>
           
-          <div class="border border-gray-200 rounded-md mb-4 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group bg-white border-l-4 border-l-prune">
-            <div 
-              class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-300" 
-              on:click={() => toggleQuestion(1)} 
-              on:keydown={(e) => e.key === 'Enter' && toggleQuestion(1)}
-              role="button"
-              tabindex="0"
-              aria-expanded={openedQuestions.includes(1)}
-              aria-controls="faq-content-1">
-              <h4 class="font-title text-xl text-gray-800 font-medium">Comment préparer ma peau avant une séance ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-prune transition-transform duration-300 ${openedQuestions.includes(1) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            {#if openedQuestions.includes(1)}
-            <div id="faq-content-1" class="border-t border-gray-100 bg-white" transition:slide|local={{ duration: 300, easing: cubicOut }}>
-              <div class="p-5 text-gray-600 leading-relaxed">
-                <p>Pour une séance optimale, hydratez bien votre peau les jours précédents, évitez l'exposition au soleil, l'alcool et les médicaments fluidifiant le sang (comme l'aspirine) 24h avant. Arrivez reposé et après un repas léger. Une peau saine permet un meilleur résultat et une cicatrisation plus rapide.</p>
+          <!-- Colonne droite (2 dernières questions) -->
+          <div class="space-y-6">
+            {#each faqItems.slice(3) as faqItem, index}
+              <div class="mb-6">
+                <!-- Question comme titre sur une ligne -->
+                <div 
+                  class="flex items-center justify-between pb-3 cursor-pointer border-b-2 border-gray-200 hover:border-forest transition-colors duration-300" 
+                  on:click={() => toggleQuestion(index + 3)}
+                  on:keydown={(e) => e.key === 'Enter' && toggleQuestion(index + 3)}
+                  role="button"
+                  tabindex="0"
+                  aria-expanded={openedQuestions.includes(index + 3)}
+                  aria-controls={`faq-content-${index + 3}`}>
+                  <h4 class="font-title text-2xl text-gray-800 font-medium pr-4">{faqItem.question}</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" class={`flex-shrink-0 h-5 w-5 text-forest transition-transform duration-300 ${openedQuestions.includes(index + 3) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <!-- Réponse -->
+                {#if openedQuestions.includes(index + 3)}
+                <div id="faq-content-{index + 3}" class="mt-4 pl-1" transition:slide|local={{ duration: 300, easing: cubicOut }}>
+                  <div class="text-gray-600 leading-relaxed text-lg">
+                    <p>{faqItem.answer}</p>
+                  </div>
+                </div>
+                {/if}
               </div>
-            </div>
-            {/if}
-          </div>
-          
-          <div class="border border-gray-200 rounded-md mb-4 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group bg-white border-l-4 border-l-prune">
-            <div 
-              class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-300" 
-              on:click={() => toggleQuestion(2)} 
-              on:keydown={(e) => e.key === 'Enter' && toggleQuestion(2)}
-              role="button"
-              tabindex="0"
-              aria-expanded={openedQuestions.includes(2)}
-              aria-controls="faq-content-2">
-              <h4 class="font-title text-xl text-gray-800 font-medium">Puis-je apporter mon propre design ?</h4>
-              <svg xmlns="http://www.w3.org/2000/svg" class={`h-6 w-6 text-prune transition-transform duration-300 ${openedQuestions.includes(2) ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            {#if openedQuestions.includes(2)}
-            <div id="faq-content-2" class="border-t border-gray-100 bg-white" transition:slide|local={{ duration: 300, easing: cubicOut }}>
-              <div class="p-5 text-gray-600 leading-relaxed">
-                <p>Bien sûr ! Nous accueillons vos idées et références. Cependant, notre spécialité est d'adapter ces inspirations à notre style artistique distinctif. Nous collaborerons avec vous pour créer une pièce unique qui respecte votre vision tout en bénéficiant de notre expertise en blackwork illustratif.</p>
-              </div>
-            </div>
-            {/if}
+            {/each}
           </div>
         </div>
       </div>

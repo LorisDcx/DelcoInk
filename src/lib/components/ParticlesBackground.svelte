@@ -11,23 +11,17 @@
   let ctx: CanvasRenderingContext2D | null = null;
   let particles: Particle[] = [];
   
-  // Couleurs des particules en différentes teintes de vert et de prune (proportion 50/50)
+  // Couleurs des particules exclusivement en teintes de vert
   const particleColors = [
-    // Teintes de vert (50%)
     '#4CAF50', // vert frais
     '#8BC34A', // vert lime clair
-    '#CDDC39', // vert-jaune (jeune pousse)
+    '#66BB6A', // vert plus soutenu
+    '#81C784', // vert moyen
     '#A5D6A7', // vert pâle
-    '#C5E1A5', // vert très pâle
-    '#D4E157', // vert-jaune chartreuse (jeune pousse)
-    
-    // Teintes de prune/bordeaux (50%)
-    '#811453', // prune profond (élégant, artistique)
-    '#9A1663', // prune foncé
-    '#A13670', // prune rosé
-    '#BB4B7E', // prune clair
-    '#D05A8F', // prune rosé lumineux
-    '#711349', // bordeaux foncé
+    '#C8E6C9', // vert très pâle
+    '#00E676', // vert vif
+    '#69F0AE', // vert menthe
+    '#B9F6CA'  // vert aqua pâle
   ];
   
   // Type pour les particules

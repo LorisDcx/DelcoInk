@@ -1,0 +1,191 @@
+/* Styles inspirés du wabi-sabi japonais */
+
+/* Textures légères */
+.texture-soft {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Texture plus prononcée pour les fonds beiges */
+.texture-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.texture-paper {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+.texture-mist {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='mist'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.01' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23mist)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Blobs SVG pour les contours organiques */
+.blob-bg-1 {
+  position: absolute;
+  z-index: -1;
+  opacity: 0.15;
+  filter: blur(5px);
+}
+
+.blob-bg-2 {
+  position: absolute;
+  z-index: -1;
+  opacity: 0.1;
+  transform: rotate(45deg);
+  filter: blur(3px);
+}
+
+/* Animations douces */
+.floating {
+  animation: floating 8s infinite ease-in-out;
+}
+
+.floating-slow {
+  animation: floating 12s infinite ease-in-out alternate;
+}
+
+.breathing {
+  animation: breathing 15s infinite ease-in-out alternate;
+}
+
+@keyframes floating {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-5px, 5px) rotate(1deg); }
+  50% { transform: translate(5px, -3px) rotate(-1deg); }
+  75% { transform: translate(3px, 5px) rotate(0.5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes breathing {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Dégradé ondulé en mouvement */
+.wavy-gradient {
+  background: linear-gradient(45deg, 
+    rgba(45, 106, 79, 0.05) 0%, 
+    rgba(133, 84, 133, 0.05) 25%, 
+    rgba(45, 106, 79, 0.05) 50%, 
+    rgba(133, 84, 133, 0.05) 75%, 
+    rgba(45, 106, 79, 0.05) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 30s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Éléments décoratifs style brush stroke */
+.brush-stroke {
+  position: absolute;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.brush-stroke-1 {
+  transform: rotate(15deg);
+}
+
+.brush-stroke-2 {
+  transform: rotate(-20deg) scaleX(-1);
+}
+
+/* Style wabi-sabi pour la galerie */
+.masonry-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  grid-auto-rows: 10px;
+}
+
+.masonry-item {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  margin-bottom: 10px;
+}
+
+.masonry-item:hover {
+  transform: translateY(-5px) rotate(1deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Cartes avec angles irréguliers */
+.irregular-card {
+  border-radius: 16px 4px 24px 8px;
+  transition: all 0.3s ease;
+}
+
+.irregular-card:nth-child(even) {
+  border-radius: 4px 16px 8px 24px;
+}
+
+.irregular-card:nth-child(3n) {
+  border-radius: 24px 8px 4px 16px;
+}
+
+/* Bordures irrégulières */
+.wavy-border {
+  --mask: radial-gradient(6px at 6px 6px,#0000 98%,#000) -6px -6px;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+/* Images avec effet artisanal */
+.handcrafted-image {
+  filter: brightness(1.02) contrast(1.02);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Disposition en diagonale */
+.diagonal-layout > * {
+  transform: rotate(-1deg);
+}
+
+.diagonal-layout > *:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.diagonal-layout > *:hover {
+  transform: rotate(0);
+}
+
+/* Boutons avec contours organiques */
+.organic-button {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  transition: all 0.3s ease;
+}
+
+.organic-button:hover {
+  border-radius: 58% 42% 55% 45% / 54% 55% 45% 46%;
+}
+
+/* Typographie avec mouvement subtil */
+.moving-text {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.moving-text:hover {
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+/* Superposition de contenu légèrement imparfaite */
+.imperfect-overlay {
+  transform: rotate(-1deg) translateX(-5px);
+}
+
+.imperfect-overlay-alt {
+  transform: rotate(1deg) translateX(5px);
+}
+
+/* Élément courbe */
+.curved-element {
+  border-radius: 50% 50% 0 0 / 20%;
+}

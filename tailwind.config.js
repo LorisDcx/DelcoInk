@@ -24,11 +24,16 @@ module.exports = {
       animation: {
         'grow': 'grow 2s ease-in-out',
         'pulse-slow': 'pulse 3s ease-in-out infinite',
+        'slideUp': 'slideUp 0.3s ease-out forwards',
       },
       keyframes: {
         grow: {
           '0%': { transform: 'scale(0.95)' },
           '100%': { transform: 'scale(1)' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
         }
       }
     },
