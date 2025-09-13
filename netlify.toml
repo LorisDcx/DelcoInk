@@ -1,14 +1,11 @@
 [build]
   command = "npm run build"
-  publish = ".svelte-kit/output/client"
+  publish = "build"
 
 [build.environment]
   NODE_VERSION = "18"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Pas besoin de redirects pour static adapter
 
 [[headers]]
   for = "/*"
