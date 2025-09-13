@@ -124,7 +124,7 @@
         
         <h2 class="section-title text-4xl md:text-5xl text-forest mb-16 uppercase relative inline-block transform -rotate-1">
           À propos
-          <span class="absolute -right-6 -top-4 text-base opacity-50 rotate-12">和泥合水</span>
+          <span class="absolute -right-6 -top-4 text-base opacity-50 rotate-12">ソーセージ</span>
         </h2>
       </div>
     </div>

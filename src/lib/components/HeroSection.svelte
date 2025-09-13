@@ -105,12 +105,153 @@
     <div class="absolute inset-0 w-full h-full bg-cover bg-center" 
          style="background-image: url('/images/hero-bg-light.jpg'); background-position: center 30%; filter: brightness(0.97) contrast(1.02);"></div>
     
+    <!-- Animation de brume réaliste - optimisée pour mobile -->
+    <div class="absolute inset-0 z-20 pointer-events-none">
+      <svg class="absolute inset-0 w-full h-full md:opacity-100 opacity-60" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <!-- Filtres pour créer l'effet de fumée réaliste -->
+          <filter id="mistTurbulence1" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence 
+              baseFrequency="0.02 0.04" 
+              numOctaves="4" 
+              result="noise" 
+              seed="1"
+            >
+              <animate attributeName="baseFrequency" 
+                       values="0.02 0.04; 0.025 0.05; 0.02 0.04" 
+                       dur="20s" 
+                       repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
+            <feGaussianBlur stdDeviation="1"/>
+          </filter>
+          
+          <filter id="mistTurbulence2" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence 
+              baseFrequency="0.015 0.03" 
+              numOctaves="3" 
+              result="noise" 
+              seed="2"
+            >
+              <animate attributeName="baseFrequency" 
+                       values="0.015 0.03; 0.02 0.035; 0.015 0.03" 
+                       dur="25s" 
+                       repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"/>
+            <feGaussianBlur stdDeviation="1.5"/>
+          </filter>
+          
+          <filter id="mistTurbulence3" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence 
+              baseFrequency="0.01 0.025" 
+              numOctaves="2" 
+              result="noise" 
+              seed="3"
+            >
+              <animate attributeName="baseFrequency" 
+                       values="0.01 0.025; 0.015 0.03; 0.01 0.025" 
+                       dur="30s" 
+                       repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+            <feGaussianBlur stdDeviation="2"/>
+          </filter>
+        </defs>
+        
+        <!-- Couches de brume avec différentes vitesses et opacités -->
+        <g class="mist-layer-1">
+          <ellipse cx="20" cy="80" rx="25" ry="15" fill="white" opacity="0.08" filter="url(#mistTurbulence1)">
+            <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; 15 -5; 30 -2; 45 -8; 60 -3; 75 -6; 90 -1; 105 -4" 
+              dur="40s" 
+              repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.08; 0.12; 0.06; 0.1; 0.08" dur="15s" repeatCount="indefinite"/>
+          </ellipse>
+          
+          <ellipse cx="70" cy="85" rx="30" ry="12" fill="white" opacity="0.06" filter="url(#mistTurbulence1)">
+            <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; -20 -3; -40 -7; -60 -2; -80 -5; -100 -1; -120 -4" 
+              dur="50s" 
+              repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.06; 0.1; 0.04; 0.08; 0.06" dur="18s" repeatCount="indefinite"/>
+          </ellipse>
+        </g>
+        
+        <g class="mist-layer-2">
+          <ellipse cx="10" cy="60" rx="40" ry="20" fill="white" opacity="0.05" filter="url(#mistTurbulence2)">
+            <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; 25 -8; 50 -3; 75 -10; 100 -5; 125 -2" 
+              dur="35s" 
+              repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.05; 0.09; 0.03; 0.07; 0.05" dur="20s" repeatCount="indefinite"/>
+          </ellipse>
+          
+          <ellipse cx="60" cy="70" rx="35" ry="18" fill="white" opacity="0.04" filter="url(#mistTurbulence2)">
+            <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; -30 -6; -60 -12; -90 -4; -120 -9; -150 -2" 
+              dur="45s" 
+              repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.04; 0.08; 0.02; 0.06; 0.04" dur="22s" repeatCount="indefinite"/>
+          </ellipse>
+        </g>
+        
+        <g class="mist-layer-3">
+          <ellipse cx="30" cy="40" rx="50" ry="25" fill="white" opacity="0.03" filter="url(#mistTurbulence3)">
+            <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; 20 -12; 40 -6; 60 -15; 80 -8; 100 -3; 120 -10" 
+              dur="60s" 
+              repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.03; 0.07; 0.01; 0.05; 0.03" dur="25s" repeatCount="indefinite"/>
+          </ellipse>
+          
+          <ellipse cx="80" cy="50" rx="45" ry="22" fill="white" opacity="0.025" filter="url(#mistTurbulence3)">
+            <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; -25 -8; -50 -14; -75 -5; -100 -11; -125 -7; -150 -3" 
+              dur="55s" 
+              repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.025; 0.06; 0.01; 0.04; 0.025" dur="28s" repeatCount="indefinite"/>
+          </ellipse>
+        </g>
+        
+        <!-- Particules de brume flottantes supplémentaires -->
+        <g class="floating-mist-particles">
+          <circle cx="15" cy="30" r="8" fill="white" opacity="0.04" filter="url(#mistTurbulence1)">
+            <animateTransform attributeName="transform" type="translate" 
+              values="0 0; 3 -20; 8 -35; 15 -50; 25 -60; 40 -70" dur="30s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.04; 0.08; 0.02; 0.06; 0" dur="30s" repeatCount="indefinite"/>
+          </circle>
+          
+          <circle cx="85" cy="25" r="6" fill="white" opacity="0.05" filter="url(#mistTurbulence2)">
+            <animateTransform attributeName="transform" type="translate" 
+              values="0 0; -5 -18; -12 -32; -20 -45; -30 -55; -45 -65" dur="35s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.05; 0.09; 0.01; 0.07; 0" dur="35s" repeatCount="indefinite"/>
+          </circle>
+          
+          <circle cx="50" cy="20" r="10" fill="white" opacity="0.03" filter="url(#mistTurbulence3)">
+            <animateTransform attributeName="transform" type="translate" 
+              values="0 0; 2 -25; 6 -40; 12 -55; 20 -65; 35 -75" dur="40s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.03; 0.07; 0.01; 0.05; 0" dur="40s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+      </svg>
+    </div>
+    
     <!-- Overlays pour améliorer la lisibilité et créer une atmosphère wabi-sabi -->
     <div class="absolute inset-0 bg-gradient-to-t from-transparent via-black/5 to-black/15 opacity-80"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10"></div>
-    
-    
-    <!-- Transition supprimée -->
   </div>
   
   <!-- Élément décoratif supprimé -->

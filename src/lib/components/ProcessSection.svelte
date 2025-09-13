@@ -15,19 +15,19 @@
   const faqItems = [
     {
       question: "Quelle est votre politique d'annulation ?",
-      answer: "Nous comprenons que les plans peuvent changer. Pour les annulations à moins de 48 heures du rendez-vous, nous demandons un acompte de 30 € qui sera crédité sur votre future séance. Pour les annulations avec plus de 48 heures de préavis, aucun frais ne sera appliqué. Nous vous encourageons à nous contacter dès que possible si vous devez reprogrammer."
+      answer: "Je comprends bien que les plans peuvent changer. Pour les annulations à moins de 48 heures du rendez-vous, l'accompte demandé au préalable (généralement de 20% du prix annoncé) sera encaissé. Pour les annulations avec plus de 48 heures de préavis, aucun frais ne sera appliqué. Penser bien à me contacter dès que possible si vous devez reprogrammer."
     },
     {
       question: "Comment préparer ma peau avant une séance ?",
-      answer: "Pour une séance optimale, hydratez bien votre peau les jours précédents, évitez l'exposition au soleil, l'alcool et les médicaments fluidifiant le sang (comme l'aspirine) 24h avant. Arrivez reposé et après un repas léger. Une peau saine permet un meilleur résultat et une cicatrisation plus rapide."
+      answer: "Pour une séance optimale, hydratez bien votre peau les jours précédents, évitez l'exposition prolongée au soleil, l'alcool et les médicaments fluidifiant le sang (comme l'aspirine) 24h avant. Arrivez reposé et après un repas léger. Une peau saine permet un meilleur résultat et une cicatrisation plus rapide."
     },
     {
       question: "Comment entretenir mon tatouage après la séance ?",
-      answer: "Après votre séance, nous vous fournirons des instructions détaillées pour l'entretien. Les principes de base incluent : garder le tatouage propre, appliquer la crème cicatrisante recommandée, éviter les bains prolongés et l'exposition au soleil pendant au moins 2 semaines, et ne pas gratter les croûtes qui se forment naturellement. Un bon suivi des soins garantit une cicatrisation optimale et des couleurs durables."
+      answer: "Après votre séance, je vous fournirais des instructions détaillées pour l'entretien. Les principes de base incluent : garder le tatouage propre, le nettoyer à l'aide d'un savon au pH neutre, appliquer la crème cicatrisante recommandée, éviter les bains prolongés et l'exposition au soleil pendant au moins 2 semaines. Ne pas gratter les croûtes qui se forment naturellement. Un bon suivi des soins garantit une cicatrisation optimale et des couleurs durables."
     },
     {
       question: "Puis-je apporter mon propre design ?",
-      answer: "Bien sûr ! Nous accueillons vos idées et références. Cependant, notre spécialité est d'adapter ces inspirations à notre style artistique distinctif. Nous collaborerons avec vous pour créer une pièce unique qui respecte votre vision tout en bénéficiant de notre expertise en blackwork illustratif."
+      answer: "Bien sûr ! J'accueille vos idées et références. Cependant, ma spécialité est d'adapter ces inspirations à mon style artistique distinctif. Nous affinerons votre projet ensemble pour créer une pièce unique qui respecte votre vision tout en bénéficiant de mon expertise en blackwork illustratif."
     },
     {
       question: "Est-ce que les tatouages font mal ?",
@@ -174,15 +174,16 @@
   <!-- Ornement de coin supprimé -->
   <div class="container mx-auto px-4 relative z-10">
     <div bind:this={titleElement}>
-      <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
+      <h2 class="section-title text-4xl md:text-5xl text-gray-900 mb-16 uppercase relative inline-block transform -rotate-[0.8deg]">
         Notre Processus
+        <span class="absolute -right-8 -top-4 text-base opacity-40 rotate-12 font-serif">足の爪</span>
       </h2>
     </div>
     
     <!-- Timeline -->
-    <div class="relative z-10">
+    <div class="relative z-0">
       <!-- Centre vertical line -->
-      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 z-10">
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 z-0">
         <div 
           bind:this={timelineVertical}
           class="absolute top-0 left-0 w-full bg-forest h-0"

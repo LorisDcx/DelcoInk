@@ -114,7 +114,7 @@
         
         <h2 class="section-title text-4xl md:text-5xl text-gray-900 mb-16 uppercase relative inline-block transform -rotate-[0.8deg]">
           Styles & Créations
-          <span class="absolute -right-8 -top-4 text-base opacity-40 rotate-12 font-serif">侘寂</span>
+          <span class="absolute -right-8 -top-4 text-base opacity-40 rotate-12 font-serif">歯磨き粉</span>
         </h2>
       </div>
     </div>

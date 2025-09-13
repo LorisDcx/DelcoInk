@@ -104,10 +104,12 @@
 
 </script>
 
-<section id="contact" class="min-h-screen lg:min-h-[calc(100vh-80px)] bg-white relative flex items-center py-12 md:py-10" style="scroll-margin-top: 80px;">
+
+<section id="contact" class="min-h-screen lg:min-h-[calc(100vh-80px)] bg-white relative overflow-hidden texture-soft bg-gray-50 flex items-center py-12 md:py-16" style="scroll-margin-top: 80px;">
   <!-- Ornement de coin supprimé -->
   <div class="container mx-auto px-4">
     <div bind:this={contactTitle}>
+      <span class="absolute left-36 -top-6 text-xl opacity-50 rotate-12 text-forest">ジャガイモ猫</span>
       <h2 class="section-title text-4xl md:text-5xl text-center mb-16 uppercase relative inline-block text-gray-900">
         Contact
       </h2>
@@ -146,19 +148,11 @@
             </svg>
             <div>
               <h4 class="font-title text-lg text-gray-800">Email</h4>
-              <a href="mailto:contact@delco-ink.fr" class="text-gray-600 hover:text-forest transition-colors">contact@delco-ink.com</a>
+              <a href="mailto:contact@delco-ink.fr" class="text-gray-600 hover:text-forest transition-colors">contact@delco-ink.fr</a>
             </div>
           </div>
 
-          <div class="flex items-start">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-forest mr-4 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            <div>
-              <h4 class="font-title text-lg text-gray-800">Téléphone</h4>
-              <a href="tel:+33612345678" class="text-gray-600 hover:text-forest transition-colors">06 12 34 56 78</a>
-            </div>
-          </div>
+
           
           <div class="flex items-start">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-forest mr-4 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -232,7 +226,7 @@
       <input type="checkbox" id="gdpr-consent" name="gdpr-consent" bind:checked={gdprConsent} required
         class="mt-1 h-4 w-4 text-forest focus:ring-forest border-gray-300 rounded" />
       <span class="text-sm text-gray-600">
-        J'accepte que mes données soient traitées conformément à la <a href="/privacy-policy" class="text-forest underline">politique de confidentialité</a>". Delco Ink s'engage à protéger vos informations personnelles et ne les partagera jamais avec des tiers sans votre consentement explicite. Vous pouvez à tout moment exercer vos droits d'accès, de rectification ou de suppression de vos données.
+        J'accepte que mes données soient traitées conformément à la <a href="/privacy-policy" class="text-forest underline">politique de confidentialité.</a> Delco Ink s'engage à protéger vos informations personnelles et ne les partagera jamais avec des tiers sans votre consentement explicite. Vous pouvez à tout moment exercer vos droits d'accès, de rectification ou de suppression de vos données.
       </span>
     </label>
   </div>
@@ -256,35 +250,4 @@
     </div>
   </div>
   
-  <!-- Ornement de coin inférieur gauche supprimé -->
-  <!-- Barre d'action flottante mobile avec animation d'apparition --> 
-  <div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow-lg md:hidden border-t border-gray-200 animate-slideUp">
-    <div class="flex justify-around py-3 items-center">
-
-      <a href="tel:+33612345678" class="flex flex-col items-center text-forest">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-        <span class="text-xs mt-1">Appeler</span>
-      </a>
-      <a href="mailto:contact@delco-ink.fr" class="flex flex-col items-center text-forest">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-        <span class="text-xs mt-1">Email</span>
-      </a>
-      <a href="https://maps.google.com/?q=19+Av.+Général+Cartier,+73160+Cognin,+France" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-forest">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-        </svg>
-        <span class="text-xs mt-1">Itinéraire</span>
-      </a>
-      <a href="#contact" class="flex flex-col items-center text-forest">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-        </svg>
-        <span class="text-xs mt-1">Contact</span>
-      </a>
-    </div>
-  </div>
 </section>

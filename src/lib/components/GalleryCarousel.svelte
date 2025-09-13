@@ -366,7 +366,7 @@
 
     <div class="relative inline-block">
       <h2>
-        <span class="absolute -right-8 -top-6 text-base opacity-50 rotate-12 text-forest">ギャラリー</span>
+        <span class="absolute -right-8 -top-6 text-base opacity-50 rotate-12 text-forest">木漏れ日</span>
         Galerie
       </h2>
     </div>

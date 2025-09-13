@@ -156,6 +156,36 @@
     border-radius: 10px 0 0 30px;
   }
   
+  .nav-link-mobile {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+  
+  .nav-link-mobile::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2d6a4f;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+  
+  .nav-link-mobile:hover::after {
+    width: 100%;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
   .header-with-shadow {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(45, 106, 79, 0.1);
@@ -212,104 +242,36 @@
 
       </nav>
       
-      <button class="md:hidden organic-button bg-white border border-gray-200 p-2" aria-label="Menu" on:click={toggleMobileMenu}>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M8 14h12" />
-        </svg>
-      </button>
+      <!-- Navigation mobile avec scroll horizontal -->
+      <div class="md:hidden flex-1 mx-4">
+        <nav class="overflow-x-auto scrollbar-hide">
+          <div class="flex space-x-6 min-w-max px-2 py-2">
+            <a href="/#home" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              Accueil
+            </a>
+            <a href="/#about" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              À propos
+            </a>
+            <a href="/#services" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              Services
+            </a>
+            <a href="/#gallery" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              Galerie
+            </a>
+            <a href="/flash" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              Flash
+            </a>
+            <a href="/#process" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              Processus
+            </a>
+            <a href="/#contact" class="nav-link-mobile text-gray-800 hover:text-forest whitespace-nowrap font-medium transition-colors">
+              Contact
+            </a>
+          </div>
+        </nav>
+      </div>
     </div>
 
-    <!-- Menu mobile avec esthétique wabi-sabi -->
-    {#if mobileMenuOpen}
-      <!-- Fond opaque avec transition fade -->  
-      <div 
-        transition:fade={{ duration: 250, delay: 0 }} 
-        class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 tap-transparent" 
-        on:click|self={toggleMobileMenu}
-        on:keydown|self={e => e.key === 'Escape' && toggleMobileMenu()}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu de navigation"
-        tabindex="-1"
-      >        
-        <!-- Panneau latéral organique avec transition fluide -->
-        <div 
-          transition:fly={{ duration: 350, x: 120, easing: quintOut, opacity: 1 }}
-          class="absolute right-0 top-0 h-full w-72 bg-white shadow-xl p-6 mobile-menu-panel overflow-hidden"
-        >
-          <!-- Éléments organiques pour wabi-sabi -->
-          <div class="absolute opacity-5 -right-20 -bottom-20 w-64 h-64 pointer-events-none">
-            <OrganicShape type="blob2" fill="#2d6a4f" width="100%" height="100%" opacity={0.5} />
-          </div>
-          
-          <!-- En-tête avec titre décalé -->
-          <div class="flex justify-between items-center mb-8 relative">
-            <p class="font-satisfy text-gray-900 text-2xl ml-2">Menu</p>
-            <button 
-              class="text-forest hover:text-gray-800 organic-button bg-gray-50 p-2 transition-all duration-300" 
-              on:click={toggleMobileMenu} 
-              aria-label="Fermer le menu"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <!-- Menu avec liens décalés style wabi-sabi -->
-          <nav class="flex flex-col space-y-2 relative">
-            
-            <a 
-              href="/#about" 
-              class="mobile-link text-gray-800 hover:text-forest transition-all font-quicksand py-3 border-b border-gray-100 transform hover:translate-x-1 hover:rotate-[-0.5deg] flex items-center" 
-              on:click={toggleMobileMenu}
-            >
-              <span class="mr-2 opacity-70 text-sm">01.</span>À propos
-            </a>
-            <a 
-              href="/#services" 
-              class="mobile-link text-gray-800 hover:text-forest transition-all font-quicksand py-3 border-b border-gray-100 pl-1 transform hover:translate-x-1 hover:rotate-[-0.5deg] flex items-center" 
-              on:click={toggleMobileMenu}
-            >
-              <span class="mr-2 opacity-70 text-sm">02.</span>Styles
-            </a>
-            <a 
-              href="/#gallery" 
-              class="mobile-link text-gray-800 hover:text-forest transition-all font-quicksand py-3 border-b border-gray-100 pl-2 transform hover:translate-x-1 hover:rotate-[-0.5deg] flex items-center" 
-              on:click={toggleMobileMenu}
-            >
-              <span class="mr-2 opacity-70 text-sm">03.</span>Galerie
-            </a>
-            <a 
-              href="/#process" 
-              class="mobile-link text-gray-800 hover:text-forest transition-all font-quicksand py-3 border-b border-gray-100 pl-1 transform hover:translate-x-1 hover:rotate-[-0.5deg] flex items-center" 
-              on:click={toggleMobileMenu}
-            >
-              <span class="mr-2 opacity-70 text-sm">04.</span>Processus
-            </a>
-            <a 
-              href="/#contact" 
-              class="mobile-link text-gray-800 hover:text-forest transition-all font-quicksand py-3 border-b border-gray-100 transform hover:translate-x-1 hover:rotate-[-0.5deg] flex items-center" 
-              on:click={toggleMobileMenu}
-            >
-              <span class="mr-2 opacity-70 text-sm">05.</span>Contact
-            </a>
-            
-            <!-- Bouton Flash avec style organique -->
-            <a 
-              href="/flash" 
-              class="organic-button bg-forest bg-opacity-90 text-white hover:bg-opacity-100 transition-all duration-300 px-5 py-3 mt-4 font-quicksand font-medium flex items-center gap-2 group shadow-sm self-start" 
-              on:click={toggleMobileMenu} 
-              aria-label="Voir nos flash tattoos disponibles"
-            >
-              Flash
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-          </nav>
-        </div>
-      </div>
-    {/if}
   </header>
   
   <main class="flex-grow pt-16">
@@ -384,7 +346,7 @@
             <h4 class="font-satisfy text-2xl mb-4 text-forest">Contact</h4>
             <div class="flex items-start mb-2">
               <div class="mr-2 opacity-60 pt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="-3 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -393,11 +355,11 @@
             </div>
             <div class="flex items-start pl-1">
               <div class="mr-2 opacity-60 pt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="2 0 24 20" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <p class="text-gray-600 font-quicksand">contact@delco-ink.com</p>
+              <p class="text-gray-600 font-quicksand">contact@delco-ink.fr</p>
             </div>
           </div>
           
