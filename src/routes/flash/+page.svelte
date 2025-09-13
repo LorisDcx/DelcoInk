@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import ParticlesBackground from '$lib/components/ParticlesBackground.svelte';
-  
-  // Modèle pour les données des flashs
+
   interface FlashItem {
     id: number;
     title: string;
@@ -10,23 +9,15 @@
     category: string;
     size: string;
   }
-  
-  // Initialisation d'un tableau vide pour les flashs
+
   let flashItems: FlashItem[] = [];
-  
-  // Fonction pour convertir un nom de fichier en titre
+
   function filenameToTitle(filename: string): string {
-    // Enlever l'extension
     const name = filename.split('.').slice(0, -1).join('.');
-    // Remplacer les traits d'union et underscores par des espaces
-    return name.replace(/[-_]/g, ' ')
-      // Mettre la première lettre en majuscule et les autres après un espace
-      .replace(/(^\w|\s\w)/g, match => match.toUpperCase());
+    return name.replace(/[-_]/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
   }
-  
-  // Fonction pour générer des données basées sur les images réelles du dossier
+
   function generateFlashItems() {
-    // Liste des fichiers réels présents dans le dossier static/images/flash
     const realFlashFiles = [
       'Phénix.jpg',
       'Planche Dragons.jpg',
@@ -36,62 +27,53 @@
       'Planche Plantes.jpg',
       'Planche Spiderman.jpg'
     ];
-    
-    // Créer les objets pour chaque image
-    const generatedItems = realFlashFiles.map((file, index) => {
-      return {
-        id: index + 1,
-        title: filenameToTitle(file),
-        image: `/images/flash/${file}`,
-        // Assigner une catégorie aléatoire
-        category: ['Blackwork', 'Illustratif', 'Minimaliste'][Math.floor(Math.random() * 3)],
-        size: ['Petit', 'Moyen', 'Grand'][Math.floor(Math.random() * 3)]
-      };
-    });
-    
-    return generatedItems;
+    return realFlashFiles.map((file, i) => ({
+      id: i + 1,
+      title: filenameToTitle(file),
+      image: `/images/flash/${file}`,
+      category: ['Blackwork', 'Illustratif', 'Minimaliste'][Math.floor(Math.random() * 3)],
+      size: ['Petit', 'Moyen', 'Grand'][Math.floor(Math.random() * 3)]
+    }));
   }
-  
-  onMount(() => {
-    // Ici, nous simulons le chargement des images
-    // Dans une vraie implémentation, vous pourriez charger cette liste depuis le serveur
-    flashItems = generateFlashItems();
-  });
-  
-  // Filtres
-  let selectedCategory: string = 'all';
-  let selectedSize: string = 'all';
-  
-  // Fonction pour filtrer les flashs
-  $: filteredFlashItems = flashItems.filter(item => {
-    const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
-    const sizeMatch = selectedSize === 'all' || item.size === selectedSize;
-    return categoryMatch && sizeMatch;
-  });
-  
-  // Liste unique des catégories
-  $: categories = ['all', ...new Set(flashItems.map(item => item.category))];
-  
-  // Liste unique des tailles
-  $: sizes = ['all', ...new Set(flashItems.map(item => item.size))];
-  
-  // Pour l'affichage détaillé d'un flash
+
+  onMount(() => { flashItems = generateFlashItems(); });
+
+  let selectedCategory = 'all';
+  let selectedSize = 'all';
+
+  $: filteredFlashItems = flashItems.filter((it) =>
+    (selectedCategory === 'all' || it.category === selectedCategory) &&
+    (selectedSize === 'all' || it.size === selectedSize)
+  );
+
+  $: categories = ['all', ...new Set(flashItems.map((i) => i.category))];
+  $: sizes = ['all', ...new Set(flashItems.map((i) => i.size))];
+
   let selectedFlash: FlashItem | null = null;
-  
-  function showFlashDetail(flash: FlashItem) {
-    selectedFlash = flash;
-  }
-  
-  function closeFlashDetail() {
-    selectedFlash = null;
-  }
+  const showFlashDetail = (f: FlashItem) => selectedFlash = f;
+  const closeFlashDetail = () => selectedFlash = null;
 </script>
 
+<!-- 👉 TOUT le head ici (pas dans <script>) -->
 <svelte:head>
-  <title>Catalogue de Flash Tattoos | Delco Ink</title>
-  <meta name="description" content="Découvrez notre catalogue de flash tattoos disponibles chez Delco Ink. Designs uniques, style blackwork illustratif.">
+  <title>Flash Tattoos blackwork à Chambéry | Delco Ink</title>
+  <meta name="description" content="Découvrez nos flash tattoos disponibles chez Delco Ink à Chambéry : designs blackwork et illustratifs, pièces uniques, réservables sur rendez-vous." />
+  <link rel="canonical" href="https://www.delco-ink.fr/flash" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Flash Tattoos à Chambéry | Delco Ink" />
+  <meta property="og:description" content="Catalogue de flash tattoos disponibles : blackwork, illustratif. Réservation sur rendez-vous à Chambéry." />
+  <meta property="og:url" content="https://www.delco-ink.fr/flash" />
+  <meta property="og:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flash Tattoos à Chambéry | Delco Ink" />
+  <meta name="twitter:description" content="Catalogue de flash tattoos disponibles : blackwork, illustratif. Réservation sur rendez-vous à Chambéry." />
+  <meta name="twitter:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
 </svelte:head>
 
+
+    
 <div class="relative">
   <ParticlesBackground />
   

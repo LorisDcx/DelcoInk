@@ -1,139 +1,93 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import gsap from 'gsap';
-  import SectionDivider from './SectionDivider.svelte';
-  import BrushStroke from './decorative/BrushStroke.svelte';
-  
+  // ❌ Supprimé : imports non utilisés
+  // import SectionDivider from './SectionDivider.svelte';
+  // import BrushStroke from './decorative/BrushStroke.svelte';
+
   let hero: HTMLElement;
   let titleElement: HTMLElement;
   let subtitleElement: HTMLElement;
   let ctaButton: HTMLElement;
   let logoElement: HTMLElement;
   let underlineElement: HTMLElement;
-  
-  // Références pour les animations wabi-sabi et effets de fondu
+
   let heroContent: HTMLElement;
-  let fadeOutThreshold = 300; // Seuil de défilement pour déclencher le fondu
+  const fadeOutThreshold = 300;
 
   onMount(() => {
-    // Effet de parallaxe et de fondu sortant sur défilement avec animation wabi-sabi
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight;
-      
+
       if (hero) {
-        // Effet de parallaxe sur l'arrière-plan avec léger décalage en X pour l'effet wabi-sabi
         hero.style.transform = `translateY(${scrollY * 0.3}px) translateX(${Math.sin(scrollY * 0.005) * 5}px)`;
       }
-      
-      // Animation des formes organiques supprimées pour plus de netteté
-      
-      // Effet de fondu sortant sur le contenu du hero avec effet wabi-sabi (léger décalage)
+
       if (heroContent) {
-        
-        // Calcul de l'opacité basée sur le défilement (1 au début, 0 à fadeOutThreshold)
         const opacity = Math.max(0, 1 - scrollY / fadeOutThreshold);
-        heroContent.style.opacity = opacity.toString();
-        
-        // Effet de translation avec léger décalage horizontal pour aspect wabi-sabi
+        heroContent.style.opacity = String(opacity);
+
         if (scrollY <= fadeOutThreshold) {
           const translateY = scrollY * 0.2;
-          const translateX = Math.sin(scrollY * 0.01) * 3; // Léger mouvement latéral
+          const translateX = Math.sin(scrollY * 0.01) * 3;
           heroContent.style.transform = `translateY(-${translateY}px) translateX(${translateX}px)`;
         }
       }
-      
-      // Animation du trait de pinceau supprimée
-    });
+    };
 
-    // Animation séquencée des éléments du hero avec aspect wabi-sabi
+    window.addEventListener('scroll', onScroll);
+
     const heroTimeline = gsap.timeline();
-    
-    // Animation du titre avec légère désynchronisation wabi-sabi - timing accéléré
-    heroTimeline.from(titleElement, {
-      y: 30,
-      x: -10, // Décalage horizontal pour l'asymétrie
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    });
-    
-    // Animation du logo supprimée
-
-    // Animation du sous-titre avec effet décalé - timing accéléré
-    heroTimeline.from(subtitleElement, {
-      y: 20,
-      x: 5, // Léger décalage pour l'imperfection wabi-sabi
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    }, "-=0.6");
-
-    // Animation du CTA bouton avec mouvement organique - timing accéléré
-    heroTimeline.from(ctaButton, {
-      y: 15,
-      scale: 0.95,
-      opacity: 0,
-      duration: 0.7,
-      ease: "elastic.out(1, 0.5)" // Effet ressort plus organique
-    }, "-=0.4");
-    
-    // Animation des éléments décoratifs supprimée pour plus de netteté
-    // Animation des éléments décoratifs supprimée
-    
-    // Ne pas animer au début - uniquement au survol
-    if (underlineElement) {
-      gsap.set(underlineElement, {
-        width: 0,
-        left: 0
-      });
+    if (titleElement) {
+      heroTimeline.from(titleElement, { y: 30, x: -10, opacity: 0, duration: 0.8, ease: 'power2.out' });
     }
-    
-    // Nettoyage
-    return () => {};
-  });
-  
-  // Fonctions pour l'animation du surlignage au survol
-  function handleDescriptionHover() {
+    if (subtitleElement) {
+      heroTimeline.from(subtitleElement, { y: 20, x: 5, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+    }
+    if (ctaButton) {
+      heroTimeline.from(ctaButton, { y: 15, scale: 0.95, opacity: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' }, '-=0.4');
+    }
+
     if (underlineElement) {
-      // Animation du slide de gauche à droite
+      gsap.set(underlineElement, { width: 0, left: 0 });
+    }
+
+    // 🔄 Cleanup correct
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      heroTimeline.kill();
+    };
+  });
+
+  export function handleDescriptionHover() {
+    if (underlineElement && subtitleElement) {
       gsap.to(underlineElement, {
-        width: "100%",
-        backgroundColor: "#1b4332", // Vert foncé
-        height: "2.5px",
-        boxShadow: "0 0 8px 0 rgba(45, 106, 79, 0.75)", // Effet de surbrillance
+        width: '100%',
+        backgroundColor: '#1b4332',
+        height: '2.5px',
+        boxShadow: '0 0 8px 0 rgba(45, 106, 79, 0.75)',
         duration: 0.6,
-        ease: "power2.out"
+        ease: 'power2.out'
       });
-      
-      // Animation de la couleur du texte
-      gsap.to(subtitleElement, {
-        color: "#2d6a4f", // Teinte verte pour le texte
-        duration: 0.4
-      });
+      gsap.to(subtitleElement, { color: '#2d6a4f', duration: 0.4 });
     }
   }
-  
-  function handleDescriptionLeave() {
-    if (underlineElement) {
-      // Retour à zéro
+
+  export function handleDescriptionLeave() {
+    if (underlineElement && subtitleElement) {
       gsap.to(underlineElement, {
-        width: "0%",
-        backgroundColor: "#2d6a4f", // Retour au vert clair (forest)
-        height: "1px",
-        boxShadow: "none",
+        width: '0%',
+        backgroundColor: '#2d6a4f',
+        height: '1px',
+        boxShadow: 'none',
         duration: 0.8,
-        ease: "power2.inOut"
+        ease: 'power2.inOut'
       });
-      
-      // Retour couleur texte normale
-      gsap.to(subtitleElement, {
-        color: "#374151", // Gris d'origine (gray-700)
-        duration: 0.4
-      });
+      gsap.to(subtitleElement, { color: '#374151', duration: 0.4 });
     }
   }
 </script>
+
 
 <section id="home" class="relative h-screen overflow-hidden bg-white">
   <!-- Textures supprimées pour plus de netteté -->
@@ -183,12 +137,18 @@
       
       <!-- Sous-titre avec style wabi-sabi : espacement et rythme irrégulier -->
       <div class="flex justify-center md:justify-center mb-8 -ml-3 md:ml-6">
+          <!-- Ton H1 principal -->
+          <h1 class="sr-only">Delco Ink – Tatoueur spécialiste du blackwork à Chambéry</h1>
+
+
+        <!-- Ton sous-titre décoratif -->
         <p 
           bind:this={subtitleElement}
           class="font-body text-xl md:text-2xl text-gray-700 relative transform rotate-1"
           on:mouseenter={handleDescriptionHover}
           on:mouseleave={handleDescriptionLeave}
         >
+        
           <span class="inline-block relative cursor-pointer px-1">
             Illustrative Blackwork & Pop-Culture Tattoos
             <span 

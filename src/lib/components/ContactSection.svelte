@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   import ScrollTrigger from 'gsap/ScrollTrigger';
+  import { goto } from '$app/navigation'; // ✅ pour rediriger vers /thanks après envoi
   
   let formData = {
     name: '',
@@ -10,8 +11,14 @@
     subject: 'Renseignement'
   };
   
+    // champs utilitaires
+    let gdprConsent = false;    // ⬅️ bind sur la case RGPD
+  let botField = '';          // ⬅️ honeypot
+  let isSubmitting = false;
+  let submitError = '';
   let formSubmitted = false;
   let formError = false;
+
   // Éléments DOM pour les animations
   let contactTitle: HTMLElement;
   let contactMap: HTMLElement;
@@ -59,26 +66,42 @@
     }
   });
   
-  function handleSubmit() {
-    // Ici, on simulerait l'envoi du formulaire à Netlify Forms
-    // Pour l'instant on simule simplement une soumission réussie
-    formSubmitted = true;
-    
-    // En production, nous enverrions les données au backend
-    // tout en respectant les principes GDPR de minimisation des données
-    console.log('Formulaire soumis avec consentement GDPR');
-    
-    // Reset du formulaire après 5 secondes
-    setTimeout(() => {
-      formSubmitted = false;
-      formData = {
-        name: '',
-        email: '',
-        message: '',
-        subject: 'Renseignement'
-      };
-    }, 5000);
+
+  async function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
+    submitError = '';
+    isSubmitting = true;
+
+    // Corps x-www-form-urlencoded attendu par Netlify
+    const payload = new URLSearchParams({
+      'form-name': 'contact',
+      'bot-field': botField || '',
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      'gdpr-consent': gdprConsent ? 'on' : 'off'
+    }).toString();
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload
+      });
+      if (!res.ok) throw new Error('Submission failed');
+      // Reset + redirection page merci
+      formData = { name: '', email: '', message: '', subject: 'Renseignement' };
+      gdprConsent = false;
+      botField = '';
+      await goto('/thanks');
+    } catch (err) {
+      submitError = "Oups, l'envoi a échoué. Réessaie ou écris à contact@delco-ink.fr";
+    } finally {
+      isSubmitting = false;
+    }
   }
+
 </script>
 
 <section id="contact" class="min-h-screen lg:min-h-[calc(100vh-80px)] bg-white relative flex items-center py-12 md:py-10" style="scroll-margin-top: 80px;">
@@ -123,7 +146,7 @@
             </svg>
             <div>
               <h4 class="font-title text-lg text-gray-800">Email</h4>
-              <a href="mailto:contact@delco-ink.com" class="text-gray-600 hover:text-forest transition-colors">contact@delco-ink.com</a>
+              <a href="mailto:contact@delco-ink.fr" class="text-gray-600 hover:text-forest transition-colors">contact@delco-ink.com</a>
             </div>
           </div>
 
@@ -153,111 +176,86 @@
         </div>
       </div>
       
-      <!-- Formulaire de contact -->
-      <div bind:this={contactForm}
-      >
-        {#if formSubmitted}
-          <div class="bg-white p-6 rounded-md border border-forest shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-forest mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <h3 class="text-center font-title text-2xl mb-2 text-gray-800">Message envoyé !</h3>
-            <p class="text-center text-gray-600">Merci de nous avoir contacté. Nous vous répondrons dans les meilleurs délais.</p>
-            <p class="text-center text-gray-500 text-sm mt-4">Conformément au RGPD, vos données ne seront utilisées que pour traiter votre demande et ne seront pas conservées au-delà du temps nécessaire.</p>
-          </div>
-        {:else}
-          <form 
-            class="bg-white p-8 rounded-md border border-gray-200 shadow-sm"
-            on:submit|preventDefault={handleSubmit}
-            data-netlify="true"
-            name="contact"
-            netlify-honeypot="bot-field"
-          >
-            <div class="mb-6 hidden">
-              <label for="bot-field">Ne pas remplir si vous êtes humain</label>
-              <input type="hidden" name="bot-field" />
-            </div>
-            
-            <div class="mb-6">
-              <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nom</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                bind:value={formData.name}
-                required
-                class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm"
-              />
-            </div>
-            
-            <div class="mb-6">
-              <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                bind:value={formData.email}
-                required
-                class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm"
-              />
-            </div>
-            
-            <div class="mb-6">
-              <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Sujet</label>
-              <select 
-                id="subject" 
-                name="subject" 
-                bind:value={formData.subject}
-                class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm"
-              >
-                <option value="Renseignement">Renseignement</option>
-                <option value="Rendez-vous">Demande de rendez-vous</option>
-                <option value="Projet">Projet personnalisé</option>
-                <option value="Autre">Autre</option>
-              </select>
-            </div>
-            
-            <div class="mb-8">
-              <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                bind:value={formData.message}
-                required
-                rows="5"
-                class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md resize-none focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm"
-              ></textarea>
-            </div>
+<form
+  class="bg-white p-8 rounded-md border border-gray-200 shadow-sm"
+  on:submit={handleSubmit}
+  method="POST"
+  action="/thanks"     
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  name="contact"
+>
+  <!-- requis par Netlify pour détecter le formulaire -->
+  <input type="hidden" name="form-name" value="contact" />
 
-            <!-- Consentement GDPR -->
-            <div class="mb-6">
-              <div class="flex items-start space-x-2">
-                <input
-                  type="checkbox"
-                  id="gdpr-consent"
-                  name="gdpr-consent"
-                  required
-                  class="mt-1 h-4 w-4 text-forest focus:ring-forest border-gray-300 rounded"
-                />
-                <label for="gdpr-consent" class="block text-sm text-gray-600">
-                  J'accepte que mes données soient traitées conformément à la <a href="/privacy-policy" class="text-forest underline hover:text-forest/80">politique de confidentialité</a>. Delco Ink s'engage à protéger vos informations personnelles et ne les partagera jamais avec des tiers sans votre consentement explicite. Vous pouvez à tout moment exercer vos droits d'accès, de rectification ou de suppression de vos données.
-                </label>
-              </div>
-            </div>
-            
-            <div class="text-center">
-              <button type="submit" class="btn-primary inline-block group shadow-sm hover:shadow-md transition-all">
-                Envoyer
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </button>
-            </div>
-          </form>
-        {/if}
-      </div>
+  <!-- honeypot anti-spam -->
+  <div class="hidden">
+    <label>Ne pas remplir : <input name="bot-field" bind:value={botField} /></label>
+  </div>
+
+  <!-- Nom -->
+  <div class="mb-6">
+    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nom</label>
+    <input id="name" name="name" type="text" autocomplete="name" bind:value={formData.name} required
+      class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm" />
+  </div>
+
+  <!-- Email -->
+  <div class="mb-6">
+    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" bind:value={formData.email} required
+      class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm" />
+  </div>
+
+  <!-- Sujet -->
+  <div class="mb-6">
+    <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Sujet</label>
+    <select id="subject" name="subject" autocomplete="off" bind:value={formData.subject}
+      class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm">
+      <option value="Renseignement">Renseignement</option>
+      <option value="Rendez-vous">Demande de rendez-vous</option>
+      <option value="Projet">Projet personnalisé</option>
+      <option value="Autre">Autre</option>
+    </select>
+  </div>
+
+  <!-- Message -->
+  <div class="mb-8">
+    <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+    <textarea id="message" name="message" autocomplete="off"rows="5" required bind:value={formData.message}
+      class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-md resize-none focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/30 shadow-sm"></textarea>
+  </div>
+
+  <!-- Consentement RGPD -->
+  <div class="mb-6">
+    <label class="flex items-start space-x-2">
+      <input type="checkbox" id="gdpr-consent" name="gdpr-consent" bind:checked={gdprConsent} required
+        class="mt-1 h-4 w-4 text-forest focus:ring-forest border-gray-300 rounded" />
+      <span class="text-sm text-gray-600">
+        J'accepte que mes données soient traitées conformément à la <a href="/privacy-policy" class="text-forest underline">politique de confidentialité</a>". Delco Ink s'engage à protéger vos informations personnelles et ne les partagera jamais avec des tiers sans votre consentement explicite. Vous pouvez à tout moment exercer vos droits d'accès, de rectification ou de suppression de vos données.
+      </span>
+    </label>
+  </div>
+
+  <!-- Erreur -->
+  {#if submitError}
+  <p class="text-red-600 text-sm mb-4" role="alert" aria-live="assertive">{submitError}</p>
+{/if}
+
+
+  <!-- CTA -->
+  <div class="text-center">
+    <button type="submit" class="btn-primary inline-block group shadow-sm hover:shadow-md transition-all" disabled={isSubmitting}>
+      {isSubmitting ? 'Envoi…' : 'Envoyer'}
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </button>
+  </div>
+</form>
     </div>
   </div>
+  
   <!-- Ornement de coin inférieur gauche supprimé -->
   <!-- Barre d'action flottante mobile avec animation d'apparition --> 
   <div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow-lg md:hidden border-t border-gray-200 animate-slideUp">
@@ -269,13 +267,13 @@
         </svg>
         <span class="text-xs mt-1">Appeler</span>
       </a>
-      <a href="mailto:contact@delco-ink.com" class="flex flex-col items-center text-forest">
+      <a href="mailto:contact@delco-ink.fr" class="flex flex-col items-center text-forest">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
         <span class="text-xs mt-1">Email</span>
       </a>
-      <a href="https://maps.google.com/?q=171+avenue+de+Lyon,+73000+Chamb%C3%A9ry,+France" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-forest">
+      <a href="https://maps.google.com/?q=19+Av.+Général+Cartier,+73160+Cognin,+France" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-forest">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
         </svg>

@@ -14,87 +14,77 @@
   const galleryBackground = "#FFFFFF"; // bg-white
   const processBackground = "#F9FAFB"; // bg-gray-50 en hex
   const contactBackground = "#FFFFFF"; // bg-white
-</script>
 
-<svelte:head>
-  <title>Delco Ink | Tatouage Blackwork & Pop-Culture à Cognin | Studio Privé</title>
-  <meta name="description" content="Studio privé de tatouage à Cognin, spécialisé en blackwork illustratif et designs pop-culture sur rendez-vous. Tatouages personnalisés dans un espace exclusif." />
-  <meta name="keywords" content="tatouage Cognin, blackwork illustratif, tattoo pop-culture, studio privé tatouage, salon sur rendez-vous, tatoueur Savoie" />
-  
-  <!-- Open Graph / Facebook -->
+ </script>
+ 
+ <svelte:head>
+  <title>Delco Ink – Tatoueur blackwork à Chambéry (Savoie)</title>
+  <meta name="description" content="Studio de tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous. Découvrez le portfolio, les flashs et prenez rendez-vous." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.delco-ink.fr/" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://delco-ink.com/" />
-  <meta property="og:title" content="Delco Ink | Studio Privé de Tatouage Blackwork à Cognin" />
-  <meta property="og:description" content="Studio privé de tatouage à Cognin, spécialisé en blackwork illustratif et designs pop-culture. Sur rendez-vous uniquement." />
-  <meta property="og:image" content="/images/og-image.jpg" />
-  
-  <!-- Twitter Card -->
+  <meta property="og:title" content="Delco Ink – Tatoueur blackwork à Chambéry" />
+  <meta property="og:description" content="Tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous." />
+  <meta property="og:url" content="https://www.delco-ink.fr/" />
+  <meta property="og:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Delco Ink | Tatouage Blackwork à Cognin" />
-  <meta name="twitter:description" content="Studio privé de tatouage spécialisé en blackwork et designs pop-culture. Sur rendez-vous uniquement." />
-  <meta name="twitter:image" content="/images/og-image.jpg" />
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://delco-ink.com/" />
-  
-  <!-- JSON-LD Schema -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Delco Ink",
-      "description": "Studio privé de tatouage à Cognin spécialisé en blackwork illustratif et designs pop-culture. Sur rendez-vous uniquement.",
-      "image": "https://delco-ink.com/images/logo.png",
-      "@id": "https://delco-ink.com",
-      "url": "https://delco-ink.com",
-      "telephone": "+33000000000",
-      "priceRange": "€€",
-      "paymentAccepted": "Cash, Credit Card",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Cognin",
-        "addressRegion": "Savoie",
-        "postalCode": "73160",
-        "addressCountry": "FR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "45.564601",
-        "longitude": "5.917781"
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "10:00",
-          "closes": "19:00"
-        }
-      ],
-      "sameAs": [
-        "https://www.instagram.com/delcoink",
-        "https://www.facebook.com/delcoink"
-      ],
-      "keywords": "tatouage, blackwork, illustratif, pop-culture, chambéry, savoie, studio privé, sur rendez-vous",
-      "makesOffer": [
-        {
-          "@type": "Offer",
-          "name": "Tatouage Blackwork Illustratif",
-          "description": "Créations personnalisées en style blackwork avec un accent sur l'illustration artistique"
-        },
-        {
-          "@type": "Offer",
-          "name": "Tatouage Pop-Culture",
-          "description": "Designs inspirés de la pop-culture, films, séries, jeux vidéo et univers fantastiques"
-        },
-        {
-          "@type": "Offer",
-          "name": "Tatouage Personnalisé",
-          "description": "Créations uniques conçues en collaboration avec le client pour une pièce originale"
-        }
-      ]
-    }
-  </script>
+  <meta name="twitter:title" content="Delco Ink – Tatoueur blackwork à Chambéry" />
+  <meta name="twitter:description" content="Tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous." />
+  <meta name="twitter:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
+
+  <!-- Social -->
+  <meta property="og:site_name" content="Delco Ink" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta name="twitter:site" content="@delcoink" /> <!-- mets ton @ si tu as X/Twitter, sinon supprime -->
+
+  <!-- Perf -->
+  <link rel="preload" as="image" href="/images/hero-bg-light.jpg" />
+
+  <!-- Favicon (si pas déjà) -->
+  <link rel="icon" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 </svelte:head>
+
+<!-- JSON-LD principal : TattooParlor -->
+{@html `
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TattooParlor",
+  "@id": "https://www.delco-ink.fr/#tattoo-parlor",
+  "name": "Delco Ink",
+  "url": "https://www.delco-ink.fr/",
+  "image": "https://www.delco-ink.fr/images/og-image.jpg",
+  "telephone": "+33612345678",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "19 Avenue Général Cartier",
+    "addressLocality": "Cognin",
+    "postalCode": "73160",
+    "addressCountry": "FR"
+  },
+  "hasMap": "https://maps.google.com/?q=19+Av.+G%C3%A9n%C3%A9ral+Cartier,+73160+Cognin,+France",
+  "areaServed": ["Chambéry", "Savoie"],
+  "geo": { "@type":"GeoCoordinates", "latitude": 45.574277, "longitude": 5.902913 },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "09:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday"], "opens": "13:00", "closes": "19:00" }
+  ],
+  "priceRange": "€€",
+  "sameAs": [
+    "https://www.instagram.com/delcoink"
+  ]
+}
+</script>
+`}
+
 
 <!-- Sections -->
 <HeroSection />
