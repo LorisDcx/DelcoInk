@@ -6,10 +6,20 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-    adapter: adapter(),
-    // Prérend tout en HTML statique (pages + endpoints robots/sitemap)
+    adapter: adapter({
+      fallback: 'index.html',
+      precompress: true
+    }),
+    // Configuration du pré-rendu
     prerender: {
-      entries: ['*']
+      entries: ['*', '/robots.txt', '/sitemap.xml']
+    },
+    // Désactivation de la vérification des origin pour les fichiers statiques
+    csp: {
+      mode: 'auto',
+      directives: {
+        'default-src': ['self']
+      }
     }
   }
 };
