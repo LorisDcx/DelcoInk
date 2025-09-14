@@ -5,13 +5,8 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirections pour les erreurs
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Pas besoin de redirects pour static adapter
 
-# En-têtes de sécurité
 [[headers]]
   for = "/*"
   [headers.values]
@@ -19,21 +14,3 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-# Gestion des erreurs
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
-
-# Redirection pour le favicon
-[[redirects]]
-  from = "/favicon.ico"
-  to = "/img/Logo.png"
-  status = 200
-
-# Redirection pour l'image Open Graph
-[[redirects]]
-  from = "/images/og-image.jpg"
-  to = "/img/Logo.png"
-  status = 200

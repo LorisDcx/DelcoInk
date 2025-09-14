@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://delco-ink.fr/sitemap.xml
