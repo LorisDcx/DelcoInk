@@ -55,31 +55,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "TattooParlor",
-  "@id": "https://www.delco-ink.fr/#tattoo-parlor",
+  "@type": ["LocalBusiness","TattooParlor"],
+  "@id": "https://www.delco-ink.fr/#localbusiness",
   "name": "Delco Ink",
   "url": "https://www.delco-ink.fr/",
-  "image": "https://www.delco-ink.fr/images/og-image.jpg",
+  "image": [
+    "https://www.delco-ink.fr/images/og-image.jpg",
+    "https://www.delco-ink.fr/img/Logo.png"
+  ],
+  "logo": "https://www.delco-ink.fr/img/Logo.png",
   "telephone": "+33612345678",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "19 Avenue Général Cartier",
     "addressLocality": "Cognin",
     "postalCode": "73160",
+    "addressRegion": "Auvergne-Rhône-Alpes",
     "addressCountry": "FR"
   },
-  "hasMap": "https://maps.google.com/?q=19+Av.+G%C3%A9n%C3%A9ral+Cartier,+73160+Cognin,+France",
-  "areaServed": ["Chambéry", "Grand Chambéry", "Savoie"],
   "geo": { "@type":"GeoCoordinates", "latitude": 45.574277, "longitude": 5.902913 },
+  "areaServed": ["Chambéry","Grand Chambéry","Savoie"],
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "09:00", "closes": "19:00" },
-    { "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Sunday"], "opens": "13:00", "closes": "19:00" }
+    { "@type":"OpeningHoursSpecification", "dayOfWeek":["Monday","Tuesday","Wednesday"], "opens":"09:00", "closes":"19:00" },
+    { "@type":"OpeningHoursSpecification", "dayOfWeek":["Sunday"], "opens":"13:00", "closes":"19:00" }
   ],
   "priceRange": "€€",
   "sameAs": [
-    "https://www.instagram.com/delcoink"
+    "https://www.instagram.com/delco_ink/",
+    "https://www.facebook.com/delcoink"
   ]
 }
 </script>
@@ -101,6 +104,16 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "@id":"https://www.delco-ink.fr/#website",
+  "url":"https://www.delco-ink.fr/",
+  "name":"Delco Ink",
+  "publisher":{"@id":"https://www.delco-ink.fr/#localbusiness"}
+}
+</script>
 
 `}
 
