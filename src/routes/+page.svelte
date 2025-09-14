@@ -18,7 +18,7 @@
  </script>
  
  <svelte:head>
-  <title>Delco Ink – Tatoueur blackwork à Chambéry (Savoie)</title>
+  <title>Delco Ink – Salon Tattoo Shop à Chambéry (Savoie)</title>
   <meta name="description" content="Studio de tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous. Découvrez le portfolio, les flashs et prenez rendez-vous." />
 
   <!-- Canonical -->
@@ -26,15 +26,15 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Delco Ink – Tatoueur blackwork à Chambéry" />
-  <meta property="og:description" content="Tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous." />
+  <meta property="og:title" content="Delco Ink – Tattoo Shop à Chambéry" />
+  <meta property="og:description" content="Tatouage illustrative blackwork et pop-culture à Chambéry. Sur rendez-vous." />
   <meta property="og:url" content="https://www.delco-ink.fr/" />
   <meta property="og:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Delco Ink – Tatoueur blackwork à Chambéry" />
-  <meta name="twitter:description" content="Tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous." />
+  <meta name="twitter:title" content="Delco Ink – Tattoo Shop à Chambéry" />
+  <meta name="twitter:description" content="Tatouage illustrative blackwork et pop-culture à Chambéry. Sur rendez-vous." />
   <meta name="twitter:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
 
   <!-- Social -->

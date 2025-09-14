@@ -137,7 +137,9 @@ onMount(() => {
         height: '2.5px',
         boxShadow: '0 0 8px 0 rgba(45, 106, 79, 0.75)',
         duration: 0.6,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        left: 0,
+        x: 0
       });
       gsap.to(subtitleElement, { color: '#2d6a4f', duration: 0.4 });
     }
@@ -151,7 +153,9 @@ onMount(() => {
         height: '1px',
         boxShadow: 'none',
         duration: 0.8,
-        ease: 'power2.inOut'
+        ease: 'power2.inOut',
+        left: '50%',
+        x: '-50%'
       });
       gsap.to(subtitleElement, { color: '#374151', duration: 0.4 });
     }
@@ -194,12 +198,16 @@ onMount(() => {
         <div class="relative group">
           <div class="transition-transform duration-300 group-hover:scale-105">
             <img
-            bind:this={logoElement}
-            src="/img/Logo.png"
-            alt="Delco Ink Logo"
-            class="h-36 md:h-48 relative z-[100] mix-blend-normal"
-            style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"
-          />
+              bind:this={logoElement}
+              src="/img/Logo.png"
+              alt="Delco Ink - Tatoueur à Chambéry"
+              width="192"
+              height="192"
+              class="h-36 md:h-48 w-auto relative z-[100] mix-blend-normal"
+              style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"
+              loading="eager"
+              fetchpriority="high"
+            />
           
           </div>
           <!-- Effet de lueur subtil au survol -->
@@ -221,7 +229,8 @@ onMount(() => {
             Illustrative Blackwork<br class="block sm:hidden"> & Pop-Culture Tattoos
             <span 
               bind:this={underlineElement} 
-              class="absolute bottom-0 left-1/2 h-1.5 bg-forest/80 w-0 -translate-x-1/2 transition-all duration-500 wavy-line"
+              class="absolute bottom-0 left-0 h-1.5 bg-forest/80 w-0 transition-all duration-500 wavy-line"
+              style="transform: translateX(0%);"
             ></span>
           </span>
         </p>
