@@ -9,6 +9,7 @@
   import OrganicShape from '$lib/components/decorative/OrganicShape.svelte';
   import BrushStroke from '$lib/components/decorative/BrushStroke.svelte';
   import AnimatedBackground from '$lib/components/decorative/AnimatedBackground.svelte';
+  import MobileHeader from '$lib/components/MobileHeader.svelte';
 
   let mobileMenuOpen = false;
   
@@ -207,7 +208,11 @@
   <!-- Background animé subtil -->
   <AnimatedBackground type="grain" opacity={0.05} zIndex={-1} />  
   
-  <header class={`fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 wabi-header header-with-shadow`} id="main-header">
+  <!-- Mobile Header -->
+  <MobileHeader />
+  
+  <!-- Desktop Header -->
+  <header class={`hidden md:block fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 wabi-header header-with-shadow`} id="main-header">
     <!-- Formes organiques décoratives pour le header -->
     <div class="absolute left-0 bottom-0 w-48 h-48 overflow-hidden opacity-10 pointer-events-none">
       <OrganicShape type="blob1" fill="#2d6a4f" opacity={0.2} width="100%" height="100%" />    
@@ -219,7 +224,7 @@
           <img src="/img/Logo.png" alt="Delco Ink Logo" class="h-10" />
         </a>
         <div class="hidden md:block pl-1 transform rotate-[-0.5deg]">
-          <p class="text-gray-700 font-medium text-sm tracking-wide font-satisfy">Tattoo Shop Cognin - <span class="italic">Illustrative Blackwork</span></p>
+          <p class="text-gray-700 font-medium text-sm tracking-wide font-satisfy">Tattoo Shop Chambery - <span class="italic">Illustrative Blackwork</span></p>
           <p class="text-forest text-xs font-medium transform translate-x-1">Salon privé - Sur rendez-vous uniquement</p>
         </div>
       </div>
@@ -365,7 +370,7 @@
           
           <!-- Colonne 3 - Réseaux sociaux avec éléments artistiques -->
           <div class="-rotate-1 md:translate-y-1">
-            <h4 class="font-satisfy text-2xl mb-5 text-forest">Suivez-nous</h4>
+            <h4 class="font-satisfy text-2xl mb-5 text-forest">Retrouvez moi sur mes réseaux !</h4>
             <div class="flex space-x-6">
               <a href="https://www.instagram.com/delco_ink/?hl=fr" target="_blank" rel="noopener noreferrer" 
                  class="text-gray-700 hover:text-forest transition-all transform hover:scale-110 hover:rotate-3 duration-300 organic-button p-3" 

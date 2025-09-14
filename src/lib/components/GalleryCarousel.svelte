@@ -14,7 +14,7 @@
   
   // Références DOM
   let carouselContainer: HTMLElement | null = null;
-  let carouselTrack: HTMLElement | null = null;
+  let carouselTrack: HTMLDivElement | null = null;
   let filterButtons: HTMLElement | null = null;
   
   // Variables pour la lightbox
@@ -23,17 +23,26 @@
   
   // Variables pour le carrousel wabi-sabi
   let activeFilter = 'all';
-  let autoScrollInterval: ReturnType<typeof setInterval> | undefined;
+  let animationId: number;
   let isDragging = false;
   let isTransitioning = false;
   let scrollPosition = 0;
-  let scrollSpeed = 0.8; // Vitesse du défilement
+  let scrollSpeed = 2.5;
+  let lastFrameTime: number = 0;
+  let rafId: number;
+  let isMobile = false; // Détection mobile
+  let pixelRatio = 1; // Ratio de pixels pour les écrans haute densité
   
-  // Variables pour le drag/swipe
+  // Variables pour le drag/swipe optimisé
   let startX = 0;
   let scrollLeft = 0;
   let touchStartX = 0;
   let touchEndX = 0;
+  let lastScrollPosition = 0;
+  let lastTime = 0;
+  let velocity = 0;
+  let isScrolling = false;
+  let scrollRequest = 0;
   
   // Liste des images de la galerie
   let images: GalleryImage[] = [];
@@ -76,16 +85,13 @@
   
   // Fonctions de défilement automatique du carrousel
   function initAutoScroll() {
-    stopAutoScroll(); // S'assurer qu'il n'y a pas d'animation en cours
-    scrollSpeed = 0.8; // Vitesse du défilement automatique
-    autoScrollInterval = setInterval(animateCarousel, 16); // ~60fps
+    stopAutoScroll();
+    lastFrameTime = performance.now();
+    rafId = requestAnimationFrame(animateCarousel);
   }
   
   function stopAutoScroll() {
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
-      autoScrollInterval = undefined;
-    }
+    cancelAnimationFrame(rafId);
   }
   
   // Fonction pour gérer le défilement à la molette de souris
@@ -112,41 +118,48 @@
         if (scrollPosition < 0) scrollPosition = 0;
         if (scrollPosition > maxScroll) scrollPosition = maxScroll;
         
-        // Appliquer le déplacement
-        carouselTrack.style.transform = `translateX(${-scrollPosition}px)`;
+        // Appliquer la position avec transformation optimisée
+        carouselTrack.style.transform = `translate3d(${-Math.round(scrollPosition)}px, 0, 0)`;
       }
     }
   }
   
-  // Animation fluide du défilement infini sans couture avec boucle parfaite
-  function animateCarousel() {
+  // Animation optimisée pour mobile et desktop
+  function animateCarousel(timestamp: number) {
     if (!carouselTrack) return;
     
-    // Avancer la position de défilement
-    scrollPosition += scrollSpeed;
+    // Planifier la prochaine frame dès que possible
+    rafId = requestAnimationFrame(animateCarousel);
     
-    // Obtenir les éléments originaux (sans les clones)
-    const originalItems = carouselTrack.querySelectorAll('.carousel-item:not(.clone-item)');
-    if (!originalItems.length) return;
+    // Calculer le temps écoulé depuis la dernière frame
+    const now = performance.now();
+    const deltaTime = now - (lastFrameTime || now);
+    lastFrameTime = now;
     
-    // Cast de l'élément au type HTMLElement pour accéder à offsetWidth
-    const firstItem = originalItems[0] as HTMLElement;
-    const itemWidth = firstItem.offsetWidth + 40; // 40px pour les marges (20px de chaque côté)
+    // Ajuster la vitesse en fonction du device
+    const adjustedSpeed = isMobile ? scrollSpeed * 0.8 : scrollSpeed;
     
-    // Déterminer le point de reset (quand on a défilé tous les éléments originaux)
-    const resetPoint = itemWidth * originalItems.length;
+    // Calcul du déplacement en fonction du temps écoulé
+    const frameScroll = adjustedSpeed * (deltaTime / 16);
+    scrollPosition += frameScroll;
     
-    // Logique de carrousel infini en boucle parfaite
+    // Obtenir la largeur d'un élément (mise en cache pour performance)
+    if (!carouselTrack.firstElementChild) return;
+    const itemWidth = (carouselTrack.firstElementChild as HTMLElement).offsetWidth + 40;
+    
+    // Déterminer le point de reset (largeur totale du contenu)
+    const resetPoint = itemWidth * 5; // 5 éléments visibles
+    
+    // Réinitialiser la position pour créer une boucle infinie
     if (scrollPosition >= resetPoint) {
-      // Reset instantané au début pour créer l'effet de portail
       scrollPosition = 0;
     } else if (scrollPosition < 0) {
       // Si on va en arrière, aller à la fin
       scrollPosition = resetPoint - scrollSpeed;
     }
     
-    // Appliquer la position avec transformation
-    carouselTrack.style.transform = `translateX(${-scrollPosition}px)`;
+    // Appliquer la transformation avec arrondi pour améliorer les performances
+    carouselTrack.style.transform = `translate3d(${-Math.round(scrollPosition)}px, 0, 0)`;
   }
   
   // Chargement et filtrage des images
@@ -242,54 +255,80 @@
   
   // Gestion des événements tactiles pour mobile
   function handleTouchStart(e: TouchEvent) {
+    if (!carouselTrack) return;
     isDragging = true;
     touchStartX = e.touches[0].clientX;
-    startX = touchStartX - (carouselTrack?.offsetLeft || 0);
-    scrollLeft = scrollPosition;
+    scrollLeft = carouselTrack.scrollLeft;
+    lastTime = performance.now();
+    lastScrollPosition = scrollLeft;
+    velocity = 0;
+    cancelAnimationFrame(scrollRequest);
     stopAutoScroll();
   }
   
   function handleTouchMove(e: TouchEvent) {
-    if (!isDragging) return;
-    e.preventDefault(); // Empêcher le comportement par défaut (défilement de la page)
-    const touchX = e.touches[0].clientX;
-    touchEndX = touchX;
-    const x = touchX - (carouselTrack?.offsetLeft || 0);
-    const walk = (x - startX) * 2;
-    scrollPosition = scrollLeft - walk;
+    if (!isDragging || !carouselTrack) return;
     
-    // Obtenir les éléments originaux (sans les clones)
-    if (carouselTrack) {
-      const originalItems = carouselTrack.querySelectorAll('.carousel-item:not(.clone-item)');
-      if (originalItems.length) {
-        const firstItem = originalItems[0] as HTMLElement;
-        const itemWidth = firstItem.offsetWidth + 20;
-        
-        // Assurer que le défilement reste dans les limites
-        const maxScroll = itemWidth * originalItems.length;
-        
-        // Logique de bornage pour éviter le dépassement des limites
-        if (scrollPosition < 0) scrollPosition = 0;
-        if (scrollPosition > maxScroll) scrollPosition = maxScroll;
-        
-        carouselTrack.style.transform = `translateX(${-scrollPosition}px)`;
-      }
+    e.preventDefault();
+    const touchX = e.touches[0].clientX;
+    const now = performance.now();
+    const timeDiff = now - lastTime;
+    
+    if (timeDiff > 0) {
+      const currentScroll = carouselTrack.scrollLeft;
+      velocity = (currentScroll - lastScrollPosition) / timeDiff;
+      lastScrollPosition = currentScroll;
+      lastTime = now;
+      
+      const distance = (touchX - touchStartX) * 1.5;
+      carouselTrack.scrollLeft = scrollLeft - distance;
     }
   }
   
   function handleTouchEnd() {
+    if (!carouselTrack) return;
+    
     isDragging = false;
     
-    // Redémarrer le défilement automatique après un court délai
-    setTimeout(() => {
-      if (!isLightboxOpen) {
-        initAutoScroll();
-      }
-    }, 2000);
+    // Appliquer l'inertie
+    if (Math.abs(velocity) > 0.1) {
+      const startTime = performance.now();
+      const startScroll = carouselTrack.scrollLeft;
+      const friction = 0.95; // Coefficient de frottement
+      
+      const animateInertia = (currentTime: number) => {
+        if (!carouselTrack) return;
+        
+        const elapsed = currentTime - startTime;
+        const deceleration = Math.pow(friction, elapsed / 16); // 16ms par frame
+        
+        if (Math.abs(velocity) > 0.1) {
+          const delta = velocity * 15 * deceleration;
+          carouselTrack.scrollLeft = startScroll + delta;
+          velocity *= deceleration;
+          scrollRequest = requestAnimationFrame(animateInertia);
+        } else {
+          initAutoScroll();
+        }
+      };
+      
+      scrollRequest = requestAnimationFrame(animateInertia);
+    } else {
+      initAutoScroll();
+    }
   }
   
   // Initialisation au montage du composant
   onMount(async () => {
+    // Détecter si on est sur mobile et le ratio de pixels
+    if (browser) {
+      isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      pixelRatio = window.devicePixelRatio || 1;
+      
+      // Ajuster la vitesse en fonction de l'appareil
+      scrollSpeed = isMobile ? 1.8 : 2.5;
+    }
+    
     // Charger les images dynamiquement
     const loadedImages = await organizeImages();
     images = [...loadedImages];
@@ -303,15 +342,24 @@
         gsapLoaded = true;
       });
       
+      // Démarrer l'animation du carrousel
+      initAutoScroll();
+      
       // Initialiser le carrousel avec événement wheel pour défilement à la souris
-      if (carouselTrack && browser) {
+      if (browser && carouselTrack) {
+        // Type guard to ensure carouselTrack is not null
+        const track = carouselTrack as HTMLDivElement;
+        
         // Ajouter l'événement de défilement à la molette
-        carouselTrack.addEventListener('wheel', handleWheel, { passive: false });
+        track.addEventListener('wheel', handleWheel, { passive: false });
+        
         // Configurer les gestionnaires d'événements pour drag/touch - uniquement côté client
-        carouselContainer?.addEventListener('mousedown', handleMouseDown);
+        if (carouselContainer) {
+          carouselContainer.addEventListener('mousedown', handleMouseDown);
+          carouselContainer.addEventListener('touchstart', handleTouchStart);
+        }
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
-        carouselContainer?.addEventListener('touchstart', handleTouchStart);
         document.addEventListener('touchmove', handleTouchMove);
         document.addEventListener('touchend', handleTouchEnd);
         
@@ -636,12 +684,22 @@
 
   .carousel-track {
     display: flex;
-    padding: 1rem;
-    transition: transform 0.3s ease-out;
     will-change: transform;
-    align-items: center; /* Pour que les éléments soient alignés verticalement */
-    /* Augmenter la largeur pour laisser place aux clones */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    /* Désactiver les transitions sur mobile pour de meilleures performances */
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling sur iOS */
+    -webkit-tap-highlight-color: transparent; /* Supprimer le flash au toucher sur iOS */
     min-width: max-content;
+    /* Optimisation pour le rendu GPU */
+    transform: translate3d(0, 0, 0);
+    /* Désactiver les sélections de texte et les actions de zoom */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   .carousel-item {
@@ -653,14 +711,23 @@
     overflow: hidden;
     position: relative;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: rotate(-6deg);
-    user-select: none;
-    -webkit-user-drag: none;
-    cursor: grab;
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+    transform: rotate(-6deg) translateZ(0);
+    -webkit-transform: rotate(-6deg) translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+    contain: layout style paint;
     pointer-events: auto;
     border: 3px solid rgba(171, 201, 182, 0.6);
     backdrop-filter: blur(5px);
+    /* Désactiver la mise à l'échelle du texte pour iOS */
+    -webkit-text-size-adjust: 100%;
+    /* Optimisation pour le rendu GPU */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .carousel-item:nth-child(even) {

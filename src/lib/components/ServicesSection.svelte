@@ -97,6 +97,9 @@
 </script>
 
 <section id="services" class="min-h-screen relative overflow-hidden texture-soft bg-gray-50 flex items-center py-12 md:py-16" bind:this={servicesSection}>
+  <!-- Élément décoratif -->
+  <div bind:this={decorElement} class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-forest/5 border-2 border-forest/20 transform rotate-12 z-0"></div>
+  
   <!-- Fond avec effet wabi-sabi -->
   <div class="absolute inset-0 opacity-20 wavy-gradient z-0"></div>
   

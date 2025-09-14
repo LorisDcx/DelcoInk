@@ -1,9 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import gsap from 'gsap';
-  // ❌ Supprimé : imports non utilisés
-  // import SectionDivider from './SectionDivider.svelte';
-  // import BrushStroke from './decorative/BrushStroke.svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import { browser } from '$app/environment';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  // Enregistrer ScrollTrigger seulement côté client
+  if (browser) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
 
   let hero: HTMLElement;
   let titleElement: HTMLElement;
@@ -11,51 +15,117 @@
   let ctaButton: HTMLElement;
   let logoElement: HTMLElement;
   let underlineElement: HTMLElement;
-
+  let textBlock: HTMLElement;
   let heroContent: HTMLElement;
   const fadeOutThreshold = 300;
 
   onMount(() => {
-    const onScroll = () => {
-      const scrollY = window.scrollY;
-
+    if (!browser) return;
+    
+    // Détecter si c'est un appareil mobile
+    const isMobile = window.innerWidth < 768;
+    
+    // Désactiver les animations sur mobile pour de meilleures performances
+    if (!isMobile) {
+      // Animation du contenu au chargement
+      const heroTimeline = gsap.timeline();
+      if (titleElement) {
+        heroTimeline.from(titleElement, { 
+          y: 30, 
+          x: -10, 
+          opacity: 0, 
+          duration: 0.8, 
+          ease: 'power2.out' 
+        });
+      }
+      
+      if (subtitleElement) {
+        heroTimeline.from(subtitleElement, { 
+          y: 20, 
+          x: 5, 
+          opacity: 0, 
+          duration: 0.8, 
+          ease: 'power3.out' 
+        }, '-=0.6');
+      }
+      
+      if (ctaButton) {
+        heroTimeline.from(ctaButton, { 
+          y: 15, 
+          scale: 0.95, 
+          opacity: 0, 
+          duration: 0.7, 
+          ease: 'elastic.out(1, 0.5)' 
+        }, '-=0.4');
+      }
+      
+      // Animation au scroll avec GSAP ScrollTrigger (plus performant que l'écouteur de scroll manuel)
       if (hero) {
-        hero.style.transform = `translateY(${scrollY * 0.3}px) translateX(${Math.sin(scrollY * 0.005) * 5}px)`;
+        gsap.to(hero, {
+          y: '30vh',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
       }
-
+      
       if (heroContent) {
-        const opacity = Math.max(0, 1 - scrollY / fadeOutThreshold);
-        heroContent.style.opacity = String(opacity);
+  gsap.to(heroContent, {
+    // opacity: 0,   ← retire cette ligne
+    y: 50,
+    scrollTrigger: {
+      trigger: hero,
+      start: 'top top+=120',
+      end: 'bottom top+=120',
+      scrub: 0.5
+    }
+  });
+}
 
-        if (scrollY <= fadeOutThreshold) {
-          const translateY = scrollY * 0.2;
-          const translateX = Math.sin(scrollY * 0.01) * 3;
-          heroContent.style.transform = `translateY(-${translateY}px) translateX(${translateX}px)`;
-        }
+
+
+// Moved the animation logic into onMount to ensure elements are properly bound
+onMount(() => {
+  if (!browser) return;
+  
+  // Détecter si c'est un appareil mobile
+  const isMobile = window.innerWidth < 768;
+  
+  // Désactiver les animations sur mobile pour de meilleures performances
+  if (!isMobile && textBlock && hero) {
+    gsap.to(textBlock, {
+      opacity: 0,
+      y: 50,
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top+=120',
+        end: 'bottom top+=120',
+        scrub: 0.5
       }
-    };
+    });
+  }
+});
 
-    window.addEventListener('scroll', onScroll);
-
-    const heroTimeline = gsap.timeline();
-    if (titleElement) {
-      heroTimeline.from(titleElement, { y: 30, x: -10, opacity: 0, duration: 0.8, ease: 'power2.out' });
+    } else {
+      // Sur mobile, désactiver les animations complexes
+      if (heroContent) {
+        heroContent.style.opacity = '1';
+        heroContent.style.transform = 'none';
+      }
     }
-    if (subtitleElement) {
-      heroTimeline.from(subtitleElement, { y: 20, x: 5, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
-    }
-    if (ctaButton) {
-      heroTimeline.from(ctaButton, { y: 15, scale: 0.95, opacity: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' }, '-=0.4');
-    }
-
+    
+    // Initialisation de l'élément de soulignement
     if (underlineElement) {
       gsap.set(underlineElement, { width: 0, left: 0 });
     }
-
-    // 🔄 Cleanup correct
+    
+    // Nettoyage
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      heroTimeline.kill();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   });
 
@@ -97,211 +167,68 @@
   <!-- Particules supprimées pour plus de simplicité -->
   
   <!-- Background image pour le Hero -->
-  <div class="absolute inset-0 z-0 overflow-hidden" bind:this={hero}>
-    <!-- Fond beige simple en dessous de l'image -->
+  <div class="absolute inset-0 z-0 overflow-hidden" bind:this={hero} style="transform: translateY(0px) translateX(0px);">
+    <!-- Fond beige simple en dessous de l'image avec will-change pour de meilleures performances -->
     <div class="absolute inset-0 w-full h-full bg-[#f8f3e8]"></div>
     
     <!-- Image de fond pour le Hero avec position optimale -->
     <div class="absolute inset-0 w-full h-full bg-cover bg-center" 
          style="background-image: url('/images/hero-bg-light.jpg'); background-position: center 30%; filter: brightness(0.97) contrast(1.02);"></div>
     
-    <!-- Animation de brume réaliste - optimisée pour mobile -->
-    <div class="absolute inset-0 z-20 pointer-events-none">
-      <svg class="absolute inset-0 w-full h-full md:opacity-100 opacity-60" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <defs>
-          <!-- Filtres pour créer l'effet de fumée réaliste -->
-          <filter id="mistTurbulence1" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence 
-              baseFrequency="0.02 0.04" 
-              numOctaves="4" 
-              result="noise" 
-              seed="1"
-            >
-              <animate attributeName="baseFrequency" 
-                       values="0.02 0.04; 0.025 0.05; 0.02 0.04" 
-                       dur="20s" 
-                       repeatCount="indefinite"/>
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
-            <feGaussianBlur stdDeviation="1"/>
-          </filter>
-          
-          <filter id="mistTurbulence2" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence 
-              baseFrequency="0.015 0.03" 
-              numOctaves="3" 
-              result="noise" 
-              seed="2"
-            >
-              <animate attributeName="baseFrequency" 
-                       values="0.015 0.03; 0.02 0.035; 0.015 0.03" 
-                       dur="25s" 
-                       repeatCount="indefinite"/>
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"/>
-            <feGaussianBlur stdDeviation="1.5"/>
-          </filter>
-          
-          <filter id="mistTurbulence3" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence 
-              baseFrequency="0.01 0.025" 
-              numOctaves="2" 
-              result="noise" 
-              seed="3"
-            >
-              <animate attributeName="baseFrequency" 
-                       values="0.01 0.025; 0.015 0.03; 0.01 0.025" 
-                       dur="30s" 
-                       repeatCount="indefinite"/>
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
-            <feGaussianBlur stdDeviation="2"/>
-          </filter>
-        </defs>
-        
-        <!-- Couches de brume avec différentes vitesses et opacités -->
-        <g class="mist-layer-1">
-          <ellipse cx="20" cy="80" rx="25" ry="15" fill="white" opacity="0.08" filter="url(#mistTurbulence1)">
-            <animateTransform 
-              attributeName="transform" 
-              type="translate" 
-              values="0 0; 15 -5; 30 -2; 45 -8; 60 -3; 75 -6; 90 -1; 105 -4" 
-              dur="40s" 
-              repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.08; 0.12; 0.06; 0.1; 0.08" dur="15s" repeatCount="indefinite"/>
-          </ellipse>
-          
-          <ellipse cx="70" cy="85" rx="30" ry="12" fill="white" opacity="0.06" filter="url(#mistTurbulence1)">
-            <animateTransform 
-              attributeName="transform" 
-              type="translate" 
-              values="0 0; -20 -3; -40 -7; -60 -2; -80 -5; -100 -1; -120 -4" 
-              dur="50s" 
-              repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.06; 0.1; 0.04; 0.08; 0.06" dur="18s" repeatCount="indefinite"/>
-          </ellipse>
-        </g>
-        
-        <g class="mist-layer-2">
-          <ellipse cx="10" cy="60" rx="40" ry="20" fill="white" opacity="0.05" filter="url(#mistTurbulence2)">
-            <animateTransform 
-              attributeName="transform" 
-              type="translate" 
-              values="0 0; 25 -8; 50 -3; 75 -10; 100 -5; 125 -2" 
-              dur="35s" 
-              repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.05; 0.09; 0.03; 0.07; 0.05" dur="20s" repeatCount="indefinite"/>
-          </ellipse>
-          
-          <ellipse cx="60" cy="70" rx="35" ry="18" fill="white" opacity="0.04" filter="url(#mistTurbulence2)">
-            <animateTransform 
-              attributeName="transform" 
-              type="translate" 
-              values="0 0; -30 -6; -60 -12; -90 -4; -120 -9; -150 -2" 
-              dur="45s" 
-              repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.04; 0.08; 0.02; 0.06; 0.04" dur="22s" repeatCount="indefinite"/>
-          </ellipse>
-        </g>
-        
-        <g class="mist-layer-3">
-          <ellipse cx="30" cy="40" rx="50" ry="25" fill="white" opacity="0.03" filter="url(#mistTurbulence3)">
-            <animateTransform 
-              attributeName="transform" 
-              type="translate" 
-              values="0 0; 20 -12; 40 -6; 60 -15; 80 -8; 100 -3; 120 -10" 
-              dur="60s" 
-              repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.03; 0.07; 0.01; 0.05; 0.03" dur="25s" repeatCount="indefinite"/>
-          </ellipse>
-          
-          <ellipse cx="80" cy="50" rx="45" ry="22" fill="white" opacity="0.025" filter="url(#mistTurbulence3)">
-            <animateTransform 
-              attributeName="transform" 
-              type="translate" 
-              values="0 0; -25 -8; -50 -14; -75 -5; -100 -11; -125 -7; -150 -3" 
-              dur="55s" 
-              repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.025; 0.06; 0.01; 0.04; 0.025" dur="28s" repeatCount="indefinite"/>
-          </ellipse>
-        </g>
-        
-        <!-- Particules de brume flottantes supplémentaires -->
-        <g class="floating-mist-particles">
-          <circle cx="15" cy="30" r="8" fill="white" opacity="0.04" filter="url(#mistTurbulence1)">
-            <animateTransform attributeName="transform" type="translate" 
-              values="0 0; 3 -20; 8 -35; 15 -50; 25 -60; 40 -70" dur="30s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.04; 0.08; 0.02; 0.06; 0" dur="30s" repeatCount="indefinite"/>
-          </circle>
-          
-          <circle cx="85" cy="25" r="6" fill="white" opacity="0.05" filter="url(#mistTurbulence2)">
-            <animateTransform attributeName="transform" type="translate" 
-              values="0 0; -5 -18; -12 -32; -20 -45; -30 -55; -45 -65" dur="35s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.05; 0.09; 0.01; 0.07; 0" dur="35s" repeatCount="indefinite"/>
-          </circle>
-          
-          <circle cx="50" cy="20" r="10" fill="white" opacity="0.03" filter="url(#mistTurbulence3)">
-            <animateTransform attributeName="transform" type="translate" 
-              values="0 0; 2 -25; 6 -40; 12 -55; 20 -65; 35 -75" dur="40s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.03; 0.07; 0.01; 0.05; 0" dur="40s" repeatCount="indefinite"/>
-          </circle>
-        </g>
-      </svg>
-    </div>
+
     
-    <!-- Overlays pour améliorer la lisibilité et créer une atmosphère wabi-sabi -->
-    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-black/5 to-black/15 opacity-80"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10"></div>
+<!-- ajoute -z-10 + pointer-events-none aux deux overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-transparent via-black/5 to-black/15 opacity-80 -z-10 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10 -z-10 pointer-events-none"></div>
+
   </div>
   
   <!-- Élément décoratif supprimé -->
   
-  <!-- Hero Content avec effet de fondu -->
-  <div class="absolute inset-0 z-30 flex items-center justify-center" bind:this={heroContent} style="transition: transform 0.1s ease-out;">
+<!-- ajoute isolate + z-20 au container du contenu -->
+<div class="absolute inset-0 z-20 isolate flex items-start pt-40 md:pt-60 justify-center" bind:this={heroContent}>
+
     <div class="container mx-auto px-4 text-gray-900">
-      <!-- Logo avec style wabi-sabi : légèrement décalé, imperfection intentionnelle -->
-      <div class="mb-6 flex justify-center translate-x-3 -rotate-2" bind:this={titleElement}>
+      <!-- Logo avec style wabi-sabi -->
+      <div class="mb-6 flex justify-center" bind:this={titleElement}>
         <div class="relative group">
-          <div class="overflow-visible transition-all duration-500">
-            <img 
-              bind:this={logoElement}
-              src="/img/Logo.png" 
-              alt="Delco Ink Logo" 
-              class="h-32 md:h-40 relative z-10 transition-all duration-500 ease-out group-hover:brightness-110 filter contrast-110 brightness-105 drop-shadow-2xl" 
-            />
+          <div class="transition-transform duration-300 group-hover:scale-105">
+            <img
+            bind:this={logoElement}
+            src="/img/Logo.png"
+            alt="Delco Ink Logo"
+            class="h-36 md:h-48 relative z-[100] mix-blend-normal"
+            style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"
+          />
+          
           </div>
-          <!-- Utilisation de mix-blend-mode pour que la luminosité respecte les contours du PNG avec une variation naturelle -->
-          <div class="absolute inset-0 bg-gradient-to-br from-forest to-forest/80 opacity-0 blur-2xl transition-all duration-700 ease-out group-hover:opacity-20 z-0 transform scale-125 mix-blend-soft-light"></div>
-          <div class="absolute -inset-1 bg-gradient-to-r from-transparent via-forest/10 to-transparent opacity-0 blur-xl transition-all duration-500 ease-out group-hover:opacity-70 z-0 mix-blend-screen"></div>
+          <!-- Effet de lueur subtil au survol -->
+          <div class="absolute inset-0 bg-gradient-to-br from-forest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full -z-10" style="filter: blur(20px);"></div>
         </div>
       </div>
       
-      <!-- Sous-titre avec style wabi-sabi : espacement et rythme irrégulier -->
-      <div class="flex justify-center md:justify-center mb-8 -ml-3 md:ml-6">
-          <!-- Ton H1 principal -->
-          <h1 class="sr-only">Delco Ink – Tatoueur spécialiste du blackwork à Chambéry</h1>
-
-
-        <!-- Ton sous-titre décoratif -->
+      <!-- Sous-titre -->
+      <div class="w-full flex justify-center mb-6 md:mb-8">
+        <h1 class="sr-only">Delco Ink – Tatoueur spécialiste du blackwork à Chambéry</h1>
+        
         <p 
           bind:this={subtitleElement}
-          class="font-body text-xl md:text-2xl text-gray-700 relative transform rotate-1"
+          class="font-body text-lg sm:text-xl md:text-2xl text-gray-700 relative px-4"
           on:mouseenter={handleDescriptionHover}
           on:mouseleave={handleDescriptionLeave}
         >
-        
           <span class="inline-block relative cursor-pointer px-1">
-            Illustrative Blackwork & Pop-Culture Tattoos
+            Illustrative Blackwork<br class="block sm:hidden"> & Pop-Culture Tattoos
             <span 
               bind:this={underlineElement} 
-              class="absolute bottom-0 left-0 h-1.5 bg-forest/80 w-0 transition-all duration-500 wavy-line"
+              class="absolute bottom-0 left-1/2 h-1.5 bg-forest/80 w-0 -translate-x-1/2 transition-all duration-500 wavy-line"
             ></span>
           </span>
         </p>
       </div>
       
       <!-- Bouton de défilement avec style wabi-sabi : mouvement fluide, organique -->
-      <div class="mt-14 flex justify-center md:translate-x-5">
+      <div class="mt-8 md:mt-12 flex justify-center">
         <a 
           bind:this={ctaButton}
           href="#about" 

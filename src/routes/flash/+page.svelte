@@ -195,8 +195,7 @@
               <div>
                 <h4 class="text-sm font-medium text-gray-500 mb-1">Description</h4>
                 <p class="text-gray-800">
-                  Pour réserver ce design pour un tatouage, veuillez nous contacter en précisant la référence 
-                  #{selectedFlash.id}. Le tatouage peut être légèrement personnalisé selon vos préférences.
+                  Si ce flash vous interesse vous pouvez m'envoyer un email ou un message sur mon compte instagram dans la rubrique contact pour en savoir plus.
                 </p>
               </div>
             </div>
