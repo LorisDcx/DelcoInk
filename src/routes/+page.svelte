@@ -18,23 +18,23 @@
  </script>
  
  <svelte:head>
-  <title>Delco Ink – Salon Tattoo Shop à Chambéry (Savoie)</title>
-  <meta name="description" content="Studio de tatouage blackwork et pop-culture à Chambéry. Sur rendez-vous. Découvrez le portfolio, les flashs et prenez rendez-vous." />
+  <title>Delco Ink - Tattoo Artist à Chambery</title>
+  <meta name="description" content="Artiste tatoueur spécialisé en blackwork et pop-culture à Chambéry. Créations uniques sur rendez-vous. Découvrez mon portfolio et réservez votre séance." />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.delco-ink.fr/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Delco Ink – Tattoo Shop à Chambéry" />
-  <meta property="og:description" content="Tatouage illustrative blackwork et pop-culture à Chambéry. Sur rendez-vous." />
+  <meta property="og:title" content="Delco Ink - Tattoo Artist à Chambery" />
+  <meta property="og:description" content="Tatoueur spécialisé en blackwork et pop-culture à Chambéry. Créations uniques et sur-mesure sur rendez-vous." />
   <meta property="og:url" content="https://www.delco-ink.fr/" />
   <meta property="og:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Delco Ink – Tattoo Shop à Chambéry" />
-  <meta name="twitter:description" content="Tatouage illustrative blackwork et pop-culture à Chambéry. Sur rendez-vous." />
+  <meta name="twitter:title" content="Delco Ink - Tattoo Artist à Chambery" />
+  <meta name="twitter:description" content="Tatoueur spécialisé en blackwork et pop-culture à Chambéry. Créations uniques et sur-mesure sur rendez-vous." />
   <meta name="twitter:image" content="https://www.delco-ink.fr/images/og-image.jpg" />
 
   <!-- Social -->

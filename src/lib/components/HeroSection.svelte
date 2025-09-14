@@ -221,7 +221,7 @@ onMount(() => {
             Illustrative Blackwork<br class="block sm:hidden"> & Pop-Culture Tattoos
             <span 
               bind:this={underlineElement} 
-              class="absolute bottom-0 left-1/2 h-1.5 bg-forest/80 w-0 -translate-x-1/2 transition-all duration-500 wavy-line"
+
             ></span>
           </span>
         </p>

@@ -410,7 +410,8 @@
 </script>
 
 <section id="gallery" class="gallery-section">
-  <div class="section-title">
+
+  <div class="section-title text-4xl md:text-5xl mb-16 uppercase relative inline-block transform -rotate-1">
 
     <div class="relative inline-block">
       <h2>
@@ -419,7 +420,7 @@
       </h2>
     </div>
   </div>
-  
+
   <!-- Filtres par catégorie -->
   <div class="filters" bind:this={filterButtons}>
     <button 
