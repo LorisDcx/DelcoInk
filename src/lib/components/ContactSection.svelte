@@ -171,13 +171,14 @@
       </div>
       
 <form
-  class="bg-white p-8 rounded-md border border-gray-200 shadow-sm"
-  on:submit={handleSubmit}
-  method="POST"
-  action="/thanks"     
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  name="contact"
+name="contact"
+method="POST"
+action="/thanks"
+data-netlify="true"
+netlify-honeypot="bot-field"
+class="bg-white p-8 rounded-md border border-gray-200 shadow-sm"
+on:submit={handleSubmit}
+
 >
   <!-- requis par Netlify pour détecter le formulaire -->
   <input type="hidden" name="form-name" value="contact" />

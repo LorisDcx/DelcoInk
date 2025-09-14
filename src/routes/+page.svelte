@@ -69,7 +69,7 @@
     "addressCountry": "FR"
   },
   "hasMap": "https://maps.google.com/?q=19+Av.+G%C3%A9n%C3%A9ral+Cartier,+73160+Cognin,+France",
-  "areaServed": ["Chambéry", "Savoie"],
+  "areaServed": ["Chambéry", "Grand Chambéry", "Savoie"],
   "geo": { "@type":"GeoCoordinates", "latitude": 45.574277, "longitude": 5.902913 },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification",
@@ -83,6 +83,25 @@
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Puis-je apporter mon propre design ?",
+     "acceptedAnswer":{"@type":"Answer","text":"Oui. On part de vos références et on adapte en blackwork illustratif pour un résultat lisible et durable."}},
+    {"@type":"Question","name":"Est-ce que les tatouages font mal ?",
+     "acceptedAnswer":{"@type":"Answer","text":"La sensation varie selon la zone et la durée. Je vous guide sur la préparation et je fais des pauses si besoin."}},
+    {"@type":"Question","name":"Comment préparer ma peau avant une séance ?",
+     "acceptedAnswer":{"@type":"Answer","text":"Hydratez bien la peau les jours précédents, évitez alcool/aspirine la veille, dormez bien et mangez avant la séance."}},
+    {"@type":"Question","name":"Comment entretenir mon tatouage après la séance ?",
+     "acceptedAnswer":{"@type":"Answer","text":"Nettoyage doux, crème adaptée, éviter bains/soleil/gréssage 2–3 semaines. Un guide détaillé vous est remis le jour J."}}
+  ]
+}
+</script>
+
+
 `}
 
 

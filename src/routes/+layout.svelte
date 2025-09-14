@@ -371,6 +371,8 @@
           <!-- Colonne 3 - Réseaux sociaux avec éléments artistiques -->
           <div class="-rotate-1 md:translate-y-1">
             <h4 class="font-satisfy text-2xl mb-5 text-forest">Retrouvez moi sur mes réseaux !</h4>
+
+
             <div class="flex space-x-6">
               <a href="https://www.instagram.com/delco_ink/?hl=fr" target="_blank" rel="noopener noreferrer" 
                  class="text-gray-700 hover:text-forest transition-all transform hover:scale-110 hover:rotate-3 duration-300 organic-button p-3" 
@@ -385,8 +387,9 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
                 </svg>
+                
               </a>
-
+              <span class="text-sm pt-3 text-gray-600"> Tatoueur à Chambéry <a href="/#contact" class="text-forest underline"> prendre rendez-vous</a></span>
             </div>
           </div>
         </div>
