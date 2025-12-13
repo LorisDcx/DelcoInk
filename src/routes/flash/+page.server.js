@@ -12,10 +12,12 @@ export async function load() {
     
     // Filtrer pour ne garder que les images
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-    const imageFiles = files.filter(file => {
-      const ext = path.extname(file).toLowerCase();
-      return imageExtensions.includes(ext);
-    });
+    const imageFiles = files
+      .filter(file => {
+        const ext = path.extname(file).toLowerCase();
+        return imageExtensions.includes(ext);
+      })
+      .sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
     
     // Créer les objets pour chaque image
     const flashItems = imageFiles.map((file, index) => {

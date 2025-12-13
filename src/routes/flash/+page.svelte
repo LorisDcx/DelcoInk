@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import ParticlesBackground from '$lib/components/ParticlesBackground.svelte';
 
   interface FlashItem {
@@ -10,6 +9,8 @@
     size: string;
   }
 
+  export let data;
+
   let flashItems: FlashItem[] = [];
 
   function filenameToTitle(filename: string): string {
@@ -17,26 +18,19 @@
     return name.replace(/[-_]/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
   }
 
-  function generateFlashItems() {
-    const realFlashFiles = [
-      'Phénix.jpg',
-      'Planche Dragons.jpg',
-      'Planche FEMME - 2.jpg',
-      'Planche FEMME .jpg',
-      'Planche Miles Morales.jpg',
-      'Planche Plantes.jpg',
-      'Planche Spiderman.jpg'
-    ];
-    return realFlashFiles.map((file, i) => ({
-      id: i + 1,
-      title: filenameToTitle(file),
-      image: `/images/flash/${file}`,
-      category: ['Blackwork', 'Illustratif', 'Minimaliste'][Math.floor(Math.random() * 3)],
-      size: ['Petit', 'Moyen', 'Grand'][Math.floor(Math.random() * 3)]
+  function formatFlashItems(items: FlashItem[]) {
+    const fallbackCategory = 'Blackwork';
+    const fallbackSize = 'Moyen';
+
+    return items.map((item) => ({
+      ...item,
+      title: filenameToTitle(item.title),
+      category: item.category || fallbackCategory,
+      size: item.size || fallbackSize
     }));
   }
 
-  onMount(() => { flashItems = generateFlashItems(); });
+  $: flashItems = formatFlashItems(data?.flashItems ?? []);
 
   let selectedCategory = 'all';
   let selectedSize = 'all';
