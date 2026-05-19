@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Merci | Delco Ink" 
+  description="Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais."
+  canonical="https://www.delco-ink.fr/thanks"
+>
+  <meta name="robots" content="noindex, nofollow" slot="head" />
+  <section class="min-h-screen flex items-center justify-center bg-gray-50 py-20">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-xl mx-auto">
+        <div class="mb-8 font-title text-forest text-6xl">✨</div>
+        
+        <h1 class="font-title text-4xl md:text-5xl text-forest mb-6">Merci !</h1>
+        
+        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+          Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais, 
+          généralement sous 24 à 48 heures.
+        </p>
+        
+        <div class="space-y-4">
+          <p class="text-gray-500 text-sm">
+            En attendant, n'hésitez pas à découvrir mes dernières créations sur Instagram.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <a 
+              href="/" 
+              class="px-8 py-3 bg-forest text-white font-medium rounded-full hover:bg-forest/90 transition-all shadow-md hover:shadow-lg"
+            >
+              Retour à l'accueil
+            </a>
+            <a 
+              href="https://www.instagram.com/delco.ink/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="px-8 py-3 border-2 border-forest text-forest font-medium rounded-full hover:bg-forest/5 transition-all"
+            >
+              Voir Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

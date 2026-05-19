@@ -1,0 +1,49 @@
+---
+// Composant de maillage interne SEO
+// À placer en fin d'article ou de page pour le maillage interne
+
+interface Props {
+  currentPage?: string;
+  showAll?: boolean;
+}
+
+const { currentPage = '', showAll = false } = Astro.props;
+
+const allLinks = [
+  { href: '/', title: 'Accueil', description: 'Tatouage Chambéry - Studio Ensō' },
+  { href: '/le-studio', title: 'Le Studio', description: 'Découvrez le Studio Ensō à Cognin' },
+  { href: '/tatoueur-chambery', title: 'Tatoueur Chambéry', description: 'Delco Ink - Tatoueuse à Chambéry' },
+  { href: '/blackwork-chambery', title: 'Blackwork Chambéry', description: 'Spécialiste blackwork Chambéry' },
+  { href: '/salon-tatouage-chambery', title: 'Salon de Tatouage Chambéry', description: 'Studio privé Cognin, sur RDV' },
+  { href: '/tatouage-manga-chambery', title: 'Tatouage Manga Chambéry', description: 'Anime, manga, Ghibli en blackwork' },
+  { href: '/tatouage-pop-culture-chambery', title: 'Tatouage Pop-Culture', description: 'Jeux vidéo, films, séries en blackwork' },
+  { href: '/blog', title: 'Blog', description: 'Conseils et guides tatouage' },
+  { href: '/blog/premier-tatouage-conseils', title: 'Premier tatouage', description: 'Guide complet premier tatouage' },
+  { href: '/blog/comment-choisir-son-tatoueur', title: 'Choisir son tatoueur', description: 'Critères pour bien choisir' },
+  { href: '/blog/blackwork-style-tatouage', title: 'Style Blackwork', description: 'Tout sur le blackwork' },
+  { href: '/blog/preparer-seance-tatouage', title: 'Préparer sa séance', description: 'Checklist avant tatouage' },
+  { href: '/blog/entretien-tatouage-cicatrisation', title: 'Entretien tatouage', description: 'Soins et cicatrisation' },
+  { href: '/blog/tatouage-pop-culture-tendances', title: 'Pop-culture', description: 'Tatouage manga, geek, anime' },
+];
+
+// Filtrer la page courante
+const links = allLinks.filter(link => link.href !== currentPage);
+
+// Limiter à 6 liens si showAll est false
+const displayedLinks = showAll ? links : links.slice(0, 6);
+---
+
+<nav class="internal-links mt-16 pt-8 border-t border-gray-200" aria-label="Liens connexes">
+  <h3 class="text-lg font-semibold text-gray-800 mb-4">À découvrir également</h3>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    {displayedLinks.map(link => (
+      <a 
+        href={link.href} 
+        class="group p-4 bg-gray-50 hover:bg-forest/5 rounded-xl border border-gray-200 hover:border-forest/30 transition-all"
+      >
+        <span class="block font-medium text-gray-800 group-hover:text-forest transition-colors">{link.title}</span>
+        <span class="text-sm text-gray-500">{link.description}</span>
+      </a>
+    ))}
+  </div>
+</nav>

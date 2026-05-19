@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const defined = {
+  readTime: '4 min',
+  category: 'Conseils',
+  author: 'Delco Ink'
+};
+---
+
+<Layout 
+  title="Préparer sa séance de tatouage | Checklist Chambéry 2024"
+  description="Préparer sa séance tatouage Chambéry : sommeil, alimentation, hydratation. Checklist Studio Ensō pour optimiser votre expérience en Savoie."
+  canonical="https://www.delco-ink.fr/blog/preparer-seance-tatouage"
+>
+  <article class="min-h-screen pt-24 pb-20" style="background: linear-gradient(180deg, #f8f3e8 0%, #faf7f0 50%, #f5f2e8 100%)">
+    <div class="container mx-auto px-4">
+      <header class="max-w-5xl mx-auto mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <a href="/blog" class="text-forest hover:underline text-sm flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Blog
+          </a>
+          <span class="text-gray-400">|</span>
+          <span class="bg-forest/10 text-forest px-3 py-1 rounded-full text-sm font-medium">{defined.category}</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-500 text-sm">{defined.readTime} de lecture</span>
+        </div>
+        <h1 class="font-title text-4xl md:text-5xl text-gray-900 mb-6 leading-tight">
+          Comment bien préparer <span class="text-forest">sa séance de tatouage</span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl">
+          Une bonne préparation fait toute la différence pour une séance sereine et une cicatrisation optimale. 
+          Voici la checklist complète.
+        </p>
+        <div class="flex items-center gap-4 text-sm text-gray-500">
+          <img src="/img/Logo.webp" alt="Delco Ink" class="w-10 h-10 rounded-full bg-white p-1 shadow-sm" />
+          <div>
+            <p class="font-medium text-gray-800">{defined.author}</p>
+            <p>Mis à jour le 10 janvier 2026</p>
+          </div>
+        </div>
+      </header>
+      <figure class="max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl">
+        <img src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2.webp" 
+          srcset="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2-sm.webp 380w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2-md.webp 768w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2.webp 1200w"
+          sizes="(max-width: 768px) 380px, (max-width: 1200px) 768px, 1200px"
+          alt="Préparation d'une séance de tatouage" class="w-full h-72 md:h-80 object-cover" fetchpriority="high" decoding="async" width="1200" height="800" />
+      </figure>
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none text-gray-700">
+          <div class="bg-forest/5 border border-forest/20 p-5 rounded-xl mb-12">
+            <p class="text-forest mb-0">📚 Cet article fait partie du guide <a href="/blog/premier-tatouage-conseils" class="font-medium underline hover:text-forest/80">Premier tatouage : tout ce que vous devez savoir</a></p>
+          </div>
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">La veille de la séance</h2>
+            <div class="space-y-6">
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-lg text-gray-800 mb-2">Bien dormir</h3>
+                <p class="text-gray-600 mb-0">Une nuit de 7-8 heures vous permettra d'arriver reposé et de mieux gérer la douleur. Évitez les soirées tardives.</p>
+              </div>
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-lg text-gray-800 mb-2">Éviter l'alcool ou toute autre substance psychoactive</h3>
+                <p class="text-gray-600 mb-0">L'alcool fluidifie le sang et augmente les saignements — cela augmente le temps de séance et nuit à votre cicatrisation. Évitez-le 24 à 48 heures avant votre rendez-vous.</p>
+              </div>
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-lg text-gray-800 mb-2">S'hydrater</h3>
+                <p class="text-gray-600 mb-0">Buvez suffisamment d'eau les jours précédents. Une peau bien hydratée prend mieux l'encre et cicatrise plus facilement.</p>
+              </div>
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-lg text-gray-800 mb-2">Pas d'aspirine ni d'ibuprofène</h3>
+                <p class="text-gray-600 mb-0">Ces médicaments ont un effet anticoagulant. Si nécessaire, préférez le paracétamol.</p>
+              </div>
+            </div>
+          </section>
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">Le jour J</h2>
+            <div class="space-y-6">
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-lg text-gray-800 mb-2">Manger avant la séance</h3>
+                <p class="text-gray-600 mb-0">Ne venez jamais le ventre vide. Prenez un repas équilibré 1-2 heures avant. Apportez des snacks sucrés pour les longues séances.</p>
+              </div>
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-lg text-gray-800 mb-2">Choisir les bons vêtements</h3>
+                <p class="text-gray-600 mb-0">Portez des vêtements confortables qui permettent un accès facile à la zone à tatouer. Évitez les tissus précieux.</p>
+              </div>
+            </div>
+          </section>
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">Ce qu'il ne faut pas faire</h2>
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start gap-3"><span class="text-forest font-bold">✗</span><span><strong>Pas d'exposition au soleil prolongée</strong> sur la zone à tatouer (minimum 2 semaines avant)</span></li>
+                <li class="flex items-start gap-3"><span class="text-forest font-bold">✗</span><span><strong>Pas de rasage</strong> le jour même (laissez le tatoueur s'en charger)</span></li>
+                <li class="flex items-start gap-3"><span class="text-forest font-bold">✗</span><span><strong>Pas de caféine excessive</strong> qui peut augmenter la sensibilité</span></li>
+              </ul>
+            </div>
+          </section>
+          <a href="/blog/entretien-tatouage-cicatrisation" class="block bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg hover:border-forest/30 transition-all my-8 group">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-7 h-7 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-forest font-medium mb-1">À lire ensuite</p>
+                <h4 class="font-title text-lg text-gray-900 group-hover:text-forest transition-colors">Entretien et cicatrisation du tatouage</h4>
+                <p class="text-gray-600 text-sm mt-1">Toutes les étapes pour prendre soin de votre nouveau tatouage.</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400 group-hover:text-forest group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+          <section class="bg-gradient-to-br from-forest to-forest/80 text-white rounded-2xl p-8 my-12 text-center">
+            <h3 class="font-title text-2xl mb-4">Prêt pour votre séance ?</h3>
+            <p class="text-white/90 mb-6 max-w-lg mx-auto">Je vous accompagne de la création du design jusqu'aux conseils de cicatrisation.</p>
+            <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-forest font-semibold rounded-lg hover:bg-gray-100 transition-colors">Prendre rendez-vous</a>
+          </section>
+          <section class="border-t border-gray-200 pt-10">
+            <h3 class="font-title text-xl text-gray-900 mb-6">Articles connexes</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <a href="/blog/premier-tatouage-conseils" class="group flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-6.webp" alt="" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
+                <div><h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Premier tatouage</h4><p class="text-gray-600 text-sm mt-1">Le guide complet</p></div>
+              </a>
+              <a href="/blog/comment-choisir-son-tatoueur" class="group flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-ghibli-3.webp" alt="" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
+                <div><h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Choisir son tatoueur</h4><p class="text-gray-600 text-sm mt-1">Les critères essentiels</p></div>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Préparer sa séance de tatouage | Checklist Chambéry 2024",
+    "description": "Préparer sa séance tatouage Chambéry : sommeil, alimentation, hydratation. Checklist Studio Ensō pour optimiser votre expérience en Savoie.",
+    "author": { "@type": "Person", "name": "Delco Ink", "url": "https://www.delco-ink.fr/tatoueur-chambery" },
+    "publisher": { "@type": "Organization", "name": "Studio Ensō - Delco Ink", "logo": { "@type": "ImageObject", "url": "https://www.delco-ink.fr/img/Logo.webp" } },
+    "datePublished": "2026-01-10",
+    "dateModified": "2026-01-10",
+    "url": "https://www.delco-ink.fr/blog/preparer-seance-tatouage",
+    "image": "https://www.delco-ink.fr/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2.webp",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.delco-ink.fr/blog/preparer-seance-tatouage" },
+    "articleSection": "Conseils Tatouage",
+    "keywords": ["préparer séance tatouage", "checklist tatouage Chambéry", "conseils avant tatouage"]
+  })} />
+</Layout>

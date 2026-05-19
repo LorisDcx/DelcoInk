@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Specialite {
+  href: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  tags: string[];
+  image: string;
+  imageAlt: string;
+  cta: string;
+  badge: string | null;
+  featured: boolean;
+}
+
+const specialites: Specialite[] = [
+  {
+    href: '/blackwork-chambery',
+    title: 'Blackwork Illustratif',
+    subtitle: 'Le coeur du studio',
+    description: "Compositions en encre noire profonde, contours maitrisés, designs graphiques intemporels. Le style phare de Delco Ink — pensé pour durer.",
+    tags: ['Géométrique', 'Botanique', 'Animaux', 'Typographie'],
+    image: '/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-1-sm.webp',
+    imageAlt: 'Tatouage blackwork illustratif Chambéry',
+    cta: 'Découvrir le Blackwork',
+    badge: 'Spécialité principale',
+    featured: true,
+  },
+  {
+    href: '/tatouage-pop-culture-chambery',
+    title: 'Pop-Culture & Geek',
+    subtitle: 'Anime · Jeux vidéo · Films · Séries',
+    description: "Vos univers favoris adaptés en blackwork illustratif. Spider-Man, Ghibli, Dark Souls, Star Wars… des réinterprétations artistiques uniques.",
+    tags: ['Anime', 'Gaming', 'Marvel / DC', 'Films cultes'],
+    image: '/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-ghibli-1-sm.webp',
+    imageAlt: 'Tatouage pop-culture et manga Chambéry',
+    cta: 'Explorer la Pop-Culture',
+    badge: 'Spécialité forte',
+    featured: true,
+  },
+  {
+    href: '/tatouage-manga-chambery',
+    title: 'Manga & Anime',
+    subtitle: 'Jujutsu · One Piece · Ghibli · Berserk',
+    description: "Adaptation de personnages manga en blackwork. De Jujutsu Kaisen à Studio Ghibli, des créations qui capturent l'essence de chaque univers.",
+    tags: ['Shonen', 'Seinen', 'Ghibli', 'Mashup'],
+    image: '/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-ghibli-1-sm.webp',
+    imageAlt: 'Tatouage manga anime Chambéry',
+    cta: 'Voir la page Manga',
+    badge: 'Niche créative',
+    featured: false,
+  },
+  {
+    href: '/flash',
+    title: 'Flash Tattoos',
+    subtitle: 'Disponibles immédiatement',
+    description: "Designs créés à l'avance, prêts à être tatoués. Collection unique, chaque pièce ne sera faite qu'une seule fois. Prix fixe, réservation rapide.",
+    tags: ['Spider-Verse', 'Fleurs', 'Dragons', 'Femme'],
+    image: '/images/flash/flash-tattoo-chambery-alchemax-spider-sm.webp',
+    imageAlt: 'Flash tattoo disponibles Chambéry',
+    cta: 'Voir les flash dispo',
+    badge: 'Disponible maintenant',
+    featured: false,
+  },
+  {
+    href: '/salon-tatouage-chambery',
+    title: 'Le Salon — Studio Ensō',
+    subtitle: 'Cognin · 5 min de Chambéry',
+    description: "Salon privé sur rendez-vous uniquement. Un espace calme et bienveillant pour votre projet tatouage, avec tout le temps nécessaire.",
+    tags: ['Privatisé', 'Sur RDV', 'Hygiène certifiée', 'Cognin'],
+    image: '/images/studio-enso-tatoueur-cognin-chambery.webp',
+    imageAlt: 'Studio Ensō salon de tatouage Cognin Chambéry',
+    cta: 'Infos pratiques',
+    badge: null,
+    featured: false,
+  },
+];
+
+const featured = specialites.filter(s => s.featured);
+const others = specialites.filter(s => !s.featured);
+---
+
+<Layout
+  title="Spécialités Tatouage Chambéry | Blackwork, Pop-Culture, Flash - Delco Ink"
+  description="Toutes les spécialités de Delco Ink à Chambéry : blackwork illustratif, pop-culture, manga, flash tattoos. Découvrez le style du Studio Ensō."
+  canonical="https://www.delco-ink.fr/specialites"
+>
+
+  <!-- Hero -->
+  <section class="relative pt-28 pb-16 overflow-hidden" style="background: linear-gradient(160deg, #f8f5ee 0%, #f0ece0 50%, #e8e3d5 100%);">
+    <div class="absolute inset-0 opacity-5 texture-paper pointer-events-none"></div>
+    <div class="absolute top-10 right-10 w-40 h-40 opacity-8 floating-slow hidden md:block">
+      <img src="/img/monstera.webp" alt="" class="w-full h-full object-contain" width="160" height="160" loading="lazy" decoding="async" />
+    </div>
+    <div class="absolute bottom-0 left-4 w-28 h-28 opacity-8 floating hidden md:block">
+      <img src="/img/fougere.webp" alt="" class="w-full h-full object-contain" width="112" height="112" loading="lazy" decoding="async" />
+    </div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <p class="text-forest text-sm font-medium uppercase tracking-widest mb-5 font-quicksand">Studio Ensō · Cognin / Chambéry</p>
+      <h1 class="font-title text-5xl md:text-6xl text-gray-900 mb-6 relative inline-block transform -rotate-[0.5deg]">
+        Nos Spécialités
+        <span class="absolute -right-6 -top-4 text-base opacity-30 rotate-12 text-forest font-satisfy">art</span>
+      </h1>
+      <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto font-quicksand leading-relaxed">
+        Du blackwork illustratif aux univers manga et pop-culture,
+        Delco Ink crée des <strong>tatouages uniques à Chambéry</strong>
+        qui portent votre identité.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 justify-center">
+        <a href="/#contact-anchor" class="inline-flex items-center gap-2 px-6 py-3 bg-forest text-white rounded-full font-medium hover:bg-forest/90 transition-all font-quicksand">
+          Prendre rendez-vous
+        </a>
+        <a href="/#gallery" class="inline-flex items-center gap-2 px-6 py-3 bg-white/80 text-forest rounded-full font-medium border border-forest/20 hover:bg-white transition-all font-quicksand">
+          Voir la galerie
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spécialités principales -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="font-title text-3xl text-gray-900 mb-4 text-center">Spécialités phares</h2>
+      <p class="text-gray-500 text-center mb-12 font-quicksand max-w-xl mx-auto">Les deux piliers artistiques du studio.</p>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
+        {featured.map(spec => (
+          <a
+            href={spec.href}
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 block"
+          >
+            <div class="relative h-64 overflow-hidden">
+              <img
+                src={spec.image}
+                alt={spec.imageAlt}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
+              {spec.badge && (
+                <span class="absolute top-4 left-4 bg-forest text-white text-xs font-medium px-3 py-1 rounded-full font-quicksand uppercase tracking-wide">
+                  {spec.badge}
+                </span>
+              )}
+            </div>
+            <div class="p-7 bg-white border-x border-b border-gray-100 rounded-b-2xl">
+              <p class="text-forest text-xs font-medium uppercase tracking-widest mb-2 font-quicksand">{spec.subtitle}</p>
+              <h3 class="font-title text-2xl text-gray-900 mb-3 group-hover:text-forest transition-colors">{spec.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5 font-quicksand">{spec.description}</p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                {spec.tags.map(tag => (
+                  <span class="text-xs text-forest/80 bg-forest/10 border border-forest/15 px-2.5 py-1 rounded-full font-quicksand">{tag}</span>
+                ))}
+              </div>
+              <span class="inline-flex items-center gap-2 font-medium text-forest group-hover:gap-3 transition-all font-quicksand text-sm">
+                {spec.cta}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="font-title text-2xl text-gray-900 mb-4 text-center">À découvrir aussi</h2>
+      <p class="text-gray-500 text-center mb-10 font-quicksand max-w-lg mx-auto">Flash disponibles immédiatement, page manga spécialisée et infos pratiques.</p>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {others.map(spec => (
+          <a
+            href={spec.href}
+            class="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg border border-gray-100 transition-all duration-400 hover:-translate-y-1 block bg-white"
+          >
+            <div class="relative h-44 overflow-hidden rounded-t-xl">
+              <img
+                src={spec.image}
+                alt={spec.imageAlt}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                width="400"
+                height="280"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
+              {spec.badge && (
+                <span class="absolute top-3 left-3 bg-white/90 text-forest text-xs font-medium px-2.5 py-1 rounded-full font-quicksand">
+                  {spec.badge}
+                </span>
+              )}
+            </div>
+            <div class="p-5">
+              <p class="text-forest text-xs font-medium uppercase tracking-widest mb-1 font-quicksand">{spec.subtitle}</p>
+              <h3 class="font-title text-lg text-gray-900 mb-2 group-hover:text-forest transition-colors">{spec.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-4 font-quicksand line-clamp-3">{spec.description}</p>
+              <span class="inline-flex items-center gap-1.5 font-medium text-forest text-sm group-hover:gap-2.5 transition-all font-quicksand">
+                {spec.cta}
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA bande -->
+  <section class="py-16" style="background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 60%, #40916c 100%);">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-title text-3xl md:text-4xl text-white mb-4">Votre projet, notre expertise</h2>
+      <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto font-quicksand">
+        On discute de votre idée, de votre style, de la zone. Devis gratuit, réponse sous 48h.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-forest font-semibold rounded-full hover:bg-gray-50 transition-colors font-quicksand">
+          Me contacter
+        </a>
+        <a href="/#gallery" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/30 hover:bg-white/20 transition-colors font-quicksand">
+          Voir la galerie
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Spécialités Tatouage Chambéry — Delco Ink",
+    "description": "Toutes les spécialités de tatouage de Delco Ink à Chambéry : blackwork illustratif, pop-culture, manga, flash tattoos.",
+    "url": "https://www.delco-ink.fr/specialites",
+    "provider": {
+      "@type": "TattooParlor",
+      "name": "Delco Ink — Studio Ensō",
+      "url": "https://www.delco-ink.fr"
+    }
+  })}</script>
+</Layout>

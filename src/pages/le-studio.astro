@@ -1,0 +1,719 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const artists = [
+  {
+    name: 'Delco Ink',
+    handle: '@delco.ink',
+    style: 'Blackwork illustratif',
+    description: 'Pièces contrastées, influences pop-culture et manga, storytelling visuel. Tatouages lisibles qui vieillissent bien.',
+    longDescription: 'Spécialiste du blackwork illustratif à Chambéry, Delco Ink crée des tatouages narratifs souvent inspirés de la pop-culture. Chaque pièce raconte une histoire avec des contrastes forts et des compositions équilibrées. Son approche : des tatouages qui restent lisibles et élégants avec le temps. Compétente en grandes pièces (sleeves, backpieces) comme en petits motifs détaillés.',
+    specialties: ['Blackwork', 'Pop-culture', 'Manga', 'Illustratif', 'Geek'],
+    instagram: 'https://www.instagram.com/delco.ink/',
+    color: 'from-gray-900 to-gray-700'
+  },
+  {
+    name: 'Tanjo Ink',
+    handle: '@tanjo_ink',
+    style: 'Fineline délicat',
+    description: 'Lignes fines et précises, motifs minimalistes, pièces élégantes et subtiles. Une maîtrise technique du trait pour des tatouages délicats.',
+    longDescription: 'Tanjo Ink excelle dans l\'art du fineline à Chambéry. Ses tatouages se distinguent par une précision millimétrique et une délicatesse rare. Spécialiste des motifs minimalistes, floraux et ornementaux, il transforme chaque projet en une œuvre subtile et intemporelle. Idéal pour un premier tatouage ou des pièces discrètes et raffinées.',
+    specialties: ['Fineline', 'Minimaliste', 'Floral', 'Ornemental', 'Délicat'],
+    instagram: 'https://www.instagram.com/tanjo_ink/',
+    color: 'from-gray-600 to-gray-400'
+  },
+  {
+    name: 'Diantre Tattoo',
+    handle: '@diantre.tattoo',
+    style: 'Blackwork & couleurs',
+    description: 'Blackwork audacieux et compositions colorées. Pièces graphiques avec des contrastes forts et des touches vibrantes.',
+    longDescription: 'Diantre Tattoo apporte une touche unique au studio avec son mélange de blackwork audacieux et de couleurs vibrantes. Basé à Cognin près de Chambéry, il crée des pièces graphiques impactantes avec des contrastes marqués. Son style polyvalent permet d\'explorer des compositions originales, du pastel coloré au blackwork pur.',
+    specialties: ['Blackwork', 'Couleur', 'Aquarelle', 'Graphique', 'Contrasté'],
+    instagram: 'https://www.instagram.com/diantre.tattoo/',
+    color: 'from-black to-gray-800'
+  }
+];
+
+// Fonction pour obtenir l'URL de l'image avec fallback
+function getArtistImageUrl(name: string): string {
+  // Mapping des noms vers les fichiers images existants
+  const imageMap: Record<string, string> = {
+    'delco ink': '/images/delco-ink-tatoueuse-chambery-blackwork.webp',
+    'tanjo ink': '/images/tanjo-ink-tatoueur-chambery-fineline.webp',
+    'diantre tattoo': '/images/diantre-tattoo-tatoueur-chambery-graphique.webp'
+  };
+  
+  const normalized = name.toLowerCase().trim();
+  return imageMap[normalized] || `/images/artist-${normalized.replace(/\s+/g, '-')}.webp`;
+}
+
+---
+<Layout 
+  title="Studio Ensō | Collectif de tatoueurs blackwork à Chambéry"
+  description="Studio Ensō rassemble Delco Ink, Tanjo Ink et Diantre Tattoo à Cognin/Chambéry. Blackwork illustratif, lignes fines, néo-japonais. Hygiène stricte, rendez-vous sur mesure."
+  canonical="https://www.delco-ink.fr/le-studio"
+>
+  <!-- Hero Section simple et impactante -->
+  <section id="hero" class="relative flex items-center justify-center bg-gray-900" style="height: calc(100vh - 60px);">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-cover bg-center" 
+           style="background-image: url('/images/studio-enso-tatoueur-cognin-chambery.webp');"></div>
+      <div class="absolute inset-0 bg-gray-900/60"></div>
+    </div>
+    
+    <!-- Contenu centré -->
+    <div class="relative z-10 text-center text-white px-5 md:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="font-title text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-6">
+          <span class="text-white">Studio</span> <span class="text-forest">Ensō</span>
+        </h1>
+        <p class="text-lg md:text-xl mb-8 md:mb-12 lg:mb-16 text-gray-200 max-w-2xl mx-auto">
+          Studio de tatouage à Cognin, aux portes de Chambéry. Blackwork illustratif, fineline délicat et pièces en couleurs.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4 mb-8 md:mb-0">
+          <a href="#artist-delco-ink" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-forest text-white rounded-full hover:bg-forest/90 transition-all duration-300 text-base md:text-lg font-medium">
+            <span>Découvrir</span>
+            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+          </a>
+          <a href="https://www.instagram.com/studioenso.tattoo/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm text-white rounded-full hover:bg-white/20 transition-all duration-300 text-base md:text-lg font-medium border border-white/30">
+            <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="hidden sm:inline">Suivre le studio</span>
+            <span class="sm:hidden">Instagram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation arrow -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+      <a href="#collectif-enso" class="group inline-flex items-center gap-2 rounded-full bg-forest/10 text-forest px-4 py-2 border border-forest/20 shadow-sm hover:bg-forest/15 transition-all">
+        <span class="text-[11px] uppercase tracking-widest">Descendre</span>
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-forest/15 group-hover:bg-forest/20 transition-all">
+          <svg class="w-4 h-4 translate-y-px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Section éditoriale collective -->
+  <section id="collectif-enso" class="relative bg-white py-20 md:py-24" style="scroll-margin-top: 60px;">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="max-w-5xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-gray-500 mb-4 text-center">Collectif Ensō</p>
+        <h2 class="font-title text-3xl md:text-4xl text-gray-900 text-center mb-6 reveal-on-scroll">
+          Un studio, trois regards, une même exigence
+        </h2>
+        <p class="text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto mb-8 reveal-on-scroll">
+          Le <strong>collectif Ensō</strong> réunit des artistes aux sensibilités complémentaires. L'objectif : proposer
+          des projets sur mesure, lisibles et durables, dans un cadre calme et rigoureux à Cognin, tout près de Chambéry.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+
+          <div class="lg:hidden">
+            <img
+              src="/images/diantre-tattoo-tatoueur-chambery-graphique.webp"
+              alt="Diantre Tattoo, blackwork et couleurs au studio Ensō"
+              class="rounded-2xl shadow-md w-full h-48 md:h-64 object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="lg:hidden">
+            <img
+              src="/images/delco-ink-tatoueuse-chambery-blackwork.webp"
+              alt="Delco Ink, blackwork illustratif au studio Ensō"
+              class="rounded-2xl shadow-md w-full h-48 md:h-64 object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="lg:hidden">
+            <img
+              src="/images/tanjo-ink-tatoueur-chambery-fineline.webp"
+              alt="Tanjō Ink, lignes fines et motifs minimalistes au studio Ensō"
+              class="rounded-2xl shadow-md w-full h-48 md:h-64 object-cover"
+              loading="lazy"
+            />
+          </div>
+          <!-- Desktop version -->
+
+          <div class="hidden lg:block reveal-on-scroll">
+            <img
+              src="/images/tanjo-ink-tatoueur-chambery-fineline.webp"
+              alt="Tanjō Ink, lignes fines et motifs minimalistes au studio Ensō"
+              class="rounded-2xl shadow-md w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="hidden lg:block reveal-on-scroll delay-100">
+            <img
+              src="/images/delco-ink-tatoueuse-chambery-blackwork.webp"
+              alt="Delco Ink, blackwork illustratif au studio Ensō"
+              class="rounded-2xl shadow-md w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="hidden lg:block reveal-on-scroll delay-200">
+            <img
+              src="/images/diantre-tattoo-tatoueur-chambery-graphique.webp"
+              alt="Diantre Tattoo, blackwork et couleurs au studio Ensō"
+              class="rounded-2xl shadow-md w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div class="bg-gray-50 rounded-2xl p-4 md:p-6 border border-gray-200">
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Un vrai temps d'échange</h3>
+            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              Chaque projet commence par un brief clair : taille, zone, contraintes et références. Nous privilégions les
+              compositions qui se lisent bien dans le temps, avec des placements cohérents avec le mouvement du corps.
+            </p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-4 md:p-6 border border-gray-200">
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Hygiène et suivi</h3>
+            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              Poste protégé, matériel stérile à usage unique, protocole strict. Après la séance, vous repartez avec des
+              conseils précis pour une cicatrisation propre et un rendu durable.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="/#contact-anchor" class="inline-flex items-center gap-2 px-6 py-3 bg-forest text-white rounded-full hover:bg-forest/90 transition-all">
+            <span>Prendre rendez-vous</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider with-gradient" style="--background-color: transparent; --next-section-color: rgba(0, 0, 0, 0.05); --divider-height: 6px; --divider-opacity: 0.85;">
+    <div class="divider-container">
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- Section Artistes avec design narratif -->
+  {artists.map((artist, i) => (
+    <section id={`artist-${artist.name.toLowerCase().replace(/\s+/g, '-')}`} 
+             class={`relative py-16 md:py-20 lg:py-24 flex items-center ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+      <div class="container mx-auto px-5 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+          <!-- Image artiste -->
+          <div class={`${i % 2 === 0 ? 'order-1' : 'order-2'} reveal-on-scroll`}>
+            <div class="relative" style="box-shadow: none;">
+              <div class="aspect-square rounded-2xl lg:rounded-3xl overflow-hidden bg-cover bg-center"
+                   style={`background-image: url('${getArtistImageUrl(artist.name)}');`}>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"></div>
+              </div>
+              <!-- Badge style -->
+              <div class="absolute -bottom-3 -right-3 lg:-bottom-4 lg:-right-4 px-4 py-2 lg:px-6 lg:py-3 bg-white rounded-xl lg:rounded-2xl shadow-lg" style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+                <span class="text-xs lg:text-sm font-medium text-gray-600">{artist.style}</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contenu artiste -->
+          <div class={i % 2 === 0 ? 'order-2' : 'order-1'}>
+            <div class="space-y-4 md:space-y-6 reveal-on-scroll delay-200">
+              <div>
+                <h2 class="font-title text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-2">{artist.name}</h2>
+                <p class="text-base md:text-lg text-gray-500">{artist.handle}</p>
+              </div>
+              
+              <p class="text-lg md:text-xl text-gray-700 leading-relaxed">{artist.description}</p>
+              
+              <p class="text-base text-gray-600 leading-relaxed">{artist.longDescription}</p>
+              
+              <!-- Spécialités -->
+              <div class="flex flex-wrap gap-2">
+                {artist.specialties.map((specialty: string) => (
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">{specialty}</span>
+                ))}
+              </div>
+              
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href={artist.instagram} target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center justify-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors font-medium text-sm md:text-base">
+                  <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <span>Voir les réalisations</span>
+                </a>
+                <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-4 md:px-6 py-2 md:py-3 border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 transition-colors font-medium text-sm md:text-base">
+                  <span>Prendre RDV</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Navigation arrow -->
+      {i < artists.length - 1 ? (
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+          <a href={`#artist-${artists[i+1].name.toLowerCase().replace(/\s+/g, '-')}`} class="group inline-flex items-center gap-2 rounded-full bg-forest/10 text-forest px-3 py-1.5 md:px-4 md:py-2 border border-forest/20 shadow-sm hover:bg-forest/15 transition-all">
+            <span class="text-[10px] md:text-[11px] uppercase tracking-widest">Suivant</span>
+            <span class="flex h-6 w-6 md:h-8 md:w-8 items-center justify-center rounded-full bg-forest/15 group-hover:bg-forest/20 transition-all">
+              <svg class="w-3 h-3 md:w-4 md:h-4 translate-y-px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      ) : (
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+          <a href="#esprit-enso" class="group inline-flex items-center gap-2 rounded-full bg-forest/10 text-forest px-3 py-1.5 md:px-4 md:py-2 border border-forest/20 shadow-sm hover:bg-forest/15 transition-all">
+            <span class="text-[10px] md:text-[11px] uppercase tracking-widest hidden sm:inline">L'esprit Ensō</span>
+            <span class="text-[10px] md:text-[11px] uppercase tracking-widest sm:hidden">Ensō</span>
+            <span class="flex h-6 w-6 md:h-8 md:w-8 items-center justify-center rounded-full bg-forest/15 group-hover:bg-forest/20 transition-all">
+              <svg class="w-3 h-3 md:w-4 md:h-4 translate-y-px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      )}
+    </section>
+    
+    <!-- Section Divider -->
+    <div class="section-divider with-gradient" style="--background-color: transparent; --next-section-color: rgba(0, 0, 0, 0.3); --divider-height: 6px; --divider-opacity: 0.85;">
+      <div class="divider-container">
+        <div class="divider-line"></div>
+      </div>
+    </div>
+  ))}
+
+  <!-- Section Studio avec ambiance sobre -->
+  <section id="esprit-enso" class="relative py-16 md:py-20 lg:py-24 bg-gray-50 flex items-center">
+    <div class="relative container mx-auto px-5 md:px-8">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex justify-center mb-4 md:mb-6">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm text-gray-600 shadow-sm">
+            Studio Ensō • Cognin / Chambéry
+          </span>
+        </div>
+        <h2 class="font-title text-3xl md:text-4xl lg:text-5xl text-gray-900 text-center mb-4 md:mb-6">
+          L'esprit Ensō, studio de tatouage à Cognin
+        </h2>
+        <p class="text-base md:text-lg lg:text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8 md:mb-12">
+          Studio Ensō rassemble trois artistes complémentaires pour des projets sur mesure à deux pas de Chambéry.
+          Nous privilégions des tatouages lisibles, bien composés, et pensés pour bien vieillir.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:gap-10">
+          <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-gray-200 transition-colors hover:bg-forest/5 hover:border-forest/30 h-full">
+            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 md:mb-3">Un atelier calme et exigeant</h3>
+            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              Chaque projet commence par un échange clair sur le sujet, la taille et la zone.
+              Nous définissons ensemble la composition, les placements et les références visuelles.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-gray-200 transition-colors hover:bg-forest/5 hover:border-forest/30 h-full">
+            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 md:mb-3">Hygiène et suivi</h3>
+            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              Matériel stérile à usage unique, postes protégés, désinfection complète.
+              Nous vous expliquons les soins post-tatouage pour une cicatrisation propre.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-gray-200 transition-colors hover:bg-forest/5 hover:border-forest/30 h-full">
+            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 md:mb-3">Styles du studio</h3>
+            <ul class="space-y-1 md:space-y-2 text-gray-600 text-sm md:text-base">
+              <li>• Blackwork illustratif et narratif</li>
+              <li>• Fineline délicat, minimalisme et précision</li>
+              <li>• Blackwork & pièces en couleurs contrastées</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-md border border-gray-200 transition-colors hover:bg-forest/5 hover:border-forest/30 h-full">
+            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-2 md:mb-3">Infos pratiques</h3>
+            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+              Studio Ensō est situé à Cognin (Savoie), à 5 minutes de Chambéry centre.
+              Accueil sur rendez-vous uniquement, du mardi au samedi.
+            </p>
+          </div>
+        </div>
+
+        <p class="text-xs md:text-sm text-gray-500 mt-6 md:mt-10 text-center">
+          Studio de tatouage à Cognin/Chambéry : projets personnalisés, lignes lisibles, accompagnement complet avant et après la séance.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation arrow -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+      <a href="#contact" class="group inline-flex items-center gap-2 rounded-full bg-forest/10 text-forest px-4 py-2 border border-forest/20 shadow-sm hover:bg-forest/15 transition-all">
+        <span class="text-[11px] uppercase tracking-widest">Contact</span>
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-forest/15 group-hover:bg-forest/20 transition-all">
+          <svg class="w-4 h-4 translate-y-px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Section Divider -->
+  <div class="section-divider with-gradient" style="--background-color: transparent; --next-section-color: rgba(0, 0, 0, 0.05); --divider-height: 6px; --divider-opacity: 0.85;">
+    <div class="divider-container">
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- Section Contact avec design amélioré -->
+  <section id="contact" class="relative py-16 md:py-20 lg:py-24 bg-white flex items-center">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-8 md:mb-16">
+          <h2 class="font-title text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-2 md:mb-4">Prendre rendez-vous au Studio Ensō</h2>
+          <p class="text-lg md:text-xl text-gray-600">Tatouage à Cognin/Chambéry : un échange clair, un projet sur mesure.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+          <!-- Contact direct -->
+          <div class="space-y-6 md:space-y-8">
+            <div>
+              <h3 class="font-semibold text-base md:text-lg text-gray-900 mb-3 md:mb-4">Contactez l'artiste qui correspond à votre style</h3>
+              <div class="space-y-3 md:space-y-4">
+                {artists.map((artist) => (
+                  <a href={artist.instagram} target="_blank" rel="noopener noreferrer" 
+                     class="flex items-center gap-3 md:gap-4 p-3 md:p-5 rounded-xl md:rounded-2xl bg-gray-50 hover:bg-gray-100 transition-all group hover:shadow-lg">
+                    <div class="relative flex-shrink-0">
+                      <div class="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-cover bg-center"
+                           style={`background-image: url('${getArtistImageUrl(artist.name)}');`}>
+                      </div>
+                      <div class="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-forest rounded-full border-2 border-white"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="font-semibold text-gray-900 text-sm md:text-lg truncate">{artist.name}</p>
+                      <p class="text-xs md:text-sm text-gray-500 mb-1 truncate">{artist.style}</p>
+                      <p class="text-xs text-forest font-medium">Message direct via Instagram</p>
+                    </div>
+                    <svg class="w-6 h-6 text-gray-400 group-hover:text-forest group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+            
+            <!-- Guide de contact -->
+            <div class="bg-forest/5 rounded-2xl p-6 border border-forest/20">
+              <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Pour une réponse rapide, envoyez :
+              </h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start gap-2">
+                  <span class="text-forest mt-0.5">•</span>
+                  <span>Une description claire du projet et la zone souhaitée</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-forest mt-0.5">•</span>
+                  <span>Des références visuelles (photos, dessins, inspirations)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-forest mt-0.5">•</span>
+                  <span>Vos disponibilités pour le rendez-vous</span>
+                </li>
+              </ul>
+              <p class="text-xs text-gray-500 mt-3">
+                Nous vous recontactons pour affiner le dessin et fixer la séance.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Localisation -->
+          <div class="bg-gray-900 rounded-3xl p-8 text-white">
+            <h3 class="font-semibold text-xl mb-6 flex items-center gap-2">
+              Studio Ensō
+            </h3>
+            <div class="space-y-6 mb-10">
+              <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-forest mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <p class="font-medium text-lg">19 Avenue Général Cartier</p>
+                  <p class="text-gray-400">73160 Cognin</p>
+                  <p class="text-xs text-gray-500 mt-1">À 5 minutes de Chambéry centre</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-forest mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <p class="font-medium text-lg">Sur rendez-vous uniquement</p>
+                  <p class="text-gray-400">Horaires adaptés à votre projet</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <a href="https://maps.google.com/?q=19+Av+Général+Cartier+73160+Cognin" target="_blank" rel="noopener noreferrer" 
+                 class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-forest text-white rounded-full hover:bg-forest/90 transition-all font-medium text-lg shadow-lg hover:shadow-xl">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Voir sur Google Maps</span>
+              </a>
+              <a href="https://www.instagram.com/studioenso.tattoo/" target="_blank" rel="noopener noreferrer" 
+                 class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 border border-gray-600 text-gray-300 rounded-full hover:border-white hover:text-white transition-all font-medium">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Suivre le studio</span>
+              </a>
+              <a href="/" class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 border border-gray-700 text-gray-400 rounded-full hover:border-gray-500 hover:text-gray-300 transition-all font-medium">
+                <span>Retour à l'accueil</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation arrow -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+      <a href="#hero" class="group inline-flex items-center gap-2 rounded-full bg-forest/10 text-forest px-4 py-2 border border-forest/20 shadow-sm hover:bg-forest/15 transition-all">
+        <span class="text-[11px] uppercase tracking-widest">Retour en haut</span>
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-forest/15 group-hover:bg-forest/20 transition-all">
+          <svg class="w-4 h-4 -translate-y-px rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TattooParlor",
+    "name": "Studio Ensō - Tatouage Chambéry",
+    "alternateName": ["Delco Ink", "Studio Enso Chambery", "Tatoueuse Chambéry"],
+    "description": "Studio de tatouage à Cognin/Chambéry. Collectif de 3 artistes spécialisés en blackwork illustratif, fineline et couleurs. Hygiène stricte, rendez-vous personnalisés.",
+    "url": "https://www.delco-ink.fr/le-studio",
+    "logo": "https://www.delco-ink.fr/img/Logo.webp",
+    "image": [
+      "https://www.delco-ink.fr/images/delco-ink-tatoueuse-chambery-blackwork.webp",
+      "https://www.delco-ink.fr/images/tanjo-ink-tatoueur-chambery-fineline.webp",
+      "https://www.delco-ink.fr/images/diantre-tattoo-tatoueur-chambery-graphique.webp"
+    ],
+    "email": "contact@delco-ink.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Studio Ensō",
+      "addressLocality": "Cognin",
+      "addressRegion": "Savoie",
+      "postalCode": "73160",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.5667,
+      "longitude": 5.9167
+    },
+    "areaServed": [
+      {"@type": "City", "name": "Chambéry"},
+      {"@type": "City", "name": "Cognin"},
+      {"@type": "City", "name": "Aix-les-Bains"},
+      {"@type": "City", "name": "Albertville"},
+      {"@type": "AdministrativeArea", "name": "Savoie"}
+    ],
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "19:00"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "18:00"}
+    ],
+    "priceRange": "€€-€€€",
+    "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+    "currenciesAccepted": "EUR",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services de tatouage",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tatouage Blackwork"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tatouage Fineline"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tatouage Couleur"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tatouage Manga"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tatouage Pop-culture"}}
+      ]
+    },
+    "sameAs": [
+      "https://www.instagram.com/studioenso.tattoo/",
+      "https://www.instagram.com/delco.ink/",
+      "https://www.instagram.com/tanjo_ink/",
+      "https://www.instagram.com/diantre.tattoo/"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.delco-ink.fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Le Studio", "item": "https://www.delco-ink.fr/le-studio"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Où se situe le Studio Ensō à Chambéry ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le Studio Ensō est situé à Cognin, à seulement 5 minutes du centre de Chambéry en Savoie. Facile d'accès en voiture avec parking gratuit à proximité."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels styles de tatouage proposez-vous ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous proposons le blackwork illustratif, fineline délicat, tatouage couleur, manga, pop-culture, dotwork et géométrique. Chaque artiste a sa spécialité."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment prendre rendez-vous au Studio Ensō ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contactez-nous via Instagram en DM ou par le formulaire de contact sur notre site. Nous travaillons uniquement sur rendez-vous pour garantir un accompagnement personnalisé."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien coûte un tatouage au Studio Ensō ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les tarifs varient selon la taille et la complexité du projet. Comptez à partir de 80€ pour un petit tatouage. Un devis personnalisé est établi après discussion de votre projet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Le studio respecte-t-il les normes d'hygiène ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. Matériel stérile à usage unique, postes désinfectés entre chaque client, protocole strict conforme aux normes sanitaires françaises."
+        }
+      }
+    ]
+  }
+  </script>
+</Layout>
+
+<!-- Styles pour les section dividers -->
+<style>
+  .section-divider {
+    position: relative;
+    width: 100%;
+    height: var(--divider-height, 6px);
+    z-index: 20;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .divider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    opacity: var(--divider-opacity, 0.85);
+  }
+  
+  .with-gradient .divider-container {
+    background: linear-gradient(to bottom, var(--background-color), var(--next-section-color));
+  }
+  
+  .divider-line {
+    position: absolute;
+    top: calc(var(--divider-height, 6px) / 2 - 0.5px);
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, 
+      rgba(44, 122, 68, 0) 0%, 
+      rgba(76, 175, 80, 0.3) 25%,
+      rgba(44, 122, 68, 0.7) 50%, 
+      rgba(76, 175, 80, 0.3) 75%,
+      rgba(44, 122, 68, 0) 100%);
+    box-shadow: 0 0 4px rgba(44, 122, 68, 0.5);
+    animation: pulse 5s ease-in-out infinite;
+    filter: blur(0.3px);
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TattooParlor",
+      "@id": "https://www.delco-ink.fr/le-studio#localbusiness",
+      "name": "Studio Ensō",
+      "description": "Studio de tatouage privé à Cognin (Chambéry) regroupant Delco Ink, Tanjo Ink et Diantre Tattoo.",
+      "url": "https://www.delco-ink.fr/le-studio",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "19 Av. Général Cartier",
+        "addressLocality": "Cognin",
+        "addressRegion": "Savoie",
+        "postalCode": "73160",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.574277,
+        "longitude": 5.902913
+      },
+      "employee": [
+        { "@type": "Person", "name": "Delco Ink" },
+        { "@type": "Person", "name": "Tanjo Ink" },
+        { "@type": "Person", "name": "Diantre Tattoo" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.delco-ink.fr/le-studio#webpage",
+      "url": "https://www.delco-ink.fr/le-studio",
+      "name": "Studio Ensō - Tatoueur Chambéry",
+      "isPartOf": { "@id": "https://www.delco-ink.fr/#website" }
+    }
+  ]
+}
+</script>

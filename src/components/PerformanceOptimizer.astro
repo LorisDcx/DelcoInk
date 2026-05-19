@@ -1,0 +1,55 @@
+---
+// Composant pour optimiser les performances selon l'appareil
+---
+
+<script is:inline>
+  const isIosWebkit =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (isIosWebkit) {
+    const setViewportHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    requestAnimationFrame(setViewportHeight);
+    window.addEventListener('resize', () => requestAnimationFrame(setViewportHeight), { passive: true });
+  }
+  
+  // Préférences utilisateur pour les animations réduites
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.body.classList.add('reduce-motion');
+  }
+</script>
+
+<style>
+  /* Fix iOS Safari 100vh issue - uniquement min-height, jamais écraser height */
+  @supports (-webkit-touch-callout: none) {
+    section[id="home"] {
+      min-height: calc(var(--vh, 1vh) * 100);
+    }
+    .min-h-screen {
+      min-height: calc(var(--vh, 1vh) * 100);
+    }
+  }
+  
+  /* Désactiver animations décoratives sur mobile pour économiser CPU */
+  @media (max-width: 768px) {
+    .floating, .floating-slow, .breathing {
+      animation: none !important;
+    }
+  }
+  
+  /* Respecter les préférences utilisateur */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>

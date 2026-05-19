@@ -1,0 +1,33 @@
+# Robots.txt pour Studio Ensō - Delco Ink
+# https://www.delco-ink.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.delco-ink.fr/sitemap.xml
+
+# Bloquer les dossiers sensibles
+Disallow: /api/
+Disallow: /admin/
+
+# Permettre les crawlers de médias sociaux
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Permettre Googlebot
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /img/
+
+# Délai de crawl pour éviter la surcharge
+Crawl-delay: 1

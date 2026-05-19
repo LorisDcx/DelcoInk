@@ -1,38 +1,89 @@
-# sv
+# Delco Ink - Astro + React
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Site web pour Delco Ink, studio de tatouage à Chambéry/Cognin. Migré de SvelteKit vers **Astro + React**.
 
-## Creating a project
+## 🚀 Stack technique
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Astro 4** - Framework web avec SSG
+- **React 18** - Composants interactifs (islands)
+- **Tailwind CSS 3** - Styling
+- **GSAP** - Animations
+- **Netlify** - Déploiement
 
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 📦 Installation
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+cd astro
+npm install
 ```
 
-## Building
+## 🛠️ Commandes
 
-To create a production version of your app:
+| Commande | Description |
+|----------|-------------|
+| `npm run dev` | Démarre le serveur de dev sur `localhost:4321` |
+| `npm run build` | Build le site dans `./dist/` |
+| `npm run preview` | Prévisualise le build localement |
+
+## 📁 Structure du projet
+
+```
+astro/
+├── public/              # Assets statiques (à copier depuis /static)
+│   ├── img/            # Logo, feuilles décoratives
+│   ├── images/         # Hero, galerie, portraits
+│   └── favicon.png
+├── src/
+│   ├── components/
+│   │   ├── decorative/ # ParticlesBackground, OrganicShape, AnimatedBackground
+│   │   ├── sections/   # HeroSection, AboutSection, ServicesSection, etc.
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   └── BookingButton.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── flash.astro
+│   │   ├── thanks.astro
+│   │   ├── privacy-policy.astro
+│   │   ├── blackwork-chambery.astro
+│   │   ├── tatoueur-chambery.astro
+│   │   └── tatouage-pop-culture-chambery.astro
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+├── tailwind.config.mjs
+├── tsconfig.json
+└── package.json
+```
+
+## ⚠️ Avant de lancer
+
+**Copier les assets statiques** depuis le dossier original :
 
 ```bash
-npm run build
+# Depuis la racine du projet
+cp -r static/* astro/public/
 ```
 
-You can preview the production build with `npm run preview`.
+Fichiers nécessaires :
+- `/img/Logo.png`, `/img/monstera.png`, `/img/fougere.png`, etc.
+- `/images/` (galerie, hero, portraits)
+- `/favicon.png`
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## 🌐 Déploiement Netlify
+
+Le fichier `netlify.toml` est déjà configuré. Il suffit de :
+
+1. Connecter le repo à Netlify
+2. Définir le dossier de base : `astro`
+3. Build command : `npm run build`
+4. Publish directory : `dist`
+
+## ✅ Avantages de la migration
+
+- **Performance** : HTML statique par défaut, hydratation partielle
+- **Bundle size** : Seuls les composants interactifs chargent du JS
+- **SEO** : Meilleur contrôle des meta tags et du HTML généré
+- **DX** : React mature avec meilleur écosystème d'outils

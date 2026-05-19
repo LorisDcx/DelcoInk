@@ -1,0 +1,14 @@
+# Redirections Netlify - Delco Ink
+# Force HTTPS + www canonique sur toutes les URLs
+
+# HTTP non-www → HTTPS www
+http://delco-ink.fr/*              https://www.delco-ink.fr/:splat  301!
+http://www.delco-ink.fr/*          https://www.delco-ink.fr/:splat  301!
+
+# HTTPS non-www → HTTPS www
+https://delco-ink.fr/*             https://www.delco-ink.fr/:splat  301!
+
+
+# Redirection générique pour supprimer le trailing slash (si besoin)
+# Mais attention : Netlify 'Pretty URLs' le fait déjà. On garde ça simple.
+# /*/  /:splat  301!

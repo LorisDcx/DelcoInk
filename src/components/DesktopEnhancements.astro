@@ -1,0 +1,96 @@
+<script>
+  import Lenis from 'lenis';
+
+  let lenis = null;
+  let rafId = 0;
+  let revealObserver = null;
+
+  function cleanupLenis() {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+
+    if (lenis) {
+      lenis.destroy();
+      lenis = null;
+    }
+  }
+
+  function cleanupReveal() {
+    if (revealObserver) {
+      revealObserver.disconnect();
+      revealObserver = null;
+    }
+  }
+
+  function shouldEnableDesktopEffects() {
+    return !window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function initReveal() {
+    cleanupReveal();
+
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver?.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+      revealObserver?.observe(el);
+    });
+  }
+
+  function initSmoothScroll() {
+    cleanupLenis();
+
+    if (!shouldEnableDesktopEffects()) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      return;
+    }
+
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    const raf = (time) => {
+      lenis?.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+
+    rafId = requestAnimationFrame(raf);
+  }
+
+  function initDesktopEnhancements() {
+    initReveal();
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => initSmoothScroll());
+    } else {
+      setTimeout(() => initSmoothScroll(), 250);
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    initDesktopEnhancements();
+  } else {
+    window.addEventListener('load', initDesktopEnhancements, { once: true });
+  }
+
+  document.addEventListener('astro:after-swap', initDesktopEnhancements);
+</script>

@@ -1,0 +1,168 @@
+---
+import OrganicShape from './decorative/OrganicShape';
+---
+
+<header class="hidden md:block fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 wabi-header header-with-shadow" id="main-header">
+  <div class="absolute left-0 bottom-0 w-48 h-48 overflow-hidden opacity-10 pointer-events-none">
+    <OrganicShape type="blob1" fill="#2d6a4f" opacity={0.2} width="100%" height="100%" />
+  </div>
+  
+  <div class="container mx-auto px-4 flex justify-between items-center relative z-10">
+    <div class="flex items-center space-x-4">
+      <a href="/" class="flex items-center pl-0 md:pl-0 logo-container">
+        <img 
+          src="/img/Logo-hero-mobile.webp" 
+          srcset="/img/Logo-hero-mobile.webp 180w, /img/Logo-hero.webp 320w"
+          sizes="160px"
+          alt="Delco Ink Logo" 
+          class="h-10 w-auto" 
+          width="180" 
+          height="120" 
+          loading="eager" 
+          decoding="async" 
+        />
+      </a>
+      <div class="hidden md:block pl-1 transform rotate-[-0.5deg]">
+        <p class="text-gray-700 text-sm tracking-wide"><span class="font-title text-base">Tattoo Shop Chambéry</span> - <span class="font-satisfy italic">Illustrative Blackwork</span></p>
+        <p class="text-forest text-xs font-quicksand font-medium transform translate-x-1">Salon privé - Sur rendez-vous uniquement</p>
+      </div>
+    </div>
+    
+    <nav class="hidden md:flex items-center">
+      <div class="relative diagonal-layout flex space-x-5 xl:space-x-6 items-baseline mr-4">
+        <a href="/#about" class="nav-link text-gray-800 hover:text-forest transition-colors font-quicksand py-2">À propos</a>
+        <a href="/#services" class="nav-link text-gray-800 hover:text-forest transition-colors font-quicksand py-2 translate-y-1">Styles</a>
+        <a href="/#gallery" class="nav-link text-gray-800 hover:text-forest transition-colors font-quicksand py-2 -translate-y-1">Galerie</a>
+        <a href="/#process" class="nav-link text-gray-800 hover:text-forest transition-colors font-quicksand py-2">Processus</a>
+        <a href="/#contact-anchor" class="nav-link text-gray-800 hover:text-forest transition-colors font-quicksand py-2">Contact</a>
+        <a href="/le-studio" class="nav-link text-gray-800 hover:text-forest transition-colors font-quicksand py-2 translate-y-0.5">Le Studio</a>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        <a href="/flash" class="organic-button bg-forest bg-opacity-90 text-white hover:bg-opacity-100 transition-all duration-300 px-5 py-2 font-quicksand font-medium flex items-center gap-1 group shadow-sm" aria-label="Voir nos flash tattoos disponibles">
+          Flash
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Header -->
+<header class="md:hidden fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 shadow-md py-3 px-4">
+  <div class="flex items-center justify-between">
+    <a href="/" class="flex items-center">
+      <img 
+        src="/img/Logo-header.webp" 
+        alt="Delco Ink Logo" 
+        class="h-8 w-auto object-contain" 
+        width="48" 
+        height="32" 
+        loading="eager" 
+        decoding="async" 
+      />
+    </a>
+    <button 
+      id="burger-btn"
+      aria-label="Ouvrir le menu de navigation"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="flex flex-col justify-center items-center w-10 h-10 gap-[5px] rounded-lg hover:bg-gray-100 transition-colors"
+    >
+      <span class="burger-line block w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      <span class="burger-line block w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      <span class="burger-line block w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div 
+  id="mobile-menu"
+  class="md:hidden fixed inset-0 z-40 hidden"
+  aria-hidden="true"
+>
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <nav 
+    class="absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-2xl flex flex-col pt-20 pb-8 px-6 overflow-y-auto"
+    aria-label="Menu principal mobile"
+  >
+    <button 
+      id="close-menu-btn"
+      aria-label="Fermer le menu"
+      class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors text-gray-700 text-xl"
+    >✕</button>
+
+    <div class="mb-6 pb-6 border-b border-gray-100">
+      <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Tatoueur à Chambéry</p>
+      <p class="text-forest font-medium text-sm">Blackwork · Pop-Culture · Flash</p>
+    </div>
+
+    <ul class="space-y-1 flex-1">
+      <li><a href="/#about" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> À propos
+      </a></li>
+      <li><a href="/specialites" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> Spécialités
+      </a></li>
+      <li><a href="/#gallery" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> Galerie
+      </a></li>
+      <li><a href="/le-studio" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> Le Studio Ensō
+      </a></li>
+      <li><a href="/flash" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> Flash disponibles
+      </a></li>
+      <li><a href="/blog" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> Blog tatouage
+      </a></li>
+      <li><a href="/#contact-anchor" class="mobile-nav-link flex items-center gap-3 py-3 px-3 rounded-xl text-gray-800 hover:text-forest hover:bg-forest/5 transition-all font-medium">
+        <span class="text-forest/60">◇</span> Contact
+      </a></li>
+    </ul>
+
+    <div class="mt-6 pt-6 border-t border-gray-100">
+      <a 
+        href="/#contact-anchor" 
+        class="w-full flex items-center justify-center gap-2 py-3 px-6 bg-forest text-white rounded-full font-medium hover:bg-forest/90 transition-colors"
+      >
+        🌿 Prendre RDV
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script is:inline>
+  (function() {
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const backdrop = document.getElementById('mobile-menu-backdrop');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openMenu() {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      burgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    burgerBtn?.addEventListener('click', openMenu);
+    closeMenuBtn?.addEventListener('click', closeMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>

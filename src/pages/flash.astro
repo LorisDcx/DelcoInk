@@ -1,0 +1,476 @@
+---
+import Layout from '../layouts/LightLayout.astro';
+
+const flashAsset = (id, baseName, name) => ({
+  id,
+  name,
+  status: 'Disponible',
+  cardSrc: `/images/flash/${baseName}-xs.webp`,
+  cardSrcSet: `/images/flash/${baseName}-xs.webp 320w, /images/flash/${baseName}-sm.webp 420w, /images/flash/${baseName}-md.webp 560w`,
+  fullSrc: `/images/flash/${baseName}.webp`,
+});
+
+const flashTattoos = [
+  flashAsset('001', 'flash-tattoo-chambery-alchemax-spider', 'Alchemax'),
+  flashAsset('002', 'flash-tattoo-chambery-dark-miles-spider', 'Dark Miles'),
+  flashAsset('003', 'flash-tattoo-chambery-dragon-1', 'Dragon 1'),
+  flashAsset('004', 'flash-tattoo-chambery-dragon-2', 'Dragon 2'),
+  flashAsset('005', 'flash-tattoo-chambery-dragon-3', 'Dragon 3'),
+  flashAsset('006', 'flash-tattoo-chambery-dragon-4', 'Dragon 4'),
+  flashAsset('007', 'flash-tattoo-chambery-femme-1', 'Femme 1'),
+  flashAsset('008', 'flash-tattoo-chambery-femme-2', 'Femme 2'),
+  flashAsset('009', 'flash-tattoo-chambery-femme-3', 'Femme 3'),
+  flashAsset('010', 'flash-tattoo-chambery-fleur-1', 'Fleur 1'),
+  flashAsset('011', 'flash-tattoo-chambery-fleur-2', 'Fleur 2'),
+  flashAsset('012', 'flash-tattoo-chambery-fleur-3', 'Fleur 3'),
+  flashAsset('013', 'flash-tattoo-chambery-fleur-4', 'Fleur 4'),
+  flashAsset('014', 'flash-tattoo-chambery-fleur-5', 'Fleur 5'),
+  flashAsset('015', 'flash-tattoo-chambery-fleur-6', 'Fleur 6'),
+  flashAsset('016', 'flash-tattoo-chambery-fleur-7', 'Fleur 7'),
+  flashAsset('017', 'flash-tattoo-chambery-fleur-8', 'Fleur 8'),
+  flashAsset('018', 'flash-tattoo-chambery-miles-morales-spider', 'Miles Morales'),
+  flashAsset('019', 'flash-tattoo-chambery-phenix', 'Phenix'),
+  flashAsset('020', 'flash-tattoo-chambery-spider', 'Spider'),
+  flashAsset('021', 'flash-tattoo-chambery-spider-enemy', 'Spider Enemy'),
+  flashAsset('022', 'flash-tattoo-chambery-spider-sense', 'Spider Sense'),
+  flashAsset('023', 'flash-tattoo-chambery-spider-woman', 'Spider Woman'),
+  flashAsset('024', 'flash-tattoo-chambery-spider-jump', 'Spider Jump'),
+  flashAsset('025', 'flash-tattoo-chambery-venom-spider', 'Venom'),
+  flashAsset('026', 'flash-tattoo-chambery-choice', 'Which One'),
+];
+
+const initialFlashTattoos = flashTattoos.slice(0, 8);
+const deferredFlashTattoos = flashTattoos.slice(8);
+---
+
+<Layout
+  title="Flash Tattoos | Delco Ink - Tatoueur Chambéry"
+  description="Découvrez les flash tattoos disponibles au Studio Ensō à Chambéry. Designs blackwork illustratif et pop-culture prêts à être tatoués. Venez les choisir sur Instagram."
+  canonical="https://www.delco-ink.fr/flash"
+>
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href="/images/flash/flash-tattoo-chambery-alchemax-spider-sm.webp"
+      imagesrcset="/images/flash/flash-tattoo-chambery-alchemax-spider-xs.webp 320w, /images/flash/flash-tattoo-chambery-alchemax-spider-sm.webp 420w, /images/flash/flash-tattoo-chambery-alchemax-spider-md.webp 560w"
+      imagesizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) 46vw, 380px"
+      fetchpriority="high"
+    />
+  </Fragment>
+
+  <section class="min-h-screen pt-24 pb-20 relative overflow-hidden" style="scroll-margin-top: 70px;">
+    <div class="absolute inset-0 bg-[#f8f3e8] wavy-gradient opacity-60 texture-bg"></div>
+    <div class="absolute top-0 right-0 w-64 h-64 transform -rotate-12 opacity-10 floating-slow hidden md:block">
+      <img
+        src="/img/monstera-mobile.webp"
+        srcset="/img/monstera-mobile.webp 180w, /img/monstera.webp 348w"
+        sizes="(max-width: 768px) 28vw, 256px"
+        alt=""
+        class="w-full h-full object-contain"
+        width="256"
+        height="256"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="absolute bottom-20 left-0 w-48 h-48 transform rotate-[15deg] opacity-10 floating hidden md:block">
+      <img
+        src="/img/fougere-mobile.webp"
+        srcset="/img/fougere-mobile.webp 240w, /img/fougere.webp 500w"
+        sizes="(max-width: 768px) 26vw, 192px"
+        alt=""
+        class="w-full h-full object-contain"
+        width="192"
+        height="192"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <span class="text-forest/50 text-sm uppercase tracking-widest font-title mb-4 block">Collection unique</span>
+        <h1 class="font-title text-4xl md:text-6xl text-forest mb-6 uppercase relative inline-block">
+          Flash Tattoos
+          <span class="absolute -right-6 -top-4 text-base opacity-40 rotate-12 text-forest">閃光</span>
+        </h1>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+          Des designs prêts à être tatoués, créés à l'avance et disponibles pour une réalisation immédiate.
+          <span class="block mt-2 text-forest font-medium">Chaque flash est unique et ne sera tatoué qu'une seule fois.</span>
+        </p>
+      </div>
+
+      <h2 class="font-title text-xl md:text-2xl text-forest/80 uppercase tracking-wide mb-6 text-center relative inline-block w-full">
+        <span class="absolute left-1/2 -top-6 -translate-x-[160px] text-base opacity-30 rotate-12 text-forest font-serif hidden md:block">作品</span>
+        Tous les flashs disponibles
+      </h2>
+
+      <div id="flash-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-10">
+        {initialFlashTattoos.map((flash, index) => (
+          <div
+            class={`flash-card group cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest ${index < 3 ? 'flash-card-priority' : 'flash-card-deferred'}`}
+            data-flash-id={flash.id}
+            data-flash-src={flash.fullSrc}
+            data-flash-name={flash.name}
+            data-flash-status={flash.status}
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+            aria-label={`Ouvrir le flash ${flash.name}`}
+          >
+            <div class="flash-card-frame relative overflow-hidden rounded-[28px] border border-forest/10 bg-[#fffaf0] shadow-[0_16px_40px_rgba(72,58,36,0.08)] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_52px_rgba(72,58,36,0.12)]">
+              <div class="absolute top-4 right-4 z-10">
+                <span class="px-3 py-1 bg-forest text-white text-xs font-title uppercase tracking-wide rounded-full shadow-md">
+                  {flash.status}
+                </span>
+              </div>
+
+              <div class="aspect-square overflow-hidden relative bg-[#f3ede0]">
+                <img
+                  src={flash.cardSrc}
+                  srcset={flash.cardSrcSet}
+                  sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) 46vw, 380px"
+                  alt={`Flash tattoo ${flash.name}`}
+                  class="flash-card-image w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                  width="320"
+                  height="320"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : 'auto'}
+                  decoding="async"
+                  style={{
+                    imageRendering: 'auto',
+                    WebkitFontSmoothing: 'antialiased',
+                    filter: 'contrast(1.05) brightness(1.02)',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                />
+                <div class="flash-hover-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
+                  <span class="text-white font-title text-lg tracking-wide flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                    Voir en détail
+                  </span>
+                </div>
+                <div class="flash-card-vignette absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_54%,rgba(32,24,13,0.05)_100%)]"></div>
+              </div>
+
+              <div class="flash-card-meta p-6 border-t border-forest/10 bg-[#fffaf0]">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="font-title text-xl text-forest">{flash.name}</h3>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500 text-sm font-title">Flash #{flash.id}</span>
+                  <a href="/#contact-anchor" class="inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-forest font-medium text-sm hover:underline gap-1 group/link">
+                    Réserver
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {deferredFlashTattoos.length > 0 && (
+        <>
+          <div class="text-center mb-16">
+            <button
+              id="load-more-flash"
+              type="button"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-white/90 text-forest font-medium rounded-full border border-forest/15 shadow-sm hover:shadow-md transition-all duration-300"
+              aria-controls="flash-grid"
+            >
+              Voir plus de flashs
+              <span class="text-sm text-forest/70">({deferredFlashTattoos.length} restants)</span>
+            </button>
+          </div>
+
+          <template id="flash-cards-template">
+            {deferredFlashTattoos.map((flash, index) => {
+              const displayIndex = index + initialFlashTattoos.length;
+              return (
+                <div
+                  class={`flash-card group cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest flash-card-deferred`}
+                  data-flash-id={flash.id}
+                  data-flash-src={flash.fullSrc}
+                  data-flash-name={flash.name}
+                  data-flash-status={flash.status}
+                  role="button"
+                  tabindex="0"
+                  aria-haspopup="dialog"
+                  aria-label={`Ouvrir le flash ${flash.name}`}
+                >
+                  <div class="flash-card-frame relative overflow-hidden rounded-[28px] border border-forest/10 bg-[#fffaf0] shadow-[0_16px_40px_rgba(72,58,36,0.08)] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_52px_rgba(72,58,36,0.12)]">
+                    <div class="absolute top-4 right-4 z-10">
+                      <span class="px-3 py-1 bg-forest text-white text-xs font-title uppercase tracking-wide rounded-full shadow-md">
+                        {flash.status}
+                      </span>
+                    </div>
+
+                    <div class="aspect-square overflow-hidden relative bg-[#f3ede0]">
+                      <img
+                        src={flash.cardSrc}
+                        srcset={flash.cardSrcSet}
+                        sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) 46vw, 380px"
+                        alt={`Flash tattoo ${flash.name}`}
+                        class="flash-card-image w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        width="320"
+                        height="320"
+                        loading="lazy"
+                        fetchpriority="auto"
+                        decoding="async"
+                        style={{
+                          imageRendering: 'auto',
+                          WebkitFontSmoothing: 'antialiased',
+                          filter: 'contrast(1.05) brightness(1.02)',
+                          transform: 'translateZ(0)',
+                          backfaceVisibility: 'hidden'
+                        }}
+                      />
+                      <div class="flash-hover-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
+                        <span class="text-white font-title text-lg tracking-wide flex items-center gap-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                          </svg>
+                          Voir en détail
+                        </span>
+                      </div>
+                      <div class="flash-card-vignette absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_54%,rgba(32,24,13,0.05)_100%)]"></div>
+                    </div>
+
+                    <div class="flash-card-meta p-6 border-t border-forest/10 bg-[#fffaf0]">
+                      <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-title text-xl text-forest">{flash.name}</h3>
+                      </div>
+                      <div class="flex items-center justify-between">
+                        <span class="text-gray-500 text-sm font-title">Flash #{flash.id}</span>
+                        <a href="/#contact-anchor" class="inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-forest font-medium text-sm hover:underline gap-1 group/link">
+                          Réserver
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </template>
+        </>
+      )}
+
+      <div class="text-center">
+        <div class="inline-block p-8 bg-white/60 backdrop-blur-sm rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg border border-forest/10 shadow-lg relative">
+          <span class="absolute -left-8 -top-6 text-xl opacity-40 rotate-[15deg] text-forest font-serif hidden md:block">ジャガイモ</span>
+          <p class="text-gray-700 mb-6 font-title">
+            Vous avez repéré un flash qui vous plaît ?
+          </p>
+          <a
+            href="/#contact-anchor"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-forest text-white font-medium rounded-tl-2xl rounded-br-2xl rounded-tr-lg rounded-bl-lg hover:bg-forest/90 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+          >
+            <img src="/img/monstera.webp" alt="" class="w-5 h-5 transition-transform duration-500 group-hover:rotate-12" width="20" height="20" loading="lazy" decoding="async" />
+            Me contacter
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="flash-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center backdrop-blur-md" style="background: linear-gradient(135deg, rgba(45,106,79,0.15) 0%, rgba(0,0,0,0.92) 50%, rgba(45,106,79,0.1) 100%);" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" tabindex="-1">
+    <div class="absolute inset-0 opacity-30 pointer-events-none" style="background-image: url('/images/texture-overlay.png'); background-size: 300px; mix-blend-mode: overlay;"></div>
+
+    <div class="lightbox-content relative max-w-[95%] max-h-[95%] flex flex-col items-center">
+      <button type="button" id="close-lightbox" aria-label="Fermer le flash" class="absolute -top-4 -right-4 md:top-4 md:right-4 w-12 h-12 rounded-full bg-[#f8f3e8] text-forest text-2xl flex items-center justify-center cursor-pointer z-50 shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 border border-forest/20">
+        ×
+      </button>
+
+      <div class="relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg overflow-hidden shadow-2xl" style="box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(45,106,79,0.2);">
+        <div class="relative bg-[#f8f3e8]">
+          <img id="lightbox-image" src="" alt="" class="max-w-[85vw] max-h-[70vh] object-contain" />
+          <div class="absolute inset-0 pointer-events-none" style="box-shadow: inset 0 0 100px rgba(0,0,0,0.1);"></div>
+        </div>
+
+        <div class="bg-[#f8f3e8] px-8 py-5 border-t border-forest/10">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <h3 id="lightbox-title" class="font-title text-xl md:text-2xl text-forest mb-1"></h3>
+              <p id="lightbox-status" class="text-gray-600 text-sm md:text-base"></p>
+            </div>
+            <div class="text-right">
+              <a href="/#contact-anchor" class="block text-forest text-sm hover:underline">Réserver ce flash →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const flashGrid = document.getElementById('flash-grid');
+    const loadMoreButton = document.getElementById('load-more-flash');
+    const flashCardsTemplate = document.getElementById('flash-cards-template');
+    const lightbox = document.getElementById('flash-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxStatus = document.getElementById('lightbox-status');
+    const closeBtn = document.getElementById('close-lightbox');
+
+    function openLightbox(card) {
+      const flashId = card.getAttribute('data-flash-id');
+      const flashSrc = card.getAttribute('data-flash-src');
+      const flashName = card.getAttribute('data-flash-name');
+      const flashStatus = card.getAttribute('data-flash-status');
+
+      if (!flashId || !flashSrc || !flashName || !flashStatus || !lightboxImage) return;
+
+      lightboxImage.setAttribute('src', flashSrc);
+      lightboxImage.setAttribute('alt', flashName);
+      if (lightboxTitle) lightboxTitle.textContent = flashName;
+      if (lightboxStatus) lightboxStatus.textContent = `Flash #${flashId} - ${flashStatus}`;
+      lightbox?.classList.remove('hidden');
+      lightbox?.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      lightbox?.focus();
+    }
+
+    function closeLightbox() {
+      lightbox?.classList.add('hidden');
+      lightbox?.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    flashGrid?.addEventListener('click', (e) => {
+      if (!(e.target instanceof Element) || e.target.closest('a')) return;
+      const card = e.target.closest('.flash-card');
+      if (card instanceof HTMLElement) openLightbox(card);
+    });
+
+    flashGrid?.addEventListener('keydown', (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const card = target.closest('.flash-card');
+      if (!(card instanceof HTMLElement)) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(card);
+      }
+    });
+
+    loadMoreButton?.addEventListener('click', () => {
+      if (!(flashCardsTemplate instanceof HTMLTemplateElement) || !flashGrid) return;
+      const fragment = flashCardsTemplate.content.cloneNode(true);
+      flashGrid.appendChild(fragment);
+      loadMoreButton.remove();
+      flashCardsTemplate.remove();
+    });
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+  <style>
+    .flash-card-deferred {
+      content-visibility: auto;
+      contain-intrinsic-size: 0 640px;
+    }
+
+    .flash-card-priority,
+    .flash-card-frame {
+      contain: layout paint style;
+    }
+
+    @media (max-width: 768px) {
+      .flash-card {
+        contain: layout paint style;
+      }
+
+      .flash-card-frame {
+        box-shadow: 0 10px 28px rgba(72, 58, 36, 0.08);
+        transition: none;
+      }
+
+      .flash-card-image {
+        transition: none;
+        filter: contrast(1.02) brightness(1.01) !important;
+      }
+
+      .flash-hover-overlay,
+      .flash-card-vignette {
+        display: none;
+      }
+
+      .flash-card-meta {
+        background: #fffaf0;
+        backdrop-filter: none;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Flash Tattoos Chamb\u00e9ry - Delco Ink",
+        "description": "Collection de flash tattoos disponibles au Studio Ens\u014d \u00e0 Chamb\u00e9ry. Blackwork illustratif et pop-culture.",
+        "url": "https://www.delco-ink.fr/flash",
+        "mainEntity": {
+          "@type": "Service",
+          "name": "Flash Tattoo Chamb\u00e9ry",
+          "description": "Flash tattoos disponibles imm\u00e9diatement au Studio Ens\u014d de Cogni\u00e0n/Chamb\u00e9ry. Designs blackwork pr\u00eats \u00e0 tatouer.",
+          "provider": {
+            "@type": "TattooParlor",
+            "name": "Studio Ens\u014d - Delco Ink",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "19 Av. G\u00e9n\u00e9ral Cartier",
+              "addressLocality": "Cognin",
+              "addressRegion": "Savoie",
+              "postalCode": "73160",
+              "addressCountry": "FR"
+            }
+          },
+          "areaServed": "Chamb\u00e9ry",
+          "serviceType": "Flash Tattoo"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "C'est quoi un flash tattoo ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un flash tattoo est un design pr\u00e9-\u00e9tabli, disponible imm\u00e9diatement et propos\u00e9 \u00e0 tarif fixe. Plus rapide \u00e0 r\u00e9aliser qu'un custom, c'est id\u00e9al pour un premier tatouage ou pour compl\u00e9ter une collection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment r\u00e9server un flash tattoo \u00e0 Chamb\u00e9ry ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Contactez Delco Ink en DM sur Instagram @delco.ink en pr\u00e9cisant le num\u00e9ro du flash souhait\u00e9. La disponibilit\u00e9 est confirm\u00e9e puis un rendez-vous au Studio Ens\u014d \u00e0 Cognin est fix\u00e9."
+            }
+          }
+        ]
+      }
+    ]
+  })}</script>
+</Layout>

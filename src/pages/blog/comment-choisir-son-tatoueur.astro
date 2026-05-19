@@ -1,0 +1,350 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const defined = {
+  readTime: '6 min',
+  category: 'Guide Complet',
+  author: 'Delco Ink'
+};
+---
+
+<Layout 
+  title="Comment choisir son tatoueur à Chambéry | Guide Expert 2026"
+  description="Choisir son tatoueur à Chambéry : portfolio, hygiène, style, feeling. 5 critères essentiels par Studio Ensō, experts blackwork en Savoie. Guide complet."
+  canonical="https://www.delco-ink.fr/blog/comment-choisir-son-tatoueur"
+>
+  <article class="min-h-screen pt-24 pb-20" style="background: linear-gradient(180deg, #f8f3e8 0%, #faf7f0 50%, #f5f2e8 100%)">
+    <div class="container mx-auto px-4">
+      
+      <!-- Hero Article -->
+      <header class="max-w-5xl mx-auto mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <a href="/blog" class="text-forest hover:underline text-sm flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Blog
+          </a>
+          <span class="text-gray-400">|</span>
+          <span class="bg-forest/10 text-forest px-3 py-1 rounded-full text-sm font-medium">{defined.category}</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-500 text-sm">{defined.readTime} de lecture</span>
+        </div>
+        
+        <h1 class="font-title text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+          Comment choisir son tatoueur : <span class="text-forest">le guide complet</span>
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl">
+          Un tatouage vous accompagne toute la vie. Le confier à la bonne personne est essentiel. 
+          Voici les critères qui font la différence entre un tatoueur moyen et un artiste de confiance.
+        </p>
+        
+        <div class="flex items-center gap-4 text-sm text-gray-500">
+          <img src="/img/Logo.webp" alt="Delco Ink" class="w-10 h-10 rounded-full bg-white p-1 shadow-sm" />
+          <div>
+            <p class="font-medium text-gray-800">{defined.author}</p>
+            <p>Mis à jour le 15 janvier 2026</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Image Hero -->
+      <figure class="max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl">
+        <img 
+          src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5.webp" 
+          srcset="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5-sm.webp 380w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5-md.webp 768w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5.webp 1200w"
+          sizes="(max-width: 768px) 380px, (max-width: 1200px) 768px, 1200px"
+          alt="Tatouage blackwork ornemental par Delco Ink à Chambéry" 
+          class="w-full h-72 md:h-96 object-cover"
+          fetchpriority="high"
+          decoding="async"
+          width="1200"
+          height="800"
+        />
+      </figure>
+
+      <!-- Table des matières -->
+      <nav class="max-w-4xl mx-auto mb-16 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-forest/10">
+        <h2 class="font-title text-lg text-forest mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+          Dans cet article
+        </h2>
+        <ol class="grid md:grid-cols-2 gap-2 text-gray-600">
+          <li><a href="#portfolio" class="hover:text-forest transition-colors">1. Étudiez le portfolio</a></li>
+          <li><a href="#hygiene" class="hover:text-forest transition-colors">2. Vérifiez l'hygiène</a></li>
+          <li><a href="#feeling" class="hover:text-forest transition-colors">3. Le feeling compte</a></li>
+          <li><a href="#prix" class="hover:text-forest transition-colors">4. Ne cherchez pas le moins cher</a></li>
+          <li><a href="#temps" class="hover:text-forest transition-colors">5. Prenez votre temps</a></li>
+        </ol>
+      </nav>
+
+      <!-- Contenu principal -->
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none text-gray-700">
+          
+          <!-- Section 1 -->
+          <section id="portfolio" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">1</span>
+              Étudiez le portfolio
+            </h2>
+            
+            <p>
+              Le portfolio est la <strong>carte de visite d'un tatoueur</strong>. C'est la première chose à analyser, 
+              et souvent celle qui en dit le plus sur son niveau et son style.
+            </p>
+            
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm my-8">
+              <h3 class="font-title text-gray-800 mb-4">Ce qu'il faut observer</h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span><strong>La qualité des lignes</strong> : régulières, propres, sans bavures</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span><strong>La cohérence du style</strong> : un bon tatoueur a généralement une identité visuelle</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span><strong>Les ombrages et dégradés</strong> : transitions fluides, pas de taches</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span><strong>Des photos cicatrisées</strong> : pas seulement des tatouages fraîchement faits</span>
+                </li>
+              </ul>
+            </div>
+            
+            <p>
+              Si vous cherchez un style particulier comme le <a href="/blog/blackwork-style-tatouage" class="text-forest hover:underline font-medium">blackwork</a>, 
+              assurez-vous que le tatoueur maîtrise cette technique. Consultez ma <a href="/#gallery" class="text-forest hover:underline">galerie de réalisations</a> 
+              pour voir mon travail en blackwork illustratif.
+            </p>
+
+            <figure class="my-8 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-6.webp" 
+                alt="Tatouage blackwork tribal montrant la qualité des lignes" 
+                class="w-full h-64 object-cover"
+              />
+              <figcaption class="bg-gray-100 px-4 py-3 text-sm text-gray-600">
+                Un bon portfolio montre la précision des lignes et la qualité des ombrages
+              </figcaption>
+            </figure>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="hygiene" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">2</span>
+              Vérifiez l'hygiène
+            </h2>
+            
+            <p>
+              L'hygiène est <strong>non-négociable</strong>. C'est une question de santé. 
+              N'hésitez pas à demander des informations avant de vous engager.
+            </p>
+            
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6 rounded-r-lg">
+              <p class="text-amber-800 font-medium mb-0">
+                Un studio sérieux n'aura aucun problème à vous montrer ses équipements et à répondre à vos questions sur l'hygiène.
+              </p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm my-8">
+              <h4 class="font-title text-gray-800 mb-4">Les critères essentiels</h4>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span>Matériel à usage unique (aiguilles, encriers, gants)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span>Stérilisation à l'autoclave pour le matériel réutilisable</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span>Espace de travail propre et désinfecté entre chaque client</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">→</span>
+                  <span>Attestation de formation aux règles d'hygiène</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="feeling" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">3</span>
+              Le feeling compte
+            </h2>
+            
+            <p>
+              Au-delà de la technique, le <strong>relationnel est essentiel</strong>. Vous allez passer plusieurs heures 
+              avec cette personne, parfois dans des moments d'inconfort. Il faut vous sentir en confiance.
+            </p>
+            
+            <p>Prenez rendez-vous pour discuter de votre projet et évaluez :</p>
+            
+            <ul class="list-none space-y-3 my-6">
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">•</span>
+                <span><strong>L'écoute</strong> : comprend-il vraiment ce que vous voulez ?</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">•</span>
+                <span><strong>Le conseil</strong> : vous guide-t-il sans imposer sa vision ?</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">•</span>
+                <span><strong>La transparence</strong> : est-il clair sur le processus et les tarifs ?</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">•</span>
+                <span><strong>La patience</strong> : prend-il le temps de répondre à vos questions ?</span>
+              </li>
+            </ul>
+
+            <figure class="my-8 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-7.webp" 
+                alt="Tatouage blackwork abstrait résultant d'une bonne collaboration" 
+                class="w-full h-64 object-cover"
+              />
+              <figcaption class="bg-gray-100 px-4 py-3 text-sm text-gray-600">
+                Un bon feeling permet de créer ensemble un tatouage qui vous ressemble vraiment
+              </figcaption>
+            </figure>
+          </section>
+
+          <!-- Section 4 -->
+          <section id="prix" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">4</span>
+              Ne cherchez pas le moins cher
+            </h2>
+            
+            <p>
+              Un tatouage de qualité a un coût. <strong>Méfiez-vous des tarifs anormalement bas</strong> : 
+              ils peuvent cacher des économies sur le matériel, un manque d'expérience, ou les deux.
+            </p>
+            
+            <div class="bg-forest/5 border border-forest/20 p-5 rounded-xl my-6">
+              <p class="text-forest font-medium mb-0">
+                Un tatouage raté coûte bien plus cher à corriger qu'un tatouage bien fait dès le départ. 
+                C'est un investissement pour la vie, pas une dépense à minimiser.
+              </p>
+            </div>
+            
+            <p>
+              Pour avoir une idée des tarifs pratiqués, consultez mon article sur 
+              <a href="/blog/premier-tatouage-conseils#budget" class="text-forest hover:underline font-medium">le budget à prévoir pour un tatouage</a>.
+            </p>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="temps" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">5</span>
+              Prenez votre temps
+            </h2>
+            
+            <p>
+              Ne vous précipitez pas. Un bon tatoueur aura parfois un <strong>délai d'attente</strong>, 
+              et c'est plutôt bon signe : cela signifie qu'il est demandé et qu'il prend le temps de bien faire.
+            </p>
+            
+            <p>
+              Profitez de ce temps pour affiner votre projet, rassembler des références, 
+              et vous assurer que c'est vraiment le bon choix.
+            </p>
+
+            <!-- Lien vers Premier tatouage -->
+            <a href="/blog/premier-tatouage-conseils" class="block bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg hover:border-forest/30 transition-all my-8 group">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-8 h-8 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm text-forest font-medium mb-1">Article recommandé</p>
+                  <h4 class="font-title text-lg text-gray-900 group-hover:text-forest transition-colors">Premier tatouage : tout ce que vous devez savoir</h4>
+                  <p class="text-gray-600 text-sm mt-1">Taille, zones, budget, déroulement... Le guide complet pour les débutants.</p>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-forest group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          </section>
+
+          <!-- CTA Principal -->
+          <section class="bg-gradient-to-br from-forest to-forest/80 text-white rounded-2xl p-8 md:p-12 my-16 text-center">
+            <h3 class="font-title text-2xl md:text-3xl mb-4">Envie de discuter de votre projet ?</h3>
+            <p class="text-white/90 mb-8 max-w-xl mx-auto">
+              Je vous accueille chez <a href="/" class="underline hover:text-white">Delco Ink</a>, 
+              dans un studio privé à Chambéry, pour créer ensemble votre tatouage sur mesure.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-forest font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                Me contacter
+              </a>
+              <a href="/#gallery" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-lg border border-white/30 hover:bg-white/20 transition-colors">
+                Voir mes réalisations
+              </a>
+            </div>
+          </section>
+
+          <!-- Articles connexes -->
+          <section class="border-t border-gray-200 pt-12">
+            <h3 class="font-title text-2xl text-gray-900 mb-8 text-center">Continuez votre lecture</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <a href="/blog/premier-tatouage-conseils" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-1.webp" alt="" class="w-full h-32 object-cover" />
+                <div class="p-4">
+                  <h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Premier tatouage</h4>
+                  <p class="text-gray-600 text-sm mt-1">Le guide complet pour débuter</p>
+                </div>
+              </a>
+              <a href="/blog/preparer-seance-tatouage" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2.webp" alt="" class="w-full h-32 object-cover" />
+                <div class="p-4">
+                  <h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Préparer sa séance</h4>
+                  <p class="text-gray-600 text-sm mt-1">La checklist complète</p>
+                </div>
+              </a>
+              <a href="/blog/blackwork-style-tatouage" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4.webp" alt="" class="w-full h-32 object-cover" />
+                <div class="p-4">
+                  <h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Le style Blackwork</h4>
+                  <p class="text-gray-600 text-sm mt-1">Origines et techniques</p>
+                </div>
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Comment choisir son tatoueur à Chambéry | Guide Expert 2026",
+    "description": "Choisir son tatoueur à Chambéry : portfolio, hygiène, style, feeling. 5 critères essentiels par Studio Ensō, experts blackwork en Savoie.",
+    "author": { "@type": "Person", "name": "Delco Ink", "url": "https://www.delco-ink.fr/tatoueur-chambery" },
+    "publisher": { "@type": "Organization", "name": "Studio Ensō - Delco Ink", "logo": { "@type": "ImageObject", "url": "https://www.delco-ink.fr/img/Logo.webp" } },
+    "datePublished": "2026-01-15",
+    "dateModified": "2026-01-15",
+    "url": "https://www.delco-ink.fr/blog/comment-choisir-son-tatoueur",
+    "image": "https://www.delco-ink.fr/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5.webp",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.delco-ink.fr/blog/comment-choisir-son-tatoueur" },
+    "articleSection": "Guide Tatouage",
+    "keywords": ["choisir tatoueur Chambéry", "tatoueur blackwork Savoie", "Studio Ensō"]
+  })} />
+</Layout>

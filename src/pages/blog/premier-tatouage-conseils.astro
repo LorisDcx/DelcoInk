@@ -1,0 +1,467 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const defined = {
+  readTime: '8 min',
+  category: 'Guide Complet',
+  author: 'Delco Ink'
+};
+---
+
+<Layout 
+  title="Premier tatouage Chambéry | Guide Complet 2024 - Studio Ensō"
+  description="Premier tatouage à Chambéry : zones de douleur, taille, budget. Guide expert par Studio Ensō Cognin. Conseils + accompagnement personnalisé en Savoie."
+  canonical="https://www.delco-ink.fr/blog/premier-tatouage-conseils"
+>
+  <article class="min-h-screen pt-24 pb-20" style="background: linear-gradient(180deg, #f8f3e8 0%, #faf7f0 50%, #f5f2e8 100%)">
+    <div class="container mx-auto px-4">
+      
+      <!-- Hero Article -->
+      <header class="max-w-5xl mx-auto mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <a href="/blog" class="text-forest hover:underline text-sm flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Blog
+          </a>
+          <span class="text-gray-400">|</span>
+          <span class="bg-forest/10 text-forest px-3 py-1 rounded-full text-sm font-medium">{defined.category}</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-500 text-sm">{defined.readTime} de lecture</span>
+        </div>
+        
+        <h1 class="font-title text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+          Premier tatouage : <span class="text-forest">tout ce que vous devez savoir</span>
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl">
+          Vous y pensez depuis longtemps et vous êtes prêt à franchir le pas. Ce guide complet vous accompagne 
+          de la réflexion jusqu'aux soins post-séance, avec les conseils d'un tatoueur professionnel.
+        </p>
+        
+        <div class="flex items-center gap-4 text-sm text-gray-500">
+          <img src="/img/Logo.webp" alt="Delco Ink" class="w-10 h-10 rounded-full bg-white p-1 shadow-sm" />
+          <div>
+            <p class="font-medium text-gray-800">{defined.author}</p>
+            <p>Mis à jour le 10 janvier 2024</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Image Hero -->
+      <figure class="max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl">
+        <img 
+          src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4.webp" 
+          srcset="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4-sm.webp 380w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4-md.webp 768w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4.webp 1200w"
+          sizes="(max-width: 768px) 380px, (max-width: 1200px) 768px, 1200px"
+          alt="Premier tatouage blackwork illustratif réalisé chez Delco Ink à Chambéry" 
+          class="w-full h-72 md:h-96 object-cover"
+          fetchpriority="high"
+          decoding="async"
+          width="1200"
+          height="800"
+        />
+      </figure>
+
+      <!-- Table des matières -->
+      <nav class="max-w-4xl mx-auto mb-16 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-forest/10">
+        <h2 class="font-title text-lg text-forest mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+          Dans cet article
+        </h2>
+        <ol class="grid md:grid-cols-2 gap-2 text-gray-600">
+          <li><a href="#taille" class="hover:text-forest transition-colors">1. Quelle taille choisir ?</a></li>
+          <li><a href="#zones" class="hover:text-forest transition-colors">2. Les zones les moins douloureuses</a></li>
+          <li><a href="#budget" class="hover:text-forest transition-colors">3. Quel budget prévoir ?</a></li>
+          <li><a href="#tatoueur" class="hover:text-forest transition-colors">4. Choisir son tatoueur</a></li>
+          <li><a href="#jour-j" class="hover:text-forest transition-colors">5. Le jour J : à quoi s'attendre</a></li>
+          <li><a href="#soins" class="hover:text-forest transition-colors">6. Les soins après la séance</a></li>
+        </ol>
+      </nav>
+
+      <!-- Contenu principal -->
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none text-gray-700">
+          
+          <!-- Section 1 -->
+          <section id="taille" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">1</span>
+              Quelle taille pour un premier tatouage ?
+            </h2>
+            
+            <p>
+              Contrairement aux idées reçues, <strong>commencer petit n'est pas toujours le meilleur conseil</strong>. 
+              Un tatouage trop petit peut perdre en lisibilité avec le temps, surtout pour les designs détaillés.
+            </p>
+            
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6 rounded-r-lg">
+              <p class="text-amber-800 font-medium mb-0">
+                💡 Mon conseil : ne vous focalisez pas sur "petit = moins douloureux". 
+                Choisissez une taille adaptée au motif et à la zone.
+              </p>
+            </div>
+            
+            <p>
+              Pour un premier tatouage, je recommande généralement une taille entre <strong>5 et 15 cm</strong>. 
+              C'est suffisant pour avoir un design lisible et durable, sans pour autant s'engager sur une pièce trop imposante.
+            </p>
+          </section>
+
+          <!-- Section 2 avec image -->
+          <section id="zones" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">2</span>
+              Les zones les moins douloureuses
+            </h2>
+            
+            <p>La douleur varie considérablement selon les zones du corps. Pour un premier tatouage, privilégiez :</p>
+            
+            <div class="grid md:grid-cols-2 gap-6 my-8">
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-gray-800 mb-3">Zones recommandées</h3>
+                <ul class="text-gray-600 space-y-2 text-sm">
+                  <li><strong>Avant-bras</strong> – zone charnue, peu de nerfs</li>
+                  <li><strong>Extérieur du bras</strong> – facile d'accès, bien toléré</li>
+                  <li><strong>Cuisse</strong> – grande surface, chair épaisse</li>
+                  <li><strong>Haut des chevilles</strong> – généralement bien supporté</li>
+                </ul>
+              </div>
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-gray-800 mb-3">À éviter pour débuter</h3>
+                <ul class="text-gray-600 space-y-2 text-sm">
+                  <li><strong>Côtes</strong> – très sensible</li>
+                  <li><strong>Sternum</strong> – proche des os</li>
+                  <li><strong>Pieds/mains</strong> – beaucoup de nerfs</li>
+                  <li><strong>Cou / Intérieur du coude</strong> – peau fine</li>
+                </ul>
+              </div>
+            </div>
+
+            <figure class="my-8 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-2.webp" 
+                alt="Tatouage sur l'avant-bras - zone idéale pour un premier tatouage" 
+                class="w-full h-64 object-cover"
+              />
+              <figcaption class="bg-gray-100 px-4 py-3 text-sm text-gray-600">
+                L'avant-bras : une zone idéale pour débuter, alliant confort et visibilité
+              </figcaption>
+            </figure>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="budget" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">3</span>
+              Quel budget prévoir ?
+            </h2>
+            
+            <p>
+              Le prix d'un tatouage dépend de plusieurs facteurs : <strong>taille, complexité, emplacement, temps de dessin et expérience du tatoueur.</strong> 
+              Voici une fourchette indicative :
+            </p>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden my-8">
+              <table class="w-full text-left">
+                <thead class="bg-forest text-white">
+                  <tr>
+                    <th class="px-4 py-3 font-title">Type de tatouage</th>
+                    <th class="px-4 py-3 font-title">Fourchette de prix</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr><td class="px-4 py-3">Petit tatouage (&lt; 5cm)</td><td class="px-4 py-3 font-medium">80€ - 150€</td></tr>
+                  <tr class="bg-gray-50"><td class="px-4 py-3">Moyen (5-10cm)</td><td class="px-4 py-3 font-medium">150€ - 300€</td></tr>
+                  <tr><td class="px-4 py-3">Grand (10-20cm)</td><td class="px-4 py-3 font-medium">300€ - 800€</td></tr>
+                  <tr class="bg-gray-50"><td class="px-4 py-3">Gros Projets (Demi-manche / Dos etc...)</td><td class="px-4 py-3 font-medium">de 500€ à 1000€ <strong>la séance</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="bg-forest/5 border border-forest/20 p-5 rounded-xl my-6">
+              <p class="text-forest font-medium mb-0" >
+                ⚠️ <strong>Attention aux prix trop bas (hors évènements et conventions)</strong> : un tatouage est permanent. Mieux vaut investir 
+                dans la qualité que de regretter un travail bâclé.
+              </p>
+
+            </div>
+                <p> <strong>Ces prix ne sont pas a prendre à la lettre, les prix des tatoueurs (notamment les miens) sont variables et peuvent différer de ceux présentés dans le tableau ci dessus.
+            </strong></p>
+
+          </section>
+
+          <!-- Section 4 - Lien vers article pilier -->
+          <section id="tatoueur" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">4</span>
+              Choisir son tatoueur : les questions essentielles
+            </h2>
+            
+            <p>
+              C'est probablement <strong>la décision la plus importante</strong>. Un bon tatoueur fera toute la différence 
+              entre un tatouage que vous adorerez et un que vous regretterez.
+            </p>
+            
+            <p>Avant de vous engager, assurez-vous d'avoir les réponses à ces questions :</p>
+            
+            <ul class="list-none space-y-3 my-6">
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">✓</span>
+                <span>Comment se passe le processus de création du design ?</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">✓</span>
+                <span>Quel est le tarif et qu'est-ce qui est inclus ?</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">✓</span>
+                <span>Quelles sont les conditions d'hygiène du studio ?</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-forest text-xl">✓</span>
+                <span>Y a-t-il une retouche incluse si nécessaire ?</span>
+              </li>
+            </ul>
+
+            <!-- Lien vers article pilier -->
+            <a href="/blog/comment-choisir-son-tatoueur" class="block bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg hover:border-forest/30 transition-all my-8 group">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-8 h-8 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm text-forest font-medium mb-1">Article recommandé</p>
+                  <h3 class="font-title text-lg text-gray-900 group-hover:text-forest transition-colors">Comment choisir son tatoueur : le guide complet</h3>
+                  <p class="text-gray-600 text-sm mt-1">Portfolio, hygiène, feeling... Tous les critères pour trouver l'artiste idéal.</p>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-forest group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="jour-j" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">5</span>
+              Le jour J : à quoi s'attendre
+            </h2>
+            
+            <p>
+              Le grand jour est arrivé ! Voici comment se déroule une séance type chez 
+              <a href="/" class="text-forest hover:underline font-medium">Delco Ink</a> :
+            </p>
+            
+            <div class="space-y-4 my-8">
+              <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm">
+                <span class="w-8 h-8 bg-forest/10 text-forest rounded-full flex items-center justify-center font-bold flex-shrink-0">1</span>
+                <div>
+                  <h3 class="font-title text-gray-900">Accueil et discussion</h3>
+                  <p class="text-gray-600 text-sm">Validation du design final, choix du placement exact sur votre peau</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm">
+                <span class="w-8 h-8 bg-forest/10 text-forest rounded-full flex items-center justify-center font-bold flex-shrink-0">2</span>
+                <div>
+                  <h3 class="font-title text-gray-900">Préparation de la zone</h3>
+                  <p class="text-gray-600 text-sm">Nettoyage, rasage si nécessaire, désinfection</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm">
+                <span class="w-8 h-8 bg-forest/10 text-forest rounded-full flex items-center justify-center font-bold flex-shrink-0">3</span>
+                <div>
+                  <h3 class="font-title text-gray-900">Application du stencil</h3>
+                  <p class="text-gray-600 text-sm">Transfert du dessin, ajustements de position si besoin</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm">
+                <span class="w-8 h-8 bg-forest/10 text-forest rounded-full flex items-center justify-center font-bold flex-shrink-0">4</span>
+                <div>
+                  <h3 class="font-title text-gray-900">Tatouage</h3>
+                  <p class="text-gray-600 text-sm">La partie principale ! Durée variable selon la taille (30min à plusieurs heures)</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm">
+                <span class="w-8 h-8 bg-forest/10 text-forest rounded-full flex items-center justify-center font-bold flex-shrink-0">5</span>
+                <div>
+                  <h3 class="font-title text-gray-900">Soins et consignes</h3>
+                  <p class="text-gray-600 text-sm">Application du pansement, explications détaillées pour la cicatrisation</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lien vers préparer séance -->
+            <a href="/blog/preparer-seance-tatouage" class="block bg-amber-50 rounded-xl p-6 border border-amber-200 hover:bg-amber-100 transition-all my-8 group">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span class="text-2xl">📋</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-title text-lg text-amber-900">Comment bien préparer sa séance</h3>
+                  <p class="text-amber-700 text-sm">Sommeil, alimentation, vêtements... La checklist pour arriver en forme.</p>
+                </div>
+                <span class="text-amber-600 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+
+            <figure class="my-8 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-3.webp" 
+                alt="Résultat d'un premier tatouage blackwork" 
+                class="w-full h-64 object-cover"
+              />
+              <figcaption class="bg-gray-100 px-4 py-3 text-sm text-gray-600">
+                Un premier tatouage réussi : le résultat de la collaboration entre le client et l'artiste
+              </figcaption>
+            </figure>
+          </section>
+
+          <!-- Section 6 -->
+          <section id="soins" class="mb-16">
+            <h2 class="font-title text-3xl text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 bg-forest text-white rounded-full flex items-center justify-center text-lg font-bold">6</span>
+              Les soins après la séance
+            </h2>
+            
+            <p>
+              La cicatrisation est <strong>aussi importante que le tatouage lui-même</strong>. 
+              Un mauvais entretien peut ruiner le meilleur des tatouages.
+            </p>
+            
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 my-8">
+              <h3 class="font-title text-lg text-gray-900 mb-4">Les règles d'or de la cicatrisation</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="text-green-500 text-xl">✓</span>
+                  <span>Nettoyer délicatement 2 fois par jour avec un savon PH neutre</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-green-500 text-xl">✓</span>
+                  <span>Appliquer une fine couche de crème cicatrisante</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-green-500 text-xl">✓</span>
+                  <span>Éviter le soleil direct pendant 3-4 semaines</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-500 text-xl">✗</span>
+                  <span>Pas de bain, piscine ou mer pendant la cicatrisation</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-red-500 text-xl">✗</span>
+                  <span>Ne jamais gratter les croûtes !</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Lien vers entretien -->
+            <a href="/blog/entretien-tatouage-cicatrisation" class="block bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg hover:border-forest/30 transition-all my-8 group">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-forest/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-8 h-8 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm text-forest font-medium mb-1">Guide détaillé</p>
+                  <h3 class="font-title text-lg text-gray-900 group-hover:text-forest transition-colors">Entretien et cicatrisation du tatouage</h3>
+                  <p class="text-gray-600 text-sm mt-1">De la sortie du studio jusqu'à la cicatrisation complète : toutes les étapes.</p>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-forest group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          </section>
+
+          <!-- CTA Principal -->
+          <section class="bg-gradient-to-br from-forest to-forest/80 text-white rounded-2xl p-8 md:p-12 my-16 text-center">
+            <h3 class="font-title text-2xl md:text-3xl mb-4">Prêt pour votre premier tatouage ?</h3>
+            <p class="text-white/90 mb-8 max-w-xl mx-auto">
+              Je vous accueille dans mon studio à Chambéry pour discuter de votre projet 
+              dans un cadre calme et bienveillant. Chaque tatouage est une création unique.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-forest font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                Me contacter
+              </a>
+              <a href="/#gallery" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-lg border border-white/30 hover:bg-white/20 transition-colors">
+                Voir mes réalisations
+              </a>
+            </div>
+          </section>
+
+          <!-- Articles connexes -->
+          <section class="border-t border-gray-200 pt-12">
+            <h3 class="font-title text-2xl text-gray-900 mb-8 text-center">Continuez votre lecture</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <a href="/blog/comment-choisir-son-tatoueur" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src="/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-manga-sm.webp" 
+                  srcset="/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-manga-sm.webp 380w, /images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-manga-md.webp 768w"
+                  sizes="(max-width: 768px) 380px, 768px"
+                  alt="" 
+                  class="w-full h-32 object-cover" 
+                  loading="lazy"
+                />
+                <div class="p-4">
+                <h3 class="font-title text-gray-900 group-hover:text-forest transition-colors">Comment choisir son tatoueur</h3>
+                  <p class="text-gray-600 text-sm mt-1">Le guide complet</p>
+                </div>
+              </a>
+              <a href="/blog/preparer-seance-tatouage" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5-sm.webp" 
+                  srcset="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5-sm.webp 380w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5-md.webp 768w"
+                  sizes="(max-width: 768px) 380px, 768px"
+                  alt="" 
+                  class="w-full h-32 object-cover" 
+                  loading="lazy"
+                />
+                <div class="p-4">
+                <h3 class="font-title text-gray-900 group-hover:text-forest transition-colors">Préparer sa séance</h3>
+                  <p class="text-gray-600 text-sm mt-1">La checklist complète</p>
+                </div>
+              </a>
+              <a href="/blog/blackwork-style-tatouage" class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-6-sm.webp" 
+                  srcset="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-6-sm.webp 380w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-6-md.webp 768w"
+                  sizes="(max-width: 768px) 380px, 768px"
+                  alt="" 
+                  class="w-full h-32 object-cover" 
+                  loading="lazy"
+                />
+                <div class="p-4">
+                <h3 class="font-title text-gray-900 group-hover:text-forest transition-colors">Le style Blackwork</h3>
+                  <p class="text-gray-600 text-sm mt-1">Origines et techniques</p>
+                </div>
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Premier tatouage Chambéry | Guide Complet 2024 - Studio Ensō",
+    "description": "Premier tatouage à Chambéry : zones de douleur, taille, budget. Guide expert par Studio Ensō Cognin. Conseils + accompagnement personnalisé en Savoie.",
+    "author": { "@type": "Person", "name": "Delco Ink", "url": "https://www.delco-ink.fr/tatoueur-chambery" },
+    "publisher": { "@type": "Organization", "name": "Studio Ensō - Delco Ink", "logo": { "@type": "ImageObject", "url": "https://www.delco-ink.fr/img/Logo.webp" } },
+    "datePublished": "2026-01-10",
+    "dateModified": "2026-01-10",
+    "url": "https://www.delco-ink.fr/blog/premier-tatouage-conseils",
+    "image": "https://www.delco-ink.fr/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4.webp",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.delco-ink.fr/blog/premier-tatouage-conseils" },
+    "articleSection": "Guide Tatouage",
+    "keywords": ["premier tatouage Chambéry", "guide tatouage débutant", "Studio Ensō Cognin"]
+  })} />
+</Layout>

@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Articles piliers (mis en avant)
+const pillarArticles = [
+  {
+    slug: 'premier-tatouage-conseils',
+    title: 'Premier tatouage : tout ce que vous devez savoir',
+    excerpt: 'Zones de douleur, taille idéale, budget, questions essentielles... Le guide ultime pour réussir votre premier tatouage.',
+    date: '2026-01-10',
+    image: '/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-1-sm.webp',
+    category: 'Guide Complet',
+    readTime: '8 min'
+  },
+  {
+    slug: 'comment-choisir-son-tatoueur',
+    title: 'Comment choisir son tatoueur : le guide complet',
+    excerpt: 'Portfolio, hygiène, feeling... Les 5 critères essentiels pour trouver le tatoueur idéal.',
+    date: '2026-01-15',
+    image: '/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5-sm.webp',
+    category: 'Guide Complet',
+    readTime: '6 min'
+  }
+];
+
+// Autres articles
+const otherArticles = [
+  {
+    slug: 'preparer-seance-tatouage',
+    title: 'Comment bien préparer sa séance',
+    excerpt: 'La checklist complète pour arriver en forme le jour J.',
+    date: '2026-01-10',
+    image: '/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-6-sm.webp',
+    category: 'Conseils',
+    readTime: '4 min'
+  },
+  {
+    slug: 'entretien-tatouage-cicatrisation',
+    title: 'Entretien et cicatrisation',
+    excerpt: 'Toutes les étapes pour prendre soin de votre nouveau tatouage.',
+    date: '2026-01-05',
+    image: '/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-7-sm.webp',
+    category: 'Conseils',
+    readTime: '5 min'
+  },
+  {
+    slug: 'blackwork-style-tatouage',
+    title: 'Le style Blackwork',
+    excerpt: 'Origines et techniques d\'un style intemporel.',
+    date: '2025-12-20',
+    image: '/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-8-sm.webp',
+    category: 'Styles',
+    readTime: '5 min'
+  },
+  {
+    slug: 'tatouage-pop-culture-tendances',
+    title: 'Tatouage Ghibli',
+    excerpt: 'Comment adapter l univers Ghibli en tatouage durable.',
+    date: '2025-12-15',
+    image: '/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-ghibli-1-sm.webp',
+    category: 'Styles',
+    readTime: '5 min'
+  }
+];
+---
+
+<Layout 
+  title="Blog Tatouage | Conseils et actualités - Delco Ink"
+  description="Conseils tatouage, guides de préparation, entretien et cicatrisation. Découvrez nos articles pour tout savoir sur l'art du tatouage."
+  canonical="https://www.delco-ink.fr/blog"
+>
+  <section class="min-h-screen pt-24 pb-20" style="background: linear-gradient(180deg, #f8f3e8 0%, #faf7f0 50%, #f5f2e8 100%)">
+    <div class="container mx-auto px-4">
+      
+      <!-- Header -->
+      <header class="max-w-5xl mx-auto text-center mb-16">
+        <h1 class="font-title text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6">
+          Blog <span class="text-forest">Tatouage</span>
+        </h1>
+        <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+          Conseils, guides et actualités pour préparer votre projet tatouage 
+          et prendre soin de votre peau.
+        </p>
+      </header>
+
+      <!-- Articles piliers -->
+      <div class="max-w-6xl mx-auto mb-16">
+        <h2 class="font-title text-2xl text-gray-900 mb-8 flex items-center gap-3">
+          <span class="w-8 h-8 bg-forest text-white rounded-full flex items-center justify-center text-sm">★</span>
+          Guides essentiels
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          {pillarArticles.map((article) => (
+            <article class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
+              <a href={`/blog/${article.slug}`} class="block">
+                <div class="relative h-56 overflow-hidden">
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-4 left-4">
+                    <span class="bg-forest text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {article.category}
+                    </span>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                    <time>{new Date(article.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+                    <span>•</span>
+                    <span>{article.readTime} de lecture</span>
+                  </div>
+                  <h3 class="font-title text-xl md:text-2xl text-gray-900 mb-3 group-hover:text-forest transition-colors">
+                    {article.title}
+                  </h3>
+                  <p class="text-gray-600">{article.excerpt}</p>
+                  <span class="inline-flex items-center gap-2 mt-4 text-forest font-medium group-hover:gap-3 transition-all">
+                    Lire le guide
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Autres articles -->
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-title text-2xl text-gray-900 mb-8">Tous les articles</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {otherArticles.map((article) => (
+            <article class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <a href={`/blog/${article.slug}`} class="block">
+                <div class="relative h-40 overflow-hidden">
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-3 left-3">
+                    <span class="bg-white/90 text-forest px-2 py-1 rounded-full text-xs font-medium">
+                      {article.category}
+                    </span>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-title text-gray-900 mb-2 group-hover:text-forest transition-colors">
+                    {article.title}
+                  </h3>
+                  <p class="text-gray-600 text-sm line-clamp-2">{article.excerpt}</p>
+                  <div class="flex items-center justify-between mt-3 text-xs text-gray-500">
+                    <span>{article.readTime}</span>
+                    <span class="text-forest font-medium group-hover:underline">Lire →</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="max-w-4xl mx-auto mt-20 bg-gradient-to-br from-forest to-forest/80 text-white rounded-2xl p-8 md:p-12 text-center">
+        <h2 class="font-title text-2xl md:text-3xl mb-4">Vous avez un projet de tatouage ?</h2>
+        <p class="text-white/90 mb-8 max-w-xl mx-auto">
+          Je vous accueille chez Delco Ink pour discuter de votre projet et créer ensemble un tatouage unique.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-forest font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+            Me contacter
+          </a>
+          <a href="/#gallery" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-lg border border-white/30 hover:bg-white/20 transition-colors">
+            Voir mes réalisations
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

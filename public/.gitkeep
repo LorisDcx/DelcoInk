@@ -1,0 +1,5 @@
+# This folder contains static assets
+# Copy all files from the original /static folder here:
+# - /img/* (Logo.png, monstera.png, fougere.png, etc.)
+# - /images/* (gallery images, hero backgrounds, etc.)
+# - /favicon.png

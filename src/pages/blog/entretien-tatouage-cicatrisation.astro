@@ -1,0 +1,249 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const defined = {
+  readTime: '5 min',
+  category: 'Conseils',
+  author: 'Delco Ink'
+};
+---
+
+<Layout 
+  title="Entretien tattoo : Cicatrisation & Soins | Guide Chambéry"
+  description="Entretien tattoo Chambéry : nettoyage, hydratation, cicatrisation. Guide complet par Studio Ensō. Conseils experts pour résultat optimal en Savoie."
+  canonical="https://www.delco-ink.fr/blog/entretien-tatouage-cicatrisation"
+>
+  <article class="min-h-screen pt-24 pb-20" style="background: linear-gradient(180deg, #f8f3e8 0%, #faf7f0 50%, #f5f2e8 100%)">
+    <div class="container mx-auto px-4">
+      
+      <!-- Hero Article -->
+      <header class="max-w-5xl mx-auto mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <a href="/blog" class="text-forest hover:underline text-sm flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Blog
+          </a>
+          <span class="text-gray-400">|</span>
+          <span class="bg-forest/10 text-forest px-3 py-1 rounded-full text-sm font-medium">{defined.category}</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-500 text-sm">{defined.readTime} de lecture</span>
+        </div>
+        
+        <h1 class="font-title text-4xl md:text-5xl text-gray-900 mb-6 leading-tight">
+          Entretien et cicatrisation : <span class="text-forest">les étapes clés</span>
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl">
+          Les premières semaines après un tattoo sont cruciales. Voici comment garantir 
+          une cicatrisation optimale et un résultat qui dure dans le temps.
+        </p>
+        
+        <div class="flex items-center gap-4 text-sm text-gray-500">
+          <img src="/img/Logo.webp" alt="Delco Ink" class="w-10 h-10 rounded-full bg-white p-1 shadow-sm" />
+          <div>
+            <p class="font-medium text-gray-800">{defined.author}</p>
+            <p>Mis à jour le 5 janvier 2024</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Image Hero -->
+      <figure class="max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl">
+        <img 
+          src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-3.webp" 
+          srcset="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-3-sm.webp 380w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-3-md.webp 768w, /images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-3.webp 1200w"
+          sizes="(max-width: 768px) 380px, (max-width: 1200px) 768px, 1200px"
+          alt="Tatouage cicatrisé de qualité" 
+          class="w-full h-72 md:h-80 object-cover"
+          fetchpriority="high"
+          decoding="async"
+          width="1200"
+          height="800"
+        />
+      </figure>
+
+      <!-- Contenu principal -->
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none text-gray-700">
+          
+          <!-- Lien vers article pilier -->
+          <div class="bg-forest/5 border border-forest/20 p-5 rounded-xl mb-12">
+            <p class="text-forest mb-0">
+              📚 Cet article fait partie du guide <a href="/blog/premier-tatouage-conseils" class="font-medium underline hover:text-forest/80">Premier tattoo : tout ce que vous devez savoir</a>
+            </p>
+          </div>
+
+          <!-- Section 1 -->
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">Les premières heures</h2>
+            
+            <p>Après la séance, votre tatoueur applique un pansement protecteur. Le temps de pose dépend du type :</p>
+            
+            <div class="grid md:grid-cols-2 gap-4 my-6">
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-gray-800 mb-2">Film plastique classique</h3>
+                <p class="text-gray-600 text-sm mb-0">Retirez-le après <strong>2-4 heures</strong></p>
+              </div>
+              <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="font-title text-gray-800 mb-2">Film seconde peau (utilisé ici)</h3>
+                <p class="text-gray-600 text-sm mb-0">Gardez-le <strong>3-5 jours</strong> (Dermalize, Saniderm)</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2 -->
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">Le nettoyage quotidien</h2>
+            
+            <p>Pendant les 2-3 premières semaines, nettoyez votre tattoo 2 fois par jour :</p>
+            
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm my-6">
+              <ol class="space-y-3 text-gray-600">
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 bg-forest/10 text-forest rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
+                  <span>Lavez-vous les mains soigneusement</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 bg-forest/10 text-forest rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
+                  <span>Nettoyez délicatement avec un savon PH neutre (type Sanex ou autre)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 bg-forest/10 text-forest rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
+                  <span>Rincez à l'eau tiède</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 bg-forest/10 text-forest rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">4</span>
+                  <span>Séchez en tamponnant avec un essuie-tout propre</span>
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- Section 3 -->
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">L'hydratation</h2>
+            
+            <p>Après chaque nettoyage, appliquez une fine couche de crème cicatrisante ( Cicaplast, ou crème conseillée par votre tatoueur).</p>
+            
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6 rounded-r-lg">
+              <p class="text-amber-800 font-medium mb-0">
+                Une fine couche suffit ! N'étouffez pas la peau. Évitez les crèmes parfumées qui peuvent irriter votre peau et ne mettez jamais de vaseline pure.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section 4 -->
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">Ce qu'il faut éviter</h2>
+            
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <p class="text-gray-600 mb-4">Pendant 2-3 semaines minimum :</p>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">✗</span>
+                  <span><strong>Pas de bain</strong> (piscine, mer, baignoire) ni de sauna / hamam - la douche c'est ok</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">✗</span>
+                  <span><strong>Pas de soleil</strong> direct sur le tattoo</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">✗</span>
+                  <span><strong>Pas de grattage</strong> même si ça démange (tapotez doucement)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">✗</span>
+                  <span><strong>Pas de sport intense</strong> les premiers jours</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-forest font-bold">✗</span>
+                  <span><strong>Pas de vêtements serrés</strong> sur la zone, privilégiez le coton</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Section 5 -->
+          <section class="mb-12">
+            <h2 class="font-title text-2xl text-gray-900 mb-6">Les phases de cicatrisation</h2>
+            
+            <div class="space-y-4">
+              <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
+                <span class="text-forest font-bold whitespace-nowrap">Jours 1-3</span>
+                <span class="text-gray-600">Rougeur, léger gonflement, suintement — c'est normal</span>
+              </div>
+              <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
+                <span class="text-forest font-bold whitespace-nowrap">Jours 4-7</span>
+                <span class="text-gray-600">Formation de croûtes fines, démangeaisons</span>
+              </div>
+              <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
+                <span class="text-forest font-bold whitespace-nowrap">Semaines 2-3</span>
+                <span class="text-gray-600">Les croûtes tombent naturellement, la peau pèle</span>
+              </div>
+              <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
+                <span class="text-forest font-bold whitespace-nowrap">Semaines 4-6</span>
+                <span class="text-gray-600">Cicatrisation avancée, les couleurs se stabilisent</span>
+              </div>
+                            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
+                <span class="text-forest font-bold whitespace-nowrap">Semaines 12</span>
+                <span class="text-gray-600">Cicatrisation terminée, plus d'inquiétudes</span>
+              </div>
+               <p class="text-black/90 mb-4 max-w-5xl mx-auto justify-center"> Cependant il est important de noter que prendre soin d'un tattoo est un processus qui doit durer toute une vie. </p>
+            </div>
+            
+           
+          </section>
+
+          <!-- CTA -->
+          <section class="bg-gradient-to-br from-forest to-forest/80 text-white rounded-2xl p-8 my-12 text-center">
+            <h3 class="font-title text-2xl mb-4">Un doute sur la cicatrisation ?</h3>
+            <p class="text-white/90 mb-6 max-w-lg mx-auto">
+              N'hésitez pas à me contacter si vous avez des questions. Je suis là pour vous accompagner.
+            </p>
+            <a href="/#contact-anchor" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-forest font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+              Me contacter
+            </a>
+          </section>
+
+          <!-- Articles connexes -->
+          <section class="border-t border-gray-200 pt-10">
+            <h3 class="font-title text-xl text-gray-900 mb-6">Articles connexes</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <a href="/blog/preparer-seance-tatouage" class="group flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-5.webp" alt="" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
+                <div>
+                  <h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Préparer sa séance</h4>
+                  <p class="text-gray-600 text-sm mt-1">La checklist complète</p>
+                </div>
+              </a>
+              <a href="/blog/premier-tatouage-conseils" class="group flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <img src="/images/gallery/popculture/tatouage-pop-culture-chambery-delco-ink-manga.webp" alt="" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
+                <div>
+                  <h4 class="font-title text-gray-900 group-hover:text-forest transition-colors">Premier tattoo</h4>
+                  <p class="text-gray-600 text-sm mt-1">Le guide complet</p>
+                </div>
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Entretien tattoo : Cicatrisation & Soins | Guide Chambéry",
+    "description": "Entretien tattoo Chambéry : nettoyage, hydratation, cicatrisation. Guide complet par Studio Ensō. Conseils experts pour résultat optimal en Savoie.",
+    "author": { "@type": "Person", "name": "Delco Ink", "url": "https://www.delco-ink.fr/tatoueur-chambery" },
+    "publisher": { "@type": "Organization", "name": "Studio Ensō - Delco Ink", "logo": { "@type": "ImageObject", "url": "https://www.delco-ink.fr/img/Logo.webp" } },
+    "datePublished": "2025-12-20",
+    "dateModified": "2025-12-20",
+    "url": "https://www.delco-ink.fr/blog/entretien-tatouage-cicatrisation",
+    "image": "https://www.delco-ink.fr/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-3.webp",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.delco-ink.fr/blog/entretien-tatouage-cicatrisation" },
+    "articleSection": "Conseils Tatouage",
+    "keywords": ["entretien tatouage", "cicatrisation tattoo Chambéry", "soins après tatouage Savoie"]
+  })} />
+</Layout>

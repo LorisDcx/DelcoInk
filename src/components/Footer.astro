@@ -1,0 +1,113 @@
+---
+import OrganicShape from './decorative/OrganicShape';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden" role="contentinfo">
+  <div class="bg-gray-50 pt-16 pb-12 relative border-t border-gray-100 texture-paper">
+    <div class="absolute -right-32 -top-32 w-64 h-64 opacity-5 pointer-events-none">
+      <OrganicShape type="blob3" fill="#2d6a4f" width="100%" height="100%" opacity={0.3} />
+    </div>
+    <div class="absolute left-10 bottom-16 w-32 h-32 opacity-5 pointer-events-none">
+      <OrganicShape type="blob1" fill="#40916c" width="100%" height="100%" opacity={0.4} />
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+        <div class="flex flex-col items-start">
+          <div class="mb-5 logo-container">
+            <img src="/images/logoartist.webp" srcset="/images/logoartist-mobile.webp 400w, /images/logoartist.webp 800w" sizes="80px" alt="Studio Ensō - Tatoueur Chambéry Logo" class="h-20 mx-auto" width="80" height="80" loading="lazy" />
+          </div>
+          <p class="text-gray-700 font-quicksand text-sm uppercase tracking-widest mb-2">Delco Ink - Tattoo Artist - Chambéry</p>
+          <p class="text-gray-600 font-quicksand text-sm max-w-xs text-left">
+            <strong>Tatoueuse à Chambéry</strong> spécialisée en blackwork illustratif, pop-culture.
+          </p>
+          <p class="text-gray-600 font-quicksand text-sm max-w-xs text-left">Studio privé à Cognin, Savoie.</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-sm justify-start">
+            <a href="/le-studio" class="text-forest hover:underline">Le studio</a>-
+            <a href="/tatoueur-chambery" class="text-forest hover:underline">Tatoueur Chambéry</a>-
+            <a href="/blackwork-chambery" class="text-forest hover:underline">Blackwork</a>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <h4 class="font-satisfy text-2xl mb-4 text-forest">Navigation</h4>
+          <ul class="space-y-3 text-gray-600 font-quicksand text-sm text-left">
+            <li><a href="/" class="hover:text-forest transition-colors">Accueil</a></li>
+            <li><a href="/le-studio" class="hover:text-forest transition-colors">Le Studio Ensō</a></li>
+            <li><a href="/#gallery" class="hover:text-forest transition-colors">Galerie</a></li>
+            <li><a href="/flash" class="hover:text-forest transition-colors">Flash disponibles</a></li>
+            <li><a href="/tatoueur-chambery" class="hover:text-forest transition-colors">Tatoueur Chambéry</a></li>
+            <li><a href="/blackwork-chambery" class="hover:text-forest transition-colors">Blackwork Chambéry</a></li>
+            <li><a href="/specialites" class="hover:text-forest transition-colors font-medium">Nos Spécialités →</a></li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <h4 class="font-satisfy text-2xl mb-4 text-forest">Blog tatouage</h4>
+          <ul class="space-y-3 text-gray-600 font-quicksand text-sm text-left">
+            <li><a href="/blog/premier-tatouage-conseils" class="hover:text-forest transition-colors">Premier tatouage Chambéry</a></li>
+            <li><a href="/blog/comment-choisir-son-tatoueur" class="hover:text-forest transition-colors">Choisir son tatoueur</a></li>
+            <li><a href="/blog/blackwork-style-tatouage" class="hover:text-forest transition-colors">Style blackwork</a></li>
+            <li><a href="/blog/preparer-seance-tatouage" class="hover:text-forest transition-colors">Préparer sa séance</a></li>
+            <li><a href="/blog/entretien-tatouage-cicatrisation" class="hover:text-forest transition-colors">Entretien tatouage</a></li>
+            <li><a href="/blog/tatouage-pop-culture-tendances" class="hover:text-forest transition-colors">Tatouage pop-culture</a></li>
+            <li><a href="/blog" class="hover:text-forest transition-colors font-medium">Tous les articles →</a></li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <h4 class="font-satisfy text-2xl mb-4 text-forest">Contact</h4>
+          <address class="not-italic text-gray-600 font-quicksand text-sm mb-4 text-left">
+            <p class="mb-1"><strong>Studio Ensō</strong></p>
+            <p class="mb-1">19 Av. Général Cartier</p>
+            <p class="mb-1">73160 Cognin (Chambéry)</p>
+            <p>contact@delco-ink.fr</p>
+          </address>
+          <a href="/#contact-anchor" class="inline-flex items-center gap-2 px-4 py-2 bg-forest text-white rounded-full hover:bg-forest/90 transition-all text-sm">
+            Prendre rendez-vous
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-gray-200 text-center">
+        <p class="text-xs text-gray-400 font-quicksand">
+          Tatouage Chambéry • Blackwork Chambéry • Pop-culture tattoo Chambéry • Tatouage manga Chambéry • Studio Ensō Cognin
+        </p>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between gap-6 text-gray-500">
+        <div class="flex items-center gap-5 text-sm flex-wrap">
+          <!-- Delco Ink Instagram -->
+          <a href="https://www.instagram.com/delco.ink/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Delco Ink" class="flex items-center gap-1.5 text-gray-600 hover:text-forest transition-colors group">
+            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+            </svg>
+            <span class="group-hover:underline">@delco.ink</span>
+          </a>
+          <span class="text-gray-300 hidden sm:inline">·</span>
+          <!-- Studio Ensō Instagram -->
+          <a href="https://www.instagram.com/studioenso.tattoo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Studio Ensō" class="flex items-center gap-1.5 text-gray-600 hover:text-forest transition-colors group">
+            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+            </svg>
+            <span class="group-hover:underline">@studioenso.tattoo</span>
+          </a>
+          <span class="text-gray-300 hidden sm:inline">·</span>
+          <a href="https://www.tiktok.com/@delco_ink" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-forest transition-colors">TikTok</a>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs">
+          <a href="/conditions-generales" class="text-gray-500 hover:text-forest transition-colors">CGP</a>
+          <a href="/privacy-policy" class="text-gray-500 hover:text-forest transition-colors">Mentions légales</a>
+          <a href="/sitemap.xml" class="text-gray-500 hover:text-forest transition-colors">Plan du site</a>
+        </div>
+        <div class="text-xs font-quicksand">&copy; {currentYear} Studio Ensō - Tatoueur Chambéry</div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,51 @@
+---
+import OrganicShape from './decorative/OrganicShape';
+---
+
+<div class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 booking-button-wrapper" id="booking-button">
+  <a 
+    href="/#contact-anchor" 
+    class="organic-button bg-forest bg-opacity-85 text-white hover:bg-opacity-100 transition-all duration-300 px-4 py-2.5 md:px-6 md:py-3 font-satisfy text-base md:text-lg font-medium flex items-center gap-1.5 md:gap-2 group shadow-md md:shadow-lg border border-white/15"
+    style="background-color: #2d6a4f; filter: drop-shadow(0 4px 12px rgba(45, 106, 79, 0.28))"
+    aria-label="Prendre rendez-vous"
+  >
+    <img 
+      src="/img/monstera-tiny.webp" 
+      alt="Feuille Monstera" 
+      class="w-4 h-4 md:w-5 md:h-5 transform -rotate-3 group-hover:rotate-3 transition-all duration-700 filter brightness-0 invert opacity-90"
+      width="20" height="20" loading="lazy" decoding="async"
+    />
+    <span class="hidden sm:inline">Prendre RDV</span>
+    <span class="sm:hidden">RDV</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5 transform transition-transform duration-300 group-hover:translate-x-1 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    </svg>
+  </a>
+</div>
+
+<script is:inline>
+  // IntersectionObserver au lieu de scroll+getBoundingClientRect (évite forced layout)
+  const contactSection = document.getElementById('contact');
+  const bookingButton = document.getElementById('booking-button');
+  
+  if (contactSection && bookingButton) {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        bookingButton.style.opacity = '0';
+        bookingButton.style.pointerEvents = 'none';
+      } else {
+        bookingButton.style.opacity = '1';
+        bookingButton.style.pointerEvents = 'auto';
+      }
+    }, { rootMargin: '-50% 0px 0px 0px' });
+    
+    observer.observe(contactSection);
+  }
+</script>
+
+<style>
+  .booking-button-wrapper {
+    transition: opacity 0.3s ease;
+  }
+</style>
