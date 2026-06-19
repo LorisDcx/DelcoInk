@@ -119,33 +119,12 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-[100dvh] h-screen overflow-hidden bg-white">
+    <section id="home" className="relative min-h-[100dvh] h-screen overflow-hidden" style={{ backgroundColor: '#fffff9' }}>
       <div
         ref={heroRef}
         className="absolute inset-0 z-0"
         style={{ transform: 'translateY(0px) translateX(0px)' }}
       >
-        <picture>
-          <source
-            media="(max-width: 768px)"
-            srcSet="/images/delco-ink-studio-tatouage-chambery-hero-mobile.webp"
-          />
-          <source
-            media="(max-width: 1280px)"
-            srcSet="/images/delco-ink-studio-tatouage-chambery-hero-tablet.webp"
-          />
-          <img
-            src="/images/delco-ink-studio-tatouage-chambery-hero.webp"
-            alt="Delco Ink Studio Tatouage Chambéry"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ filter: 'brightness(0.95)' }}
-            width={1920}
-            height={1080}
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
-
       </div>
       <ParticlesBackground 
         color="#78a694" 
@@ -199,7 +178,7 @@ export default function HeroSection() {
               </span>
             </h1>
             <p className="font-quicksand text-sm md:text-base text-forest/70 tracking-widest uppercase font-medium">
-              Tatoueur · Chambéry &amp; Cognin
+              Tatoueuse · Chambéry &amp; Cognin
             </p>
           </div>
 
