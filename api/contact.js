@@ -1,10 +1,6 @@
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'contact@delco-ink.fr';
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Delco Ink <contact@delco-ink.fr>';
 
-function json(status, body) {
-  return { status, body };
-}
-
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -14,18 +10,30 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    const result = json(405, { error: 'Method not allowed' });
-    return res.status(result.status).json(result.body);
+export default async function handler(request, response) {
+  // Enable CORS
+  response.setHeader('Access-Control-Allow-Credentials', true);
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  response.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  if (request.method === 'OPTIONS') {
+    response.status(200).end();
+    return;
+  }
+
+  if (request.method !== 'POST') {
+    return response.status(405).json({ error: 'Method not allowed' });
   }
 
   let body;
   try {
-    body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {};
+    body = typeof request.body === 'string' ? JSON.parse(request.body || '{}') : request.body || {};
   } catch {
-    const result = json(400, { error: 'Invalid JSON body' });
-    return res.status(result.status).json(result.body);
+    return response.status(400).json({ error: 'Invalid JSON body' });
   }
 
   const name = String(body.name || '').trim();
@@ -35,22 +43,19 @@ export default async function handler(req, res) {
   const cgpAcceptedAt = String(body.cgpAcceptedAt || '').trim();
 
   if (body.botField) {
-    const result = json(200, { ok: true });
-    return res.status(result.status).json(result.body);
+    return response.status(200).json({ ok: true });
   }
 
   if (!name || !email || !message || !body.gdprConsent || !body.cgpConsent) {
-    const result = json(400, { error: 'Missing required fields' });
-    return res.status(result.status).json(result.body);
+    return response.status(400).json({ error: 'Missing required fields' });
   }
 
   if (!process.env.RESEND_API_KEY) {
-    const result = json(500, { error: 'Missing RESEND_API_KEY' });
-    return res.status(result.status).json(result.body);
+    return response.status(500).json({ error: 'Missing RESEND_API_KEY' });
   }
 
   const acceptedAt = cgpAcceptedAt || new Date().toISOString();
-  const response = await fetch('https://api.resend.com/emails', {
+  const resendResponse = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
@@ -83,11 +88,9 @@ export default async function handler(req, res) {
     })
   });
 
-  if (!response.ok) {
-    const result = json(502, { error: 'Email provider failed' });
-    return res.status(result.status).json(result.body);
+  if (!resendResponse.ok) {
+    return response.status(502).json({ error: 'Email provider failed' });
   }
 
-  const result = json(200, { ok: true });
-  return res.status(result.status).json(result.body);
+  return response.status(200).json({ ok: true });
 }
