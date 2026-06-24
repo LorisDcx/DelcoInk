@@ -59,14 +59,20 @@ export default function ContactSection() {
           botField
         })
       });
-      if (!res.ok) throw new Error('Submission failed');
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || 'Submission failed');
+      }
       setFormData({ name: '', email: '', message: '', subject: 'Renseignement' });
       setGdprConsent(false);
       setCgpConsent(false);
       setBotField('');
       window.location.href = '/thanks';
     } catch (err) {
-      setSubmitError("Oups, l'envoi a \u00e9chou\u00e9. R\u00e9essaie ou \u00e9cris \u00e0 contact@delco-ink.fr");
+      const errorMessage = err instanceof Error && err.message === 'Email service is not configured'
+        ? "Le service d'envoi n'est pas encore configuré. Écris à contact@delco-ink.fr."
+        : "Oups, l'envoi a échoué. Réessaie ou écris à contact@delco-ink.fr";
+      setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
