@@ -55,6 +55,14 @@ export default async function handler(request, response) {
   }
 
   const acceptedAt = cgpAcceptedAt || new Date().toISOString();
+  
+  console.log('Sending email with config:', {
+    from: CONTACT_FROM_EMAIL,
+    to: CONTACT_TO_EMAIL,
+    replyTo: email,
+    hasApiKey: !!process.env.RESEND_API_KEY
+  });
+
   const resendResponse = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -89,7 +97,9 @@ export default async function handler(request, response) {
   });
 
   if (!resendResponse.ok) {
-    return response.status(502).json({ error: 'Email provider failed' });
+    const errorText = await resendResponse.text();
+    console.error('Resend API error:', resendResponse.status, errorText);
+    return response.status(502).json({ error: 'Email provider failed', details: errorText });
   }
 
   return response.status(200).json({ ok: true });
