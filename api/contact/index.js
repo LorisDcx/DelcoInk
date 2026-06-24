@@ -1,5 +1,5 @@
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'contact@delco-ink.fr';
-const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Delco Ink <contact@delco-ink.fr>';
+const CONTACT_TO_EMAIL = process.env.LEAD_NOTIFY_EMAIL || 'contact@delco-ink.fr';
+const CONTACT_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Delco Ink <contact@delco-ink.fr>';
 
 function escapeHtml(value) {
   return String(value)
