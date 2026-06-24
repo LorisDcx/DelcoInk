@@ -42,12 +42,17 @@ import SectionDivider from '../components/sections/SectionDivider';
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["LocalBusiness","TattooParlor"],
+      "@type": ["LocalBusiness", "TattooParlor"],
       "@id": "https://www.delco-ink.fr/#localbusiness",
       "name": "Delco Ink",
       "url": "https://www.delco-ink.fr/",
-      "image": ["https://www.delco-ink.fr/images/delco-ink-studio-tatouage-chambery-hero.webp", "https://www.delco-ink.fr/img/Logo.webp"],
+      "image": [
+        "https://www.delco-ink.fr/images/delco-ink-studio-tatouage-chambery-hero.webp",
+        "https://www.delco-ink.fr/img/Logo.webp"
+      ],
       "logo": "https://www.delco-ink.fr/img/Logo.webp",
+      "description": "Delco Ink, tatoueuse à Cognin près de Chambéry. Spécialisée en blackwork illustratif, pop-culture et manga. Rendez-vous personnalisés.",
+      "email": "contact@delco-ink.fr",
       "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
@@ -57,33 +62,73 @@ import SectionDivider from '../components/sections/SectionDivider';
         "addressRegion": "Auvergne-Rhône-Alpes",
         "addressCountry": "FR"
       },
-      "geo": { "@type":"GeoCoordinates", "latitude": 45.574277, "longitude": 5.902913 },
-      "areaServed": ["Chambéry","Grand Chambéry","Savoie"],
+      "geo": { "@type": "GeoCoordinates", "latitude": 45.574277, "longitude": 5.902913 },
+      "areaServed": ["Chambéry", "Grand Chambéry", "Savoie"],
       "openingHoursSpecification": [
-        { "@type":"OpeningHoursSpecification", "dayOfWeek":["Monday","Tuesday","Wednesday"], "opens":"09:00", "closes":"19:00" },
-        { "@type":"OpeningHoursSpecification", "dayOfWeek":["Sunday"], "opens":"13:00", "closes":"19:00" }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday"], "opens": "09:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "13:00", "closes": "19:00" }
       ],
-      "sameAs": ["https://www.tiktok.com/@delco_ink", "https://www.instagram.com/delco.ink/?hl=fr"]
+      "sameAs": ["https://www.instagram.com/delco.ink/", "https://www.tiktok.com/@delco_ink"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Clément Drouard" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "datePublished": "2024-11-01",
+          "reviewBody": "J'y suis allé et j'y suis retourné parce qu'on y est bien accueilli, bien conseillé, bien accompagné et bien sûr sacrément bien dessiné."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Ophélie Barriquand" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "datePublished": "2025-04-01",
+          "reviewBody": "Accueil et conseil au top, beaucoup de douceur, de la bonne ambiance, les dessins sont magnifiques. Au plaisir de revenir très très bientôt. Je passe toujours un super moment !"
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Maël Defontaine" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "datePublished": "2023-09-01",
+          "reviewBody": "Tatouages à l'image de la tatoueuse : stylés, douce, sympa, plein de peps. Très agile, elle m'a détendu et ce fut ma meilleure expérience de tatouage. Au plaisir !"
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Steeve Marion" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "datePublished": "2024-10-01",
+          "reviewBody": "Je recommande vivement cette tatoueuse ! Tout a été parfait : très professionnelle, très gentille, très douce pendant le tatouage. Elle m'a super bien conseillé dans mon projet. Vivement le prochain !"
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Laëtitia Marion" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "datePublished": "2024-10-01",
+          "reviewBody": "Je me suis fait tatouer chez Delco Ink et ça s'est super bien passé. Shop très beau, propre, tatouages magnifiques."
+        }
+      ]
     },
     {
-      "@type":"WebSite",
-      "@id":"https://www.delco-ink.fr/#website",
-      "url":"https://www.delco-ink.fr/",
-      "name":"Delco Ink",
-      "publisher":{"@id":"https://www.delco-ink.fr/#localbusiness"}
+      "@type": "WebSite",
+      "@id": "https://www.delco-ink.fr/#website",
+      "url": "https://www.delco-ink.fr/",
+      "name": "Delco Ink",
+      "publisher": { "@id": "https://www.delco-ink.fr/#localbusiness" }
     },
     {
-      "@type":"FAQPage",
-      "@id":"https://www.delco-ink.fr/#faq",
-      "mainEntity":[
-        {"@type":"Question","name":"Puis-je apporter mon propre design ?",
-         "acceptedAnswer":{"@type":"Answer","text":"Oui. On part de vos références et on adapte en blackwork illustratif pour un résultat lisible et durable."}},
-        {"@type":"Question","name":"Est-ce que les tatouages font mal ?",
-         "acceptedAnswer":{"@type":"Answer","text":"La sensation varie selon la zone et la durée. Je vous guide sur la préparation et je fais des pauses si besoin."}},
-        {"@type":"Question","name":"Comment préparer ma peau avant une séance ?",
-         "acceptedAnswer":{"@type":"Answer","text":"Hydratez bien la peau les jours précédents, évitez alcool/aspirine la veille, dormez bien et mangez avant la séance."}},
-        {"@type":"Question","name":"Comment entretenir mon tatouage après la séance ?",
-         "acceptedAnswer":{"@type":"Answer","text":"Nettoyage doux, crème adaptée, éviter bains/soleil/gréssage 2–3 semaines. Un guide détaillé vous est remis le jour J."}}
+      "@type": "FAQPage",
+      "@id": "https://www.delco-ink.fr/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Puis-je apporter mon propre design ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. On part de vos références et on adapte en blackwork illustratif pour un résultat lisible et durable." } },
+        { "@type": "Question", "name": "Est-ce que les tatouages font mal ?", "acceptedAnswer": { "@type": "Answer", "text": "La sensation varie selon la zone et la durée. Je vous guide sur la préparation et je fais des pauses si besoin." } },
+        { "@type": "Question", "name": "Comment préparer ma peau avant une séance ?", "acceptedAnswer": { "@type": "Answer", "text": "Hydratez bien la peau les jours précédents, évitez alcool/aspirine la veille, dormez bien et mangez avant la séance." } },
+        { "@type": "Question", "name": "Comment entretenir mon tatouage après la séance ?", "acceptedAnswer": { "@type": "Answer", "text": "Nettoyage doux, crème adaptée, éviter bains, soleil et frottements pendant 2 à 3 semaines. Un guide détaillé vous est remis le jour J." } }
       ]
     }
   ]

@@ -1,0 +1,13 @@
+
+> delco-ink-astro@0.0.1 dev
+> astro dev --host 127.0.0.1
+
+11:48:21 [WARN] [config] The adapter @astrojs/netlify provides experimental support for "assets". You may experience issues or breaking changes until this feature is fully supported by the adapter.
+11:48:21 [types] Generated 1ms
+
+ astro  v4.16.19 ready in 474 ms
+
+┃ Local    http://127.0.0.1:4321/
+
+11:48:21 watching for file changes...
+13:30:22 [200] / 13ms

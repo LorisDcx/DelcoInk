@@ -1,0 +1,28 @@
+---
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+const allItems = [{ name: 'Accueil', url: '/' }, ...items];
+---
+
+<nav class="max-w-6xl mx-auto px-4 pt-24 md:pt-28 text-sm text-gray-500" aria-label="Fil d'Ariane">
+  <ol class="flex flex-wrap items-center gap-2">
+    {allItems.map((item, index) => (
+      <li class="flex items-center gap-2">
+        {index > 0 && <span class="text-gray-300" aria-hidden="true">/</span>}
+        {index === allItems.length - 1 ? (
+          <span class="text-gray-700" aria-current="page">{item.name}</span>
+        ) : (
+          <a href={item.url} class="hover:text-forest transition-colors">{item.name}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

@@ -1,6 +1,16 @@
 'use client';
 import React, { useRef, useEffect } from 'react';
 
+const reviewSnippets = [
+  'Clément : bien accueilli, bien conseillé, bien accompagné',
+  'Ophélie : accueil et conseil au top, beaucoup de douceur',
+  'Maël : meilleure expérience de tatouage',
+  'Steeve : très professionnelle, très gentille, très douce',
+  'Laëtitia : shop très beau, propre, tatouages magnifiques'
+];
+
+const googleBusinessUrl = 'https://www.google.com/maps/search/?api=1&query=Delco%20Ink%2019%20Av.%20G%C3%A9n%C3%A9ral%20Cartier%2073160%20Cognin';
+
 export default function AboutSection() {
   const titleRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -157,6 +167,29 @@ export default function AboutSection() {
                   <span className="relative z-10">Parlons de votre projet</span>
                   <span className="absolute inset-0 bg-gradient-to-r from-forest/90 to-forest/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </a>
+              </div>
+
+              <div className="mt-8 border border-forest/15 bg-white/35 rounded-full overflow-hidden shadow-sm">
+                <div className="flex items-center gap-4 min-h-[44px]">
+                  <a
+                    href={googleBusinessUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 ml-2 px-4 py-2 rounded-full bg-forest text-white text-sm font-medium hover:bg-forest/90 transition-colors"
+                    aria-label="Voir les avis Delco Ink sur Google"
+                  >
+                    Google 5/5
+                  </a>
+                  <div className="relative flex-1 overflow-hidden">
+                    <div className="flex w-max animate-review-marquee gap-8 py-2 text-sm text-gray-700">
+                      {[...reviewSnippets, ...reviewSnippets].map((review, index) => (
+                        <span key={review + '-' + index} className="whitespace-nowrap">
+                          <span className="text-forest" aria-hidden="true">★★★★★</span> {review}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

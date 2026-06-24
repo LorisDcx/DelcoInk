@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const faqs = [
+  {
+    section: 'Projet et rendez-vous',
+    questions: [
+      {
+        question: 'Comment prendre rendez-vous pour un tatouage a Chambery ou Cognin ?',
+        answer: 'Le plus simple est de passer par le formulaire de contact du site en indiquant votre idee, la zone du corps, la taille approximative et vos references visuelles. Delco Ink travaille sur rendez-vous uniquement, dans un studio prive a Cognin, pres de Chambery.'
+      },
+      {
+        question: 'Quelles informations envoyer pour demander un devis ?',
+        answer: 'Envoyez une description claire du projet, la zone souhaitee, la taille approximative en centimetres, vos disponibilites et quelques images de reference. Pour un projet manga, pop-culture ou blackwork, precisez aussi ce que vous aimez dans la reference : composition, ambiance, personnage, niveau de detail.'
+      },
+      {
+        question: 'Est-ce possible de venir avec son propre dessin ?',
+        answer: 'Oui, un dessin personnel peut servir de base. Il sera adapte pour fonctionner en tatouage : lisibilite, contraste, taille, placement et vieillissement sur la peau. Le but est de garder votre idee tout en la rendant durable.'
+      },
+      {
+        question: 'Faut-il verser un acompte ?',
+        answer: 'Un acompte est demande pour bloquer le creneau et valider le travail preparatoire. Il est deduit du prix final du tatouage. Les conditions d annulation sont detaillees dans les conditions generales.'
+      }
+    ]
+  },
+  {
+    section: 'Styles et flash tattoos',
+    questions: [
+      {
+        question: 'Quels styles de tatouage propose Delco Ink ?',
+        answer: 'Delco Ink est specialisee en blackwork illustratif, tatouage manga, pop-culture, anime, jeux video et flash tattoos. Les projets sont travailles en noir, avec une attention particuliere portee au contraste, a la composition et a la lisibilite.'
+      },
+      {
+        question: 'Qu est-ce qu un flash tattoo ?',
+        answer: 'Un flash tattoo est un dessin deja cree, disponible a la reservation. Il permet de choisir une composition prete a tatouer, souvent plus rapide a organiser qu un projet sur mesure. Les flashs disponibles sont visibles sur la page dediee.'
+      },
+      {
+        question: 'Un tatouage manga ou Ghibli peut-il bien vieillir ?',
+        answer: 'Oui, si le dessin est adapte au tatouage. Les details trop fins, les micro-traits et les compositions trop compactes peuvent perdre en nettete. En blackwork illustratif, le travail consiste a simplifier intelligemment, garder les contrastes forts et choisir une taille adaptee.'
+      },
+      {
+        question: 'Peut-on faire un projet pop-culture sans copier une image existante ?',
+        answer: 'Oui. L objectif est souvent de partir d un univers, d un personnage ou d une ambiance pour creer une piece personnelle. Cela permet d obtenir un tatouage reconnaissable, mais plus unique et mieux adapte a votre morphologie.'
+      }
+    ]
+  },
+  {
+    section: 'Avant, pendant et apres la seance',
+    questions: [
+      {
+        question: 'Comment preparer sa peau avant une seance ?',
+        answer: 'Hydratez la zone les jours precedents, dormez correctement, mangez avant de venir et evitez l alcool ainsi que les substances qui peuvent fluidifier le sang. Le jour du rendez-vous, portez des vetements confortables qui laissent acces a la zone a tatouer.'
+      },
+      {
+        question: 'Est-ce qu un tatouage fait mal ?',
+        answer: 'La sensation depend de la zone, de la duree de seance et de votre fatigue. Les cotes, le sternum, les pieds ou l interieur du bras sont souvent plus sensibles. Des pauses peuvent etre faites pendant la seance si necessaire.'
+      },
+      {
+        question: 'Comment se passe la cicatrisation ?',
+        answer: 'La cicatrisation demande generalement deux a quatre semaines selon la peau, la taille et la zone. Il faut nettoyer doucement, hydrater avec un soin adapte, eviter les bains, le soleil direct, la piscine et les frottements excessifs.'
+      },
+      {
+        question: 'Les retouches sont-elles toujours necessaires ?',
+        answer: 'Pas toujours. Une retouche peut etre utile si une zone a moins bien pris pendant la cicatrisation. Cela se verifie une fois le tatouage completement cicatrise.'
+      }
+    ]
+  },
+  {
+    section: 'Studio, hygiene et zone locale',
+    questions: [
+      {
+        question: 'Ou se trouve Delco Ink ?',
+        answer: 'Delco Ink tatoue a Cognin, a proximite immediate de Chambery, en Savoie. Le studio fonctionne sur rendez-vous afin de garder un cadre calme et adapte aux projets personnalises.'
+      },
+      {
+        question: 'Quelles sont les regles d hygiene ?',
+        answer: 'Le materiel a usage unique est privilegie lorsque c est necessaire, les surfaces sont preparees et protegees, et les protocoles d hygiene sont respectes a chaque seance. Les consignes de soin sont donnees apres le tatouage.'
+      },
+      {
+        question: 'Peut-on venir accompagne ?',
+        answer: 'Cela depend de la seance et de la place disponible. Pour garder un environnement calme et concentre, il vaut mieux demander avant le rendez-vous.'
+      }
+    ]
+  }
+];
+
+const flatFaqs = faqs.flatMap((group) => group.questions);
+---
+
+<Layout
+  title="FAQ tatouage Chambery | Questions fréquentes - Delco Ink"
+  description="FAQ Delco Ink : rendez-vous, flash tattoos, tatouage manga, blackwork, préparation, douleur, cicatrisation et hygiène à Cognin près de Chambéry."
+  canonical="https://www.delco-ink.fr/faq-tatouage"
+  image="https://www.delco-ink.fr/images/gallery/blackwork/blackwork-chambery-tatouage-encre-noire-4.webp"
+>
+  <Breadcrumbs items={[{ name: 'FAQ tatouage', url: '/faq-tatouage' }]} />
+
+  <article class="pb-20" style="background: linear-gradient(180deg, #f8f3e8 0%, #faf7f0 50%, #f5f2e8 100%)">
+    <div class="container mx-auto px-4">
+      <header class="max-w-4xl mx-auto text-center pt-12 mb-14">
+        <p class="text-forest uppercase tracking-widest text-sm font-quicksand mb-3">Delco Ink · Cognin / Chambéry</p>
+        <h1 class="font-title text-4xl md:text-6xl text-gray-900 mb-6">FAQ tatouage</h1>
+        <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+          Les réponses aux questions les plus courantes avant de réserver un projet blackwork,
+          manga, pop-culture ou flash tattoo chez Delco Ink.
+        </p>
+      </header>
+
+      <div class="max-w-5xl mx-auto grid lg:grid-cols-[240px_1fr] gap-10 items-start">
+        <aside class="hidden lg:block sticky top-28 bg-white/70 border border-forest/10 rounded-xl p-5">
+          <p class="font-title text-lg text-forest mb-4">Sommaire</p>
+          <nav class="space-y-2 text-sm text-gray-600">
+            {faqs.map((group) => (
+              <a href={`#${group.section.toLowerCase().replaceAll(' ', '-')}`} class="block hover:text-forest transition-colors">
+                {group.section}
+              </a>
+            ))}
+          </nav>
+        </aside>
+
+        <div class="space-y-10">
+          {faqs.map((group) => (
+            <section id={group.section.toLowerCase().replaceAll(' ', '-')} class="scroll-mt-28">
+              <h2 class="font-title text-2xl md:text-3xl text-gray-900 mb-5">{group.section}</h2>
+              <div class="space-y-4">
+                {group.questions.map((item) => (
+                  <details class="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <summary class="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4">
+                      <h3 class="font-title text-lg text-gray-900 group-open:text-forest">{item.question}</h3>
+                      <span class="text-forest text-2xl leading-none group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+                    </summary>
+                    <div class="px-5 pb-5 text-gray-600 leading-relaxed">
+                      <p>{item.answer}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ))}
+
+          <section class="bg-forest text-white rounded-2xl p-8 text-center">
+            <h2 class="font-title text-3xl mb-4">Une question sur votre projet ?</h2>
+            <p class="text-white/90 max-w-2xl mx-auto mb-6">
+              Envoyez votre idée, la zone et quelques références. La réponse sera plus précise
+              qu'une estimation générale.
+            </p>
+            <a href="/#contact-anchor" class="inline-flex items-center justify-center px-7 py-3 bg-white text-forest rounded-full font-medium hover:bg-gray-100 transition-colors">
+              Contacter Delco Ink
+            </a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://www.delco-ink.fr/faq-tatouage#faq",
+    "mainEntity": flatFaqs.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  })} />
+</Layout>

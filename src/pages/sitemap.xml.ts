@@ -16,6 +16,7 @@ export async function GET() {
     { url: '/tatouage-pop-culture-chambery', changefreq: 'monthly', priority: '0.85' },
     { url: '/specialites', changefreq: 'monthly', priority: '0.80' },
     { url: '/flash', changefreq: 'weekly', priority: '0.8' },
+    { url: '/faq-tatouage', changefreq: 'monthly', priority: '0.75' },
     
     // Blog (priorité moyenne-haute)
     { url: '/blog', changefreq: 'weekly', priority: '0.8' },

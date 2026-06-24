@@ -1,6 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import InternalLinks from '../components/InternalLinks.astro';
+
+const googleBusinessUrl = 'https://www.google.com/maps/search/?api=1&query=Delco%20Ink%2019%20Av.%20G%C3%A9n%C3%A9ral%20Cartier%2073160%20Cognin';
+
+const reviews = [
+  {
+    author: 'Clément Drouard',
+    date: 'Novembre 2024',
+    body: "J'y suis allé et j'y suis retourné parce qu'on y est bien accueilli, bien conseillé, bien accompagné et bien sûr sacrément bien dessiné."
+  },
+  {
+    author: 'Ophélie Barriquand',
+    date: 'Avril 2025',
+    body: "Accueil et conseil au top, beaucoup de douceur, de la bonne ambiance, les dessins sont magnifiques. Au plaisir de revenir très très bientôt. Je passe toujours un super moment !"
+  },
+  {
+    author: 'Maël Defontaine',
+    date: 'Septembre 2023',
+    body: "Tatouages à l'image de la tatoueuse : stylés, douce, sympa, plein de peps. Très agile, elle m'a détendu et ce fut ma meilleure expérience de tatouage. Au plaisir !"
+  },
+  {
+    author: 'Steeve Marion',
+    date: 'Octobre 2024',
+    body: "Je recommande vivement cette tatoueuse ! Tout a été parfait : très professionnelle, très gentille, très douce pendant le tatouage. Elle m'a super bien conseillé dans mon projet. Vivement le prochain !"
+  },
+  {
+    author: 'Laëtitia Marion',
+    date: 'Octobre 2024',
+    body: "Je me suis fait tatouer chez Delco Ink et ça s'est super bien passé. Shop très beau, propre, tatouages magnifiques."
+  }
+];
 ---
 
 <Layout 
@@ -253,6 +283,42 @@ import InternalLinks from '../components/InternalLinks.astro';
           </div>
         </section>
 
+
+        <!-- Avis clients -->
+        <section class="relative overflow-hidden bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+            <div>
+              <p class="text-forest text-sm font-medium uppercase tracking-wider mb-2">Avis Google</p>
+              <h2 class="font-title text-2xl text-gray-800 mb-3">Ce que les clients disent de Delco Ink</h2>
+              <p class="text-gray-600 max-w-2xl">
+                Les avis comptent autant pour Google que pour les futurs clients : ils montrent l'accueil, la douceur, l'écoute et la qualité du dessin.
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="button" data-reviews-prev aria-label="Avis précédent" class="w-10 h-10 rounded-full border border-forest/30 text-forest hover:bg-forest hover:text-white transition-colors">←</button>
+              <button type="button" data-reviews-next aria-label="Avis suivant" class="w-10 h-10 rounded-full border border-forest/30 text-forest hover:bg-forest hover:text-white transition-colors">→</button>
+            </div>
+          </div>
+
+          <div data-reviews-track class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 [-ms-overflow-style:none] [scrollbar-width:none]">
+            {reviews.map((review) => (
+              <article class="min-w-[82%] sm:min-w-[48%] lg:min-w-[32%] snap-start rounded-xl bg-forest/5 border border-forest/10 p-5 flex flex-col">
+                <div class="text-forest mb-3" aria-label="5 étoiles">★★★★★</div>
+                <p class="text-gray-700 leading-relaxed flex-1">“{review.body}”</p>
+                <footer class="mt-5 pt-4 border-t border-forest/10">
+                  <p class="font-semibold text-gray-800">{review.author}</p>
+                  <p class="text-sm text-gray-500">Avis Google · {review.date}</p>
+                </footer>
+              </article>
+            ))}
+          </div>
+
+          <div class="mt-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+            <p class="text-sm text-gray-500">Note Google affichée : 5/5, d'après les avis publics transmis.</p>
+            <a href={googleBusinessUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2 border border-forest text-forest rounded-full hover:bg-forest/5 transition-colors text-sm font-medium">Voir la fiche Google</a>
+          </div>
+        </section>
+
         <!-- CTA -->
         <section class="bg-forest/5 p-8 rounded-xl text-center">
           <h2 class="font-title text-2xl text-gray-800 mb-4">Envie de créer ensemble ?</h2>
@@ -297,6 +363,13 @@ import InternalLinks from '../components/InternalLinks.astro';
         "name": "Delco Ink",
         "url": "https://www.delco-ink.fr/",
         "image": "https://www.delco-ink.fr/images/delco-ink-studio-tatouage-chambery-hero.webp",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "19 Av. Général Cartier",
@@ -315,5 +388,23 @@ import InternalLinks from '../components/InternalLinks.astro';
       }
     ]
   }
+  </script>
+  <script is:inline>
+    (() => {
+      const track = document.querySelector('[data-reviews-track]');
+      const prev = document.querySelector('[data-reviews-prev]');
+      const next = document.querySelector('[data-reviews-next]');
+      if (!track || !prev || !next) return;
+
+      const scrollReviews = (direction) => {
+        const card = track.querySelector('article');
+        const gap = 16;
+        const distance = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.85;
+        track.scrollBy({ left: direction * distance, behavior: 'smooth' });
+      };
+
+      prev.addEventListener('click', () => scrollReviews(-1));
+      next.addEventListener('click', () => scrollReviews(1));
+    })();
   </script>
 </Layout>

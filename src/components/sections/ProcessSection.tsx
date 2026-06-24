@@ -93,7 +93,7 @@ export default function ProcessSection() {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div ref={titleRef}>
+        <div ref={titleRef} className="text-center">
           <h2 className="section-title text-4xl md:text-5xl text-gray-900 mb-16 uppercase relative inline-block transform -rotate-[0.8deg]">
             Notre Processus
             <span className="absolute -right-8 -top-4 text-base opacity-40 rotate-12 font-serif">足の爪</span>

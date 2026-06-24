@@ -554,10 +554,32 @@
   transition-delay: 500ms;
 }
 
+@keyframes review-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-review-marquee {
+  animation: review-marquee 34s linear infinite;
+}
+
+.animate-review-marquee:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-on-scroll {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .animate-review-marquee {
+    animation: none;
   }
 }

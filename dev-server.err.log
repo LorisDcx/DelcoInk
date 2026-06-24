@@ -1,0 +1,6 @@
+Warning: React does not recognize the `fetchPriority` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `fetchpriority` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at img
+    at picture
+    at div
+    at section
+    at HeroSection (C:/Users/Loris/Desktop/CODE/SITES/DelcoInk/astro/src/components/sections/HeroSection.tsx:11:41)

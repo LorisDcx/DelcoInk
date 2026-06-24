@@ -177,8 +177,8 @@ export default function ServicesSection() {
 
         <div className="mt-12 text-center text-sm text-gray-600">
           En savoir plus :
+          <a href="/tatoueur-chambery" className="text-forest underline ml-2">Tatoueur Chambéry</a>
           <a href="/blackwork-chambery" className="text-forest underline ml-2">Blackwork</a>
-          <a href="/tatouage-illustratif-chambery" className="text-forest underline ml-2">Illustratif</a>
           <a href="/tatouage-pop-culture-chambery" className="text-forest underline ml-2">Pop‑culture</a>
           <a href="/flash" className="text-forest underline ml-2">Flash</a>
         </div>

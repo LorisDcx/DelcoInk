@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/LightLayout.astro';
 
-const flashAsset = (id, baseName, name) => ({
+const flashAsset = (id, baseName, name, status = 'Disponible') => ({
   id,
   name,
-  status: 'Disponible',
+  status,
+  ctaLabel: status === 'Pris' ? 'Projet similaire' : 'R\u00e9server',
   cardSrc: `/images/flash/${baseName}-xs.webp`,
   cardSrcSet: `/images/flash/${baseName}-xs.webp 320w, /images/flash/${baseName}-sm.webp 420w, /images/flash/${baseName}-md.webp 560w`,
   fullSrc: `/images/flash/${baseName}.webp`,
@@ -14,12 +15,12 @@ const flashTattoos = [
   flashAsset('001', 'flash-tattoo-chambery-alchemax-spider', 'Alchemax'),
   flashAsset('002', 'flash-tattoo-chambery-dark-miles-spider', 'Dark Miles'),
   flashAsset('003', 'flash-tattoo-chambery-dragon-1', 'Dragon 1'),
-  flashAsset('004', 'flash-tattoo-chambery-dragon-2', 'Dragon 2'),
-  flashAsset('005', 'flash-tattoo-chambery-dragon-3', 'Dragon 3'),
-  flashAsset('006', 'flash-tattoo-chambery-dragon-4', 'Dragon 4'),
-  flashAsset('007', 'flash-tattoo-chambery-femme-1', 'Femme 1'),
-  flashAsset('008', 'flash-tattoo-chambery-femme-2', 'Femme 2'),
-  flashAsset('009', 'flash-tattoo-chambery-femme-3', 'Femme 3'),
+  flashAsset('004', 'flash-tattoo-chambery-dragon-2', 'Dragon 2', 'Pris'),
+  flashAsset('005', 'flash-tattoo-chambery-dragon-3', 'Dragon 3', 'Pris'),
+  flashAsset('006', 'flash-tattoo-chambery-dragon-4', 'Dragon 4', 'Pris'),
+  flashAsset('007', 'flash-tattoo-chambery-femme-1', 'Femme 1', 'Pris'),
+  flashAsset('008', 'flash-tattoo-chambery-femme-2', 'Femme 2', 'Pris'),
+  flashAsset('009', 'flash-tattoo-chambery-femme-3', 'Femme 3', 'Pris'),
   flashAsset('010', 'flash-tattoo-chambery-fleur-1', 'Fleur 1'),
   flashAsset('011', 'flash-tattoo-chambery-fleur-2', 'Fleur 2'),
   flashAsset('012', 'flash-tattoo-chambery-fleur-3', 'Fleur 3'),
@@ -39,14 +40,14 @@ const flashTattoos = [
   flashAsset('026', 'flash-tattoo-chambery-choice', 'Which One'),
 ];
 
-const initialFlashTattoos = flashTattoos.slice(0, 8);
-const deferredFlashTattoos = flashTattoos.slice(8);
+const initialFlashTattoos = flashTattoos;
 ---
 
 <Layout
   title="Flash Tattoos | Delco Ink - Tatoueur Chambéry"
   description="Découvrez les flash tattoos disponibles au Studio Ensō à Chambéry. Designs blackwork illustratif et pop-culture prêts à être tatoués. Venez les choisir sur Instagram."
   canonical="https://www.delco-ink.fr/flash"
+  image="https://www.delco-ink.fr/images/flash/flash-tattoo-chambery-alchemax-spider.webp"
 >
   <Fragment slot="head">
     <link
@@ -121,7 +122,7 @@ const deferredFlashTattoos = flashTattoos.slice(8);
           >
             <div class="flash-card-frame relative overflow-hidden rounded-[28px] border border-forest/10 bg-[#fffaf0] shadow-[0_16px_40px_rgba(72,58,36,0.08)] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_52px_rgba(72,58,36,0.12)]">
               <div class="absolute top-4 right-4 z-10">
-                <span class="px-3 py-1 bg-forest text-white text-xs font-title uppercase tracking-wide rounded-full shadow-md">
+                <span class={flash.status === 'Pris' ? 'px-3 py-1 text-white text-xs font-title uppercase tracking-wide rounded-full shadow-md bg-gray-500' : 'px-3 py-1 text-white text-xs font-title uppercase tracking-wide rounded-full shadow-md bg-forest'}>
                   {flash.status}
                 </span>
               </div>
@@ -164,7 +165,7 @@ const deferredFlashTattoos = flashTattoos.slice(8);
                 <div class="flex items-center justify-between">
                   <span class="text-gray-500 text-sm font-title">Flash #{flash.id}</span>
                   <a href="/#contact-anchor" class="inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-forest font-medium text-sm hover:underline gap-1 group/link">
-                    Réserver
+                    {flash.ctaLabel}
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -175,95 +176,6 @@ const deferredFlashTattoos = flashTattoos.slice(8);
           </div>
         ))}
       </div>
-
-      {deferredFlashTattoos.length > 0 && (
-        <>
-          <div class="text-center mb-16">
-            <button
-              id="load-more-flash"
-              type="button"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-white/90 text-forest font-medium rounded-full border border-forest/15 shadow-sm hover:shadow-md transition-all duration-300"
-              aria-controls="flash-grid"
-            >
-              Voir plus de flashs
-              <span class="text-sm text-forest/70">({deferredFlashTattoos.length} restants)</span>
-            </button>
-          </div>
-
-          <template id="flash-cards-template">
-            {deferredFlashTattoos.map((flash, index) => {
-              const displayIndex = index + initialFlashTattoos.length;
-              return (
-                <div
-                  class={`flash-card group cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest flash-card-deferred`}
-                  data-flash-id={flash.id}
-                  data-flash-src={flash.fullSrc}
-                  data-flash-name={flash.name}
-                  data-flash-status={flash.status}
-                  role="button"
-                  tabindex="0"
-                  aria-haspopup="dialog"
-                  aria-label={`Ouvrir le flash ${flash.name}`}
-                >
-                  <div class="flash-card-frame relative overflow-hidden rounded-[28px] border border-forest/10 bg-[#fffaf0] shadow-[0_16px_40px_rgba(72,58,36,0.08)] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_52px_rgba(72,58,36,0.12)]">
-                    <div class="absolute top-4 right-4 z-10">
-                      <span class="px-3 py-1 bg-forest text-white text-xs font-title uppercase tracking-wide rounded-full shadow-md">
-                        {flash.status}
-                      </span>
-                    </div>
-
-                    <div class="aspect-square overflow-hidden relative bg-[#f3ede0]">
-                      <img
-                        src={flash.cardSrc}
-                        srcset={flash.cardSrcSet}
-                        sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) 46vw, 380px"
-                        alt={`Flash tattoo ${flash.name}`}
-                        class="flash-card-image w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                        width="320"
-                        height="320"
-                        loading="lazy"
-                        fetchpriority="auto"
-                        decoding="async"
-                        style={{
-                          imageRendering: 'auto',
-                          WebkitFontSmoothing: 'antialiased',
-                          filter: 'contrast(1.05) brightness(1.02)',
-                          transform: 'translateZ(0)',
-                          backfaceVisibility: 'hidden'
-                        }}
-                      />
-                      <div class="flash-hover-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
-                        <span class="text-white font-title text-lg tracking-wide flex items-center gap-2">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                          </svg>
-                          Voir en détail
-                        </span>
-                      </div>
-                      <div class="flash-card-vignette absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_54%,rgba(32,24,13,0.05)_100%)]"></div>
-                    </div>
-
-                    <div class="flash-card-meta p-6 border-t border-forest/10 bg-[#fffaf0]">
-                      <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-title text-xl text-forest">{flash.name}</h3>
-                      </div>
-                      <div class="flex items-center justify-between">
-                        <span class="text-gray-500 text-sm font-title">Flash #{flash.id}</span>
-                        <a href="/#contact-anchor" class="inline-flex min-h-11 items-center justify-center rounded-full px-3 py-2 text-forest font-medium text-sm hover:underline gap-1 group/link">
-                          Réserver
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </template>
-        </>
-      )}
 
       <div class="text-center">
         <div class="inline-block p-8 bg-white/60 backdrop-blur-sm rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg border border-forest/10 shadow-lg relative">
@@ -307,7 +219,7 @@ const deferredFlashTattoos = flashTattoos.slice(8);
               <p id="lightbox-status" class="text-gray-600 text-sm md:text-base"></p>
             </div>
             <div class="text-right">
-              <a href="/#contact-anchor" class="block text-forest text-sm hover:underline">Réserver ce flash →</a>
+              <a id="lightbox-contact-link" href="/#contact-anchor" class="block text-forest text-sm hover:underline">Réserver ce flash →</a>
             </div>
           </div>
         </div>
@@ -317,13 +229,12 @@ const deferredFlashTattoos = flashTattoos.slice(8);
 
   <script is:inline>
     const flashGrid = document.getElementById('flash-grid');
-    const loadMoreButton = document.getElementById('load-more-flash');
-    const flashCardsTemplate = document.getElementById('flash-cards-template');
     const lightbox = document.getElementById('flash-lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxTitle = document.getElementById('lightbox-title');
     const lightboxStatus = document.getElementById('lightbox-status');
     const closeBtn = document.getElementById('close-lightbox');
+    const lightboxContactLink = document.getElementById('lightbox-contact-link');
 
     function openLightbox(card) {
       const flashId = card.getAttribute('data-flash-id');
@@ -337,6 +248,9 @@ const deferredFlashTattoos = flashTattoos.slice(8);
       lightboxImage.setAttribute('alt', flashName);
       if (lightboxTitle) lightboxTitle.textContent = flashName;
       if (lightboxStatus) lightboxStatus.textContent = `Flash #${flashId} - ${flashStatus}`;
+      if (lightboxContactLink) {
+        lightboxContactLink.textContent = flashStatus === 'Pris' ? 'Demander un projet similaire \u2192' : 'R\u00e9server ce flash \u2192';
+      }
       lightbox?.classList.remove('hidden');
       lightbox?.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -366,13 +280,6 @@ const deferredFlashTattoos = flashTattoos.slice(8);
       }
     });
 
-    loadMoreButton?.addEventListener('click', () => {
-      if (!(flashCardsTemplate instanceof HTMLTemplateElement) || !flashGrid) return;
-      const fragment = flashCardsTemplate.content.cloneNode(true);
-      flashGrid.appendChild(fragment);
-      loadMoreButton.remove();
-      flashCardsTemplate.remove();
-    });
 
     closeBtn?.addEventListener('click', closeLightbox);
     lightbox?.addEventListener('click', (e) => {

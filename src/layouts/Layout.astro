@@ -38,6 +38,16 @@ const siteName = "Delco Ink - Tatouage Chambéry";
 const twitterHandle = "@delco_ink";
 const isHomePage = Astro.url.pathname === '/';
 const isLightPage = performanceMode === 'light';
+const breadcrumbItems = Astro.url.pathname
+  .split('/')
+  .filter(Boolean)
+  .map((segment, index, segments) => {
+    const url = `https://www.delco-ink.fr/${segments.slice(0, index + 1).join('/')}`;
+    const name = segment
+      .replaceAll('-', ' ')
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+    return { name, url };
+  });
 ---
 
 <!doctype html>
@@ -132,6 +142,27 @@ const isLightPage = performanceMode === 'light';
       }
     }
     </script>
+
+    {!isHomePage && breadcrumbItems.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://www.delco-ink.fr/"
+          },
+          ...breadcrumbItems.map((item, index) => ({
+            "@type": "ListItem",
+            "position": index + 2,
+            "name": item.name,
+            "item": item.url
+          }))
+        ]
+      })} />
+    )}
     
     <!-- Slot for additional head content (e.g., noindex) -->
     <slot name="head" />
