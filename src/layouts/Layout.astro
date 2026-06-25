@@ -38,6 +38,7 @@ const siteName = "Delco Ink - Tatouage Chambéry";
 const twitterHandle = "@delco_ink";
 const isHomePage = Astro.url.pathname === '/';
 const isLightPage = performanceMode === 'light';
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const breadcrumbItems = Astro.url.pathname
   .split('/')
   .filter(Boolean)
@@ -121,6 +122,18 @@ const breadcrumbItems = Astro.url.pathname
     <!-- Preload Critical Resources -->
     {isHomePage && <link rel="preload" as="image" href="/images/delco-ink-studio-tatouage-chambery-hero-mobile.webp" imagesrcset="/images/delco-ink-studio-tatouage-chambery-hero-mobile.webp 768w, /images/delco-ink-studio-tatouage-chambery-hero-tablet.webp 1280w, /images/delco-ink-studio-tatouage-chambery-hero.webp 1920w" imagesizes="100vw" fetchpriority="high" />}
     {isHomePage && <link rel="preload" as="image" href="/img/Logo-hero-mobile.webp" imagesrcset="/img/Logo-hero-mobile.webp 180w, /img/Logo-hero.webp 320w" imagesizes="(max-width: 768px) 160px, 320px" fetchpriority="high" />}
+
+    {gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaMeasurementId}');
+        `} />
+      </>
+    )}
     
     <!-- Schema.org Organization -->
     <script type="application/ld+json">

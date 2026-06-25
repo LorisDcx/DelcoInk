@@ -28,6 +28,7 @@ const {
 const siteName = "Delco Ink - Tatouage Chambéry";
 const twitterHandle = "@delco_ink";
 const isHomePage = Astro.url.pathname === '/';
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const breadcrumbItems = Astro.url.pathname
   .split('/')
   .filter(Boolean)
@@ -100,6 +101,18 @@ const breadcrumbItems = Astro.url.pathname
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat+Brush&family=Lato:wght@300;400;700&family=Quicksand:wght@400;500;600;700&family=Satisfy&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat+Brush&family=Lato:wght@300;400;700&family=Quicksand:wght@400;500;600;700&family=Satisfy&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat+Brush&family=Lato:wght@300;400;700&family=Quicksand:wght@400;500;600;700&family=Satisfy&display=swap" /></noscript>
+
+    {gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaMeasurementId}');
+        `} />
+      </>
+    )}
 
     <script type="application/ld+json">
     {
