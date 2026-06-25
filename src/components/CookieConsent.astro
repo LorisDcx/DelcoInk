@@ -64,6 +64,10 @@ const { enabled = false } = Astro.props;
       banner?.classList.remove('hidden');
     }
 
+    window.addEventListener('delco:open-cookie-consent', () => {
+      banner?.classList.remove('hidden');
+    });
+
     acceptButton?.addEventListener('click', () => updateConsent('granted'));
     rejectButton?.addEventListener('click', () => updateConsent('denied'));
   </script>

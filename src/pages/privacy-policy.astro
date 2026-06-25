@@ -65,6 +65,13 @@ import Layout from '../layouts/Layout.astro';
         <p>
           Vous pouvez refuser ces cookies. Le refus n'empêche pas l'accès au site.
         </p>
+        <button
+          type="button"
+          id="manage-cookie-consent"
+          class="mt-4 rounded-md border border-forest px-5 py-2 font-medium text-forest transition-colors hover:bg-forest hover:text-white"
+        >
+          Gérer mes préférences cookies
+        </button>
       </div>
 
       <div class="mt-12">
@@ -72,4 +79,10 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+
+  <script>
+    document.getElementById('manage-cookie-consent')?.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('delco:open-cookie-consent'));
+    });
+  </script>
 </Layout>
