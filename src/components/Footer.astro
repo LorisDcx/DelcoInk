@@ -101,6 +101,44 @@ const currentYear = new Date().getFullYear();
         </div>
         <div class="text-xs font-quicksand">&copy; {currentYear} Delco Ink - Tatoueuse à Chambéry</div>
       </div>
+
+      <p class="agency-credit">
+        Conception web par
+        <a
+          href="https://www.3h36agency.fr/realisations/delco-ink?utm_source=delco-ink&utm_medium=referral&utm_campaign=footer_credit"
+          target="_blank"
+          rel="noopener"
+          aria-label="Voir l'étude de cas Delco Ink réalisée par 3h36 Agency"
+        >
+          3h36 Agency — Voir l'étude de cas ↗
+        </a>
+      </p>
     </div>
   </div>
 </footer>
+
+<style>
+  .agency-credit {
+    margin-top: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    opacity: 0.62;
+  }
+
+  .agency-credit a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 180ms ease;
+  }
+
+  .agency-credit:hover {
+    opacity: 1;
+  }
+
+  .agency-credit a:hover,
+  .agency-credit a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
